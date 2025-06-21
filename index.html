@@ -143,28 +143,28 @@
 
   <details>
     <summary>+ Advanced Details (Opsional)</summary>
-    <label for="style">Style (Gaya Bahasa):</label>
-    <input type="text" id="style" placeholder="Contoh: santai, formal" />
+    <label for="style">Style:</label>
+    <input type="text" id="style" />
     <label for="objective">Objective:</label>
-    <input type="text" id="objective" placeholder="Contoh: edukasi, jualan" />
+    <input type="text" id="objective" />
     <label for="cta">Call to Action:</label>
-    <input type="text" id="cta" placeholder="Contoh: beli sekarang, DM kami" />
+    <input type="text" id="cta" />
     <label for="persona">Persona:</label>
-    <input type="text" id="persona" placeholder="Contoh: CEO, Gen Z" />
+    <input type="text" id="persona" />
     <label for="visual">Visual Referensi:</label>
-    <input type="text" id="visual" placeholder="Contoh: before-after, ekspresi" />
+    <input type="text" id="visual" />
     <label for="language">Bahasa/Dialek:</label>
-    <input type="text" id="language" placeholder="Contoh: santai, Inggris" />
+    <input type="text" id="language" />
     <label for="moment">Momen/Kalender:</label>
-    <input type="text" id="moment" placeholder="Contoh: Ramadhan, akhir bulan" />
+    <input type="text" id="moment" />
     <label for="role">Role AI:</label>
-    <input type="text" id="role" placeholder="Contoh: Content Creator" />
+    <input type="text" id="role" />
     <label for="goal">Goal:</label>
-    <input type="text" id="goal" placeholder="Contoh: buat konten edukasi" />
+    <input type="text" id="goal" />
     <label for="tone">Tone:</label>
-    <input type="text" id="tone" placeholder="Contoh: humoris, serius" />
+    <input type="text" id="tone" />
     <label for="constraint">Constraints:</label>
-    <input type="text" id="constraint" placeholder="Contoh: tanpa klaim berlebihan" />
+    <input type="text" id="constraint" />
   </details>
 
   <div class="actions">
@@ -232,11 +232,13 @@
       prompt += `\nKonten harus engaging dan sesuai brief. Berikan 3 versi berbeda.`;
 
       document.getElementById("output").textContent = prompt;
+      sendHeight();
     }
 
     function resetForm() {
       document.querySelectorAll("input, select").forEach(el => el.value = "");
       document.getElementById("output").textContent = "";
+      sendHeight();
     }
 
     function copyPrompt() {
@@ -258,26 +260,35 @@
     }
 
     function exportPDF() {
-      const text = document.getElementById("output").textContent;
+      const output = document.getElementById("output");
+      const text = output.textContent;
       if (!text) {
         alert("Silakan generate prompt terlebih dahulu.");
         return;
       }
-      const tempDiv = document.createElement("div");
-      tempDiv.style.whiteSpace = "pre-wrap";
-      tempDiv.style.fontFamily = "Montserrat, sans-serif";
-      tempDiv.style.fontSize = "14px";
-      tempDiv.style.padding = "20px";
-      tempDiv.style.color = "#000000";
-      tempDiv.innerText = text;
+      const clone = output.cloneNode(true);
+      clone.style.background = "#ffffff";
+      clone.style.color = "#000000";
+      clone.style.padding = "20px";
+      clone.style.fontFamily = "Montserrat, sans-serif";
 
-      document.body.appendChild(tempDiv);
-      html2pdf().from(tempDiv).save("prompt-output.pdf").then(() => {
-        document.body.removeChild(tempDiv);
+      document.body.appendChild(clone);
+      html2pdf().from(clone).save("prompt-output.pdf").then(() => {
+        document.body.removeChild(clone);
       });
     }
 
-    window.addEventListener("load", updateFormatOptions);
+    function sendHeight() {
+      const height = document.documentElement.scrollHeight;
+      window.parent.postMessage({ height: height }, "*");
+    }
+
+    window.addEventListener("load", () => {
+      updateFormatOptions();
+      sendHeight();
+    });
+
+    window.addEventListener("resize", sendHeight);
   </script>
 </body>
 </html>
