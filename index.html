@@ -8,11 +8,11 @@
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
     html, body {
-      font-family: Arial, sans-serif;
+      font-family: 'Montserrat', sans-serif;
       padding: 1rem;
       margin: 0;
       max-width: 100%;
-      background-color: transparent;
+      background-color: #1c1c1c;
       color: #ffffff;
     }
 
@@ -40,7 +40,7 @@
       appearance: none;
       -webkit-appearance: none;
       -moz-appearance: none;
-      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%23ffffff' d='M0 3h10L5 8z'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%23ffffff' d='M0 3h10L5 8z'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 14px center;
       background-size: 12px;
@@ -79,7 +79,6 @@
 
     .actions button {
       flex: 1;
-      font-family: 'Montserrat', sans-serif;
       font-size: 16px;
       font-weight: 600;
       padding: 16px 12px;
@@ -154,80 +153,60 @@
 <body>
   <label for="brand">Nama Brand:</label>
   <input type="text" id="brand" placeholder="Contoh: Skintify">
-
   <label for="product">Produk / Jasa yang Dijual:</label>
   <input type="text" id="product" placeholder="Contoh: Produk skincare lokal untuk remaja perempuan">
-
   <label for="audience">Target Audience:</label>
   <input type="text" id="audience" placeholder="Contoh: Perempuan usia 17-25, tinggal di kota besar">
-
   <label for="platform">Platform:</label>
   <select id="platform" onchange="updateFormatOptions()">
     <option value="Instagram">Instagram</option>
     <option value="Youtube">Youtube</option>
     <option value="TikTok">TikTok</option>
   </select>
-
   <label for="format">Format Konten:</label>
   <select id="format"></select>
-
   <label for="outputType">Output Type:</label>
   <select id="outputType">
     <option value="content">Content Prompt (default)</option>
     <option value="script">Script Video</option>
     <option value="image">Image Prompt</option>
     <option value="voice">Voice-over</option>
-    <option value="video">Video Prompt (Text-to-Video)</option>
+    <option value="video">🎬 Video Prompt (Text-to-Video)</option>
   </select>
-
   <details>
     <summary>+ Advanced Details (Opsional)</summary>
-    <div>
-      <label for="style">Style (gaya bahasa):</label>
-      <input type="text" id="style" placeholder="Contoh: casual, edukatif, nyeleneh">
-
-      <label for="objective">Campaign Objective:</label>
-      <input type="text" id="objective" placeholder="Contoh: edukasi, jualan, awareness">
-
-      <label for="cta">Call to Action:</label>
-      <input type="text" id="cta" placeholder="Contoh: beli sekarang, share, DM kami">
-
-      <label for="persona">Karakter Persona:</label>
-      <input type="text" id="persona" placeholder="Contoh: CEO, Gen-Z, fun, friendly">
-
-      <label for="visual">Visual Referensi:</label>
-      <input type="text" id="visual" placeholder="Contoh: flatlay, before-after, ekspresi pedas">
-
-      <label for="language">Bahasa / Dialek:</label>
-      <input type="text" id="language" placeholder="Contoh: bahasa santai, campur Inggris, Gen Z slang">
-
-      <label for="moment">Momen / Kalender:</label>
-      <input type="text" id="moment" placeholder="Contoh: Ramadhan, Akhir bulan, Back to School">
-
-      <label for="role">Role AI:</label>
-      <input type="text" id="role" placeholder="Contoh: Content Creator, Social Media Manager">
-
-      <label for="goal">Goal / Tugas AI:</label>
-      <input type="text" id="goal" placeholder="Contoh: membuat konten promosi, edukasi pelanggan">
-
-      <label for="tone">Tone / Suasana Konten:</label>
-      <input type="text" id="tone" placeholder="Contoh: santai, humoris, tegas">
-
-      <label for="constraint">Constraints / Batasan:</label>
-      <input type="text" id="constraint" placeholder="Contoh: jangan menyebut harga, hindari klaim berlebihan">
-    </div>
+    <label for="style">Style (gaya bahasa):</label>
+    <input type="text" id="style" placeholder="Contoh: casual, edukatif, nyeleneh">
+    <label for="objective">Campaign Objective:</label>
+    <input type="text" id="objective" placeholder="Contoh: edukasi, jualan, awareness">
+    <label for="cta">Call to Action:</label>
+    <input type="text" id="cta" placeholder="Contoh: beli sekarang, share, DM kami">
+    <label for="persona">Karakter Persona:</label>
+    <input type="text" id="persona" placeholder="Contoh: CEO, Gen-Z, fun, friendly">
+    <label for="visual">Visual Referensi:</label>
+    <input type="text" id="visual" placeholder="Contoh: flatlay, before-after, ekspresi pedas">
+    <label for="language">Bahasa / Dialek:</label>
+    <input type="text" id="language" placeholder="Contoh: bahasa santai, campur Inggris, Gen Z slang">
+    <label for="moment">Momen / Kalender:</label>
+    <input type="text" id="moment" placeholder="Contoh: Ramadhan, Akhir bulan, Back to School">
+    <hr style="margin: 1.5rem 0; border-color: #555555;">
+    <label for="role">Role AI:</label>
+    <input type="text" id="role" placeholder="Contoh: Content Creator, Social Media Manager">
+    <label for="goal">Goal / Tugas AI:</label>
+    <input type="text" id="goal" placeholder="Contoh: membuat konten promosi, edukasi pelanggan">
+    <label for="tone">Tone / Suasana Konten:</label>
+    <input type="text" id="tone" placeholder="Contoh: santai, humoris, tegas">
+    <label for="constraint">Constraints / Batasan:</label>
+    <input type="text" id="constraint" placeholder="Contoh: jangan menyebut harga, hindari klaim berlebihan">
   </details>
-
   <div class="actions">
     <button onclick="generatePrompt()">Generate Prompt</button>
     <button onclick="resetForm()" style="background-color:#f9cfcf;">Reset Semua</button>
   </div>
-
   <div id="output-container">
     <div id="output"></div>
     <button id="copy-button" onclick="copyPrompt()">Copy</button>
   </div>
-
   <script>
     const formatOptions = {
       "Instagram": ["IG Post", "IG Story", "IG Carousel", "IG Reels"],
@@ -239,53 +218,69 @@
       const platform = document.getElementById("platform").value;
       const formatSelect = document.getElementById("format");
       formatSelect.innerHTML = "";
-      formatOptions[platform].forEach(format => {
-        const option = document.createElement("option");
-        option.value = format;
-        option.text = format;
-        formatSelect.appendChild(option);
-      });
+      if (formatOptions[platform]) {
+        formatOptions[platform].forEach(format => {
+          const option = document.createElement("option");
+          option.value = format;
+          option.text = format;
+          formatSelect.appendChild(option);
+        });
+      }
     }
 
     function generatePrompt() {
       const getVal = id => document.getElementById(id).value.trim();
-      const fields = ["brand", "product", "audience", "platform", "format", "style", "objective", "cta", "persona", "visual", "language", "moment", "role", "goal", "tone", "constraint", "outputType"];
-      const data = Object.fromEntries(fields.map(id => [id, getVal(id)]));
-
+      const brand = getVal("brand");
+      const product = getVal("product");
+      const audience = getVal("audience");
+      const platform = getVal("platform");
+      const format = getVal("format");
+      const style = getVal("style");
+      const objective = getVal("objective");
+      const cta = getVal("cta");
+      const persona = getVal("persona");
+      const visual = getVal("visual");
+      const language = getVal("language");
+      const moment = getVal("moment");
+      const role = getVal("role");
+      const goal = getVal("goal");
+      const tone = getVal("tone");
+      const constraint = getVal("constraint");
+      const outputType = getVal("outputType");
       let prompt = "";
-
-      if (data.outputType === "script") {
-        prompt += `Buatkan naskah/script video ${data.format} untuk platform ${data.platform}, mempromosikan brand \"${data.brand}\".\n`;
-      } else if (data.outputType === "image") {
-        prompt += `Buatkan prompt gambar (image generation) untuk mempromosikan \"${data.brand}\" dengan produk ${data.product}.\n`;
-      } else if (data.outputType === "voice") {
-        prompt += `Buatkan naskah voice-over untuk konten ${data.platform} dari brand \"${data.brand}\".\n`;
-      } else if (data.outputType === "video") {
-        prompt += `Buatkan deskripsi video sinematik (text-to-video) untuk AI seperti Sora atau Gemini Veo.\nTema: promosi brand \"${data.brand}\", produk: ${data.product}, platform: ${data.platform}.\n`;
+      if (outputType === "script") {
+        prompt += `Buatkan naskah/script video ${format} untuk platform ${platform}, mempromosikan brand \"${brand}\".\n`;
+      } else if (outputType === "image") {
+        prompt += `Buatkan prompt gambar (image generation) untuk mempromosikan \"${brand}\" dengan produk ${product}.\n`;
+      } else if (outputType === "voice") {
+        prompt += `Buatkan naskah voice-over untuk konten ${platform} dari brand \"${brand}\".\n`;
+      } else if (outputType === "video") {
+        prompt += `Buatkan deskripsi video sinematik (text-to-video) untuk AI seperti Sora atau Gemini Veo.\n`;
+        prompt += `Tema: promosi brand \"${brand}\", produk: ${product}, platform: ${platform}.\n`;
       } else {
-        prompt += `Buatkan konten ${data.format} untuk platform ${data.platform} yang mempromosikan brand \"${data.brand}\".\n`;
+        prompt += `Buatkan konten ${format} untuk platform ${platform} yang mempromosikan brand \"${brand}\".\n`;
       }
-
-      prompt += `Produk/Jasa: ${data.product}.\nTarget audiens: ${data.audience}.\n`;
-      if (data.style) prompt += `Gaya bahasa: ${data.style}.\n`;
-      if (data.objective) prompt += `Tujuan kampanye: ${data.objective}.\n`;
-      if (data.cta) prompt += `Call to action: ${data.cta}.\n`;
-      if (data.persona) prompt += `Karakter/tone brand: ${data.persona}.\n`;
-      if (data.visual) prompt += `Referensi visual: ${data.visual}.\n`;
-      if (data.language) prompt += `Dialek/bahasa: ${data.language}.\n`;
-      if (data.moment) prompt += `Momen/konteks: ${data.moment}.\n`;
-      if (data.role) prompt += `Role AI: ${data.role}.\n`;
-      if (data.goal) prompt += `Goal atau tugas AI: ${data.goal}.\n`;
-      if (data.tone) prompt += `Tone konten: ${data.tone}.\n`;
-      if (data.constraint) prompt += `Batasan: ${data.constraint}.\n`;
-
-      prompt += `Konten harus engaging, relevan, dan sesuai brief.\nBerikan 3 versi atau ide berbeda dari prompt ini.`;
-
+      prompt += `Produk/Jasa: ${product}.\n`;
+      prompt += `Target audiens: ${audience}.\n`;
+      if (style) prompt += `Gaya bahasa: ${style}.\n`;
+      if (objective) prompt += `Tujuan kampanye: ${objective}.\n`;
+      if (cta) prompt += `Call to action: ${cta}.\n`;
+      if (persona) prompt += `Karakter/tone brand: ${persona}.\n`;
+      if (visual) prompt += `Referensi visual: ${visual}.\n`;
+      if (language) prompt += `Dialek/bahasa: ${language}.\n`;
+      if (moment) prompt += `Momen/konteks: ${moment}.\n`;
+      if (role) prompt += `Peran AI: ${role}.\n`;
+      if (goal) prompt += `Tugas atau goal AI: ${goal}.\n`;
+      if (tone) prompt += `Suasana/tone konten: ${tone}.\n`;
+      if (constraint) prompt += `Batasan konten: ${constraint}.\n`;
+      prompt += `Konten harus engaging, relevan, dan sesuai brief.\n`;
+      prompt += `Berikan 3 versi atau ide berbeda dari prompt ini.`;
       document.getElementById("output").textContent = prompt;
     }
 
     function resetForm() {
       document.querySelectorAll("input, select").forEach(el => el.value = "");
+      updateFormatOptions();
       document.getElementById("output").textContent = "";
     }
 
@@ -299,28 +294,16 @@
       textarea.value = text;
       document.body.appendChild(textarea);
       textarea.select();
-      try {
-        document.execCommand("copy");
-        const btn = document.getElementById("copy-button");
-        btn.textContent = "✔ Copied";
-        setTimeout(() => btn.textContent = "Copy", 1500);
-      } catch (err) {
-        alert("Gagal menyalin teks.");
-      }
+      document.execCommand("copy");
       document.body.removeChild(textarea);
-    }
-
-    function sendHeight() {
-      const height = document.documentElement.scrollHeight;
-      window.parent.postMessage({ height: height }, "*");
+      const btn = document.getElementById("copy-button");
+      btn.textContent = "✔ Copied";
+      setTimeout(() => btn.textContent = "Copy", 1500);
     }
 
     window.addEventListener("load", () => {
       updateFormatOptions();
-      sendHeight();
     });
-
-    window.addEventListener("resize", sendHeight);
   </script>
 </body>
 </html>
