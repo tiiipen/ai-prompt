@@ -4,11 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prompt Generator</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
     html, body {
-      font-family: Arial, sans-serif;
+      font-family: 'Montserrat', sans-serif;
       padding: 1rem;
       margin: 0;
       max-width: 100%;
@@ -46,29 +47,8 @@
       background-size: 12px;
     }
 
-    input::placeholder,
-    textarea::placeholder {
-      color: #ffffff;
-      opacity: 0.7;
-    }
-
     textarea {
       height: 90px;
-    }
-
-    details {
-      margin-top: 1rem;
-      border: 1px solid #FED703;
-      padding: 1rem;
-      border-radius: 6px;
-    }
-
-    summary {
-      cursor: pointer;
-      font-weight: bold;
-      color: #FED703;
-      font-size: 15px;
-      margin-bottom: 1rem;
     }
 
     .actions {
@@ -79,7 +59,6 @@
 
     .actions button {
       flex: 1;
-      font-family: 'Montserrat', sans-serif;
       font-size: 16px;
       font-weight: 600;
       padding: 16px 12px;
@@ -113,10 +92,10 @@
       color: #ffffff;
     }
 
-    #copy-button {
+    #copy-button,
+    #export-button {
       position: absolute;
       top: 15px;
-      right: 15px;
       padding: 4px 12px;
       font-size: 12px;
       border-radius: 6px;
@@ -125,12 +104,20 @@
       color: #1C1C1C;
       cursor: pointer;
       z-index: 10;
-      width: auto;
       min-width: 60px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
 
-    #copy-button:hover {
+    #export-button {
+      right: 90px;
+    }
+
+    #copy-button {
+      right: 15px;
+    }
+
+    #copy-button:hover,
+    #export-button:hover {
       background-color: #f1f1f1;
     }
 
@@ -156,10 +143,10 @@
   <input type="text" id="brand" placeholder="Contoh: Skintify">
 
   <label for="product">Produk / Jasa yang Dijual:</label>
-  <input type="text" id="product" placeholder="Contoh: Produk skincare lokal untuk remaja perempuan">
+  <input type="text" id="product" placeholder="Contoh: Skincare untuk remaja perempuan">
 
   <label for="audience">Target Audience:</label>
-  <input type="text" id="audience" placeholder="Contoh: Perempuan usia 17-25, tinggal di kota besar">
+  <input type="text" id="audience" placeholder="Contoh: Wanita usia 17-25, tinggal di kota besar">
 
   <label for="platform">Platform:</label>
   <select id="platform" onchange="updateFormatOptions()">
@@ -173,50 +160,12 @@
 
   <label for="outputType">Output Type:</label>
   <select id="outputType">
-    <option value="content">Content Prompt (default)</option>
+    <option value="content">Content Prompt</option>
     <option value="script">Script Video</option>
     <option value="image">Image Prompt</option>
     <option value="voice">Voice-over</option>
     <option value="video">Video Prompt (Text-to-Video)</option>
   </select>
-
-  <details>
-    <summary>+ Advanced Details (Opsional)</summary>
-    <div>
-      <label for="style">Style (gaya bahasa):</label>
-      <input type="text" id="style" placeholder="Contoh: casual, edukatif, nyeleneh">
-
-      <label for="objective">Campaign Objective:</label>
-      <input type="text" id="objective" placeholder="Contoh: edukasi, jualan, awareness">
-
-      <label for="cta">Call to Action:</label>
-      <input type="text" id="cta" placeholder="Contoh: beli sekarang, share, DM kami">
-
-      <label for="persona">Karakter Persona:</label>
-      <input type="text" id="persona" placeholder="Contoh: CEO, Gen-Z, fun, friendly">
-
-      <label for="visual">Visual Referensi:</label>
-      <input type="text" id="visual" placeholder="Contoh: flatlay, before-after, ekspresi pedas">
-
-      <label for="language">Bahasa / Dialek:</label>
-      <input type="text" id="language" placeholder="Contoh: bahasa santai, campur Inggris, Gen Z slang">
-
-      <label for="moment">Momen / Kalender:</label>
-      <input type="text" id="moment" placeholder="Contoh: Ramadhan, Akhir bulan, Back to School">
-
-      <label for="role">Role AI:</label>
-      <input type="text" id="role" placeholder="Contoh: Content Creator, Social Media Manager">
-
-      <label for="goal">Goal / Tugas AI:</label>
-      <input type="text" id="goal" placeholder="Contoh: membuat konten promosi, edukasi pelanggan">
-
-      <label for="tone">Tone / Suasana Konten:</label>
-      <input type="text" id="tone" placeholder="Contoh: santai, humoris, tegas">
-
-      <label for="constraint">Constraints / Batasan:</label>
-      <input type="text" id="constraint" placeholder="Contoh: jangan menyebut harga, hindari klaim berlebihan">
-    </div>
-  </details>
 
   <div class="actions">
     <button onclick="generatePrompt()">Generate Prompt</button>
@@ -225,6 +174,7 @@
 
   <div id="output-container">
     <div id="output"></div>
+    <button id="export-button" onclick="exportPDF()">Export PDF</button>
     <button id="copy-button" onclick="copyPrompt()">Copy</button>
   </div>
 
@@ -249,37 +199,33 @@
 
     function generatePrompt() {
       const getVal = id => document.getElementById(id).value.trim();
-      const fields = ["brand", "product", "audience", "platform", "format", "style", "objective", "cta", "persona", "visual", "language", "moment", "role", "goal", "tone", "constraint", "outputType"];
-      const data = Object.fromEntries(fields.map(id => [id, getVal(id)]));
+      const data = {
+        brand: getVal("brand"),
+        product: getVal("product"),
+        audience: getVal("audience"),
+        platform: getVal("platform"),
+        format: getVal("format"),
+        outputType: getVal("outputType")
+      };
 
       let prompt = "";
 
-      if (data.outputType === "script") {
-        prompt += `Buatkan naskah/script video ${data.format} untuk platform ${data.platform}, mempromosikan brand \"${data.brand}\".\n`;
-      } else if (data.outputType === "image") {
-        prompt += `Buatkan prompt gambar (image generation) untuk mempromosikan \"${data.brand}\" dengan produk ${data.product}.\n`;
-      } else if (data.outputType === "voice") {
-        prompt += `Buatkan naskah voice-over untuk konten ${data.platform} dari brand \"${data.brand}\".\n`;
-      } else if (data.outputType === "video") {
-        prompt += `Buatkan deskripsi video sinematik (text-to-video) untuk AI seperti Sora atau Gemini Veo.\nTema: promosi brand \"${data.brand}\", produk: ${data.product}, platform: ${data.platform}.\n`;
-      } else {
-        prompt += `Buatkan konten ${data.format} untuk platform ${data.platform} yang mempromosikan brand \"${data.brand}\".\n`;
+      switch (data.outputType) {
+        case "script":
+          prompt = `Buatkan naskah video ${data.format} untuk ${data.platform} tentang produk ${data.product} dari brand ${data.brand}.`;
+          break;
+        case "image":
+          prompt = `Buatkan prompt gambar untuk AI yang menggambarkan produk ${data.product} dari brand ${data.brand}.`;
+          break;
+        case "voice":
+          prompt = `Buatkan voice-over script untuk ${data.platform} tentang ${data.product} dari brand ${data.brand}.`;
+          break;
+        case "video":
+          prompt = `Buatkan deskripsi video sinematik AI (text-to-video) mempromosikan ${data.brand} dan produk ${data.product}.`;
+          break;
+        default:
+          prompt = `Buatkan konten ${data.format} untuk ${data.platform} mempromosikan brand ${data.brand}, produk: ${data.product}, untuk audiens: ${data.audience}.`;
       }
-
-      prompt += `Produk/Jasa: ${data.product}.\nTarget audiens: ${data.audience}.\n`;
-      if (data.style) prompt += `Gaya bahasa: ${data.style}.\n`;
-      if (data.objective) prompt += `Tujuan kampanye: ${data.objective}.\n`;
-      if (data.cta) prompt += `Call to action: ${data.cta}.\n`;
-      if (data.persona) prompt += `Karakter/tone brand: ${data.persona}.\n`;
-      if (data.visual) prompt += `Referensi visual: ${data.visual}.\n`;
-      if (data.language) prompt += `Dialek/bahasa: ${data.language}.\n`;
-      if (data.moment) prompt += `Momen/konteks: ${data.moment}.\n`;
-      if (data.role) prompt += `Role AI: ${data.role}.\n`;
-      if (data.goal) prompt += `Goal atau tugas AI: ${data.goal}.\n`;
-      if (data.tone) prompt += `Tone konten: ${data.tone}.\n`;
-      if (data.constraint) prompt += `Batasan: ${data.constraint}.\n`;
-
-      prompt += `Konten harus engaging, relevan, dan sesuai brief.\nBerikan 3 versi atau ide berbeda dari prompt ini.`;
 
       document.getElementById("output").textContent = prompt;
     }
@@ -291,36 +237,28 @@
 
     function copyPrompt() {
       const text = document.getElementById("output").textContent;
-      if (!text) {
-        alert("Silakan generate prompt terlebih dahulu.");
-        return;
-      }
-      const textarea = document.createElement("textarea");
-      textarea.value = text;
-      document.body.appendChild(textarea);
-      textarea.select();
-      try {
-        document.execCommand("copy");
-        const btn = document.getElementById("copy-button");
-        btn.textContent = "✔ Copied";
-        setTimeout(() => btn.textContent = "Copy", 1500);
-      } catch (err) {
-        alert("Gagal menyalin teks.");
-      }
-      document.body.removeChild(textarea);
+      if (!text) return alert("Silakan generate prompt terlebih dahulu.");
+      const temp = document.createElement("textarea");
+      temp.value = text;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand("copy");
+      document.body.removeChild(temp);
+      const btn = document.getElementById("copy-button");
+      btn.textContent = "✔ Copied";
+      setTimeout(() => btn.textContent = "Copy", 1500);
     }
 
-    function sendHeight() {
-      const height = document.documentElement.scrollHeight;
-      window.parent.postMessage({ height: height }, "*");
+    function exportPDF() {
+      const text = document.getElementById("output").textContent;
+      if (!text) return alert("Silakan generate prompt terlebih dahulu.");
+      const el = document.createElement("div");
+      el.style.whiteSpace = "pre-wrap";
+      el.textContent = text;
+      html2pdf().from(el).save("prompt-output.pdf");
     }
 
-    window.addEventListener("load", () => {
-      updateFormatOptions();
-      sendHeight();
-    });
-
-    window.addEventListener("resize", sendHeight);
+    window.addEventListener("load", updateFormatOptions);
   </script>
 </body>
 </html>
