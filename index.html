@@ -2,162 +2,134 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
- <style>
-  html, body {
-    font-family: Arial, sans-serif;
-    padding: 1rem;
-    margin: 0;
-    max-width: 100%;
-    background-color: transparent;
-    color: #ffffff;
-  }
-
-  label {
-    font-weight: bold;
-    display: block;
-    margin-top: 0.8rem;
-    color: #FED703;
-  }
-
-  input, textarea {
-    width: 100%;
-    min-height: 60px;
-    padding: 12px 14px;
-    margin-top: 5px;
-    border-radius: 6px;
-    border: 2px solid #3C3C3C;
-    font-size: 14px;
-    box-sizing: border-box;
-    background-color: #222222;
-    color: #ffffff;
-  }
-
-  select {
-    width: 100%;
-    min-height: 60px;
-    padding: 12px 14px;
-    margin-top: 5px;
-    border-radius: 6px;
-    border: 2px solid #3C3C3C;
-    font-size: 14px;
-    box-sizing: border-box;
-    background-color: #222222;
-    color: #ffffff;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%23ffffff' d='M0 3h10L5 8z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-    background-size: 12px;
-  }
-
-  input::placeholder,
-  textarea::placeholder {
-    color: #ffffff;
-    opacity: 0.7;
-  }
-
-  textarea {
-    height: 90px;
-  }
-
-  button {
-    margin-top: 1rem;
-    padding: 16px;
-    font-weight: bold;
-    background-color: #FED703;
-    border: none;
-    color: #1C1C1C;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    width: 100%;
-  }
-
-  button:hover {
-    background-color: #ffe924;
-  }
-
-  #output-container {
-    position: relative;
-    margin-top: 1.5rem;
-  }
-
-  #output {
-    background: #222222;
-    padding: 10px;
-    border-radius: 6px;
-    border: 2px solid #3C3C3C;
-    white-space: pre-wrap;
-    min-height: 120px;
-    box-sizing: border-box;
-    font-size: 13px;
-    color: #ffffff;
-  }
-
-  #copy-button {
-    position: absolute;
-    top: -8px;
-    right: 10px;
-    padding: 4px 12px;
-    font-size: 12px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    background-color: #ffffff;
-    color: #1C1C1C;
-    cursor: pointer;
-    z-index: 10;
-    width: auto !important;
-    min-width: 60px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  }
-
-  #copy-button:hover {
-    background-color: #f1f1f1;
-  }
-
-  .actions {
-    display: flex;
-    gap: 8px;
-    margin-top: 1rem;
-  }
-
-  .actions button {
-    flex: 1;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 16px 12px;
-    background-color: #FED703;
-    color: #1C1C1C;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-  }
-
-  .actions button:hover {
-    background-color: #ffe924;
-  }
-
-  @media (max-width: 480px) {
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompt Generator</title>
+  <style>
     html, body {
-      padding: 0.5rem !important;
+      font-family: Arial, sans-serif;
+      padding: 1rem;
+      margin: 0;
+      max-width: 100%;
+      background-color: transparent;
+      color: #ffffff;
     }
 
-    input, select, textarea {
-      font-size: 13px;
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 0.8rem;
+      color: #FED703;
     }
 
-    button {
-      font-size: 13px;
+    input, textarea, select {
+      width: 100%;
+      min-height: 60px;
+      padding: 12px 14px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 2px solid #3C3C3C;
+      font-size: 14px;
+      box-sizing: border-box;
+      background-color: #222222;
+      color: #ffffff;
+    }
+
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%23ffffff' d='M0 3h10L5 8z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 12px;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #ffffff;
+      opacity: 0.7;
+    }
+
+    textarea {
+      height: 90px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 1.5rem;
     }
 
     .actions button {
-      font-size: 12px;
-      padding: 12px 0;
+      flex: 1;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 16px 12px;
+      background-color: #FED703;
+      color: #1C1C1C;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      cursor: pointer;
     }
-  }
-</style>
+
+    .actions button:hover {
+      background-color: #ffe924;
+    }
+
+    #output-container {
+      position: relative;
+      margin-top: 1.5rem;
+    }
+
+    #output {
+      background: #222222;
+      padding: 10px;
+      border-radius: 6px;
+      border: 2px solid #3C3C3C;
+      white-space: pre-wrap;
+      min-height: 120px;
+      box-sizing: border-box;
+      font-size: 13px;
+      color: #ffffff;
+    }
+
+    #copy-button {
+      position: absolute;
+      top: -8px;
+      right: 10px;
+      padding: 4px 12px;
+      font-size: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      background-color: #ffffff;
+      color: #1C1C1C;
+      cursor: pointer;
+      z-index: 10;
+      width: auto;
+      min-width: 60px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    #copy-button:hover {
+      background-color: #f1f1f1;
+    }
+
+    @media (max-width: 480px) {
+      html, body {
+        padding: 0.5rem !important;
+      }
+
+      input, select, textarea {
+        font-size: 13px;
+      }
+
+      .actions button {
+        font-size: 13px;
+        padding: 12px 10px;
+      }
+    }
+  </style>
 </head>
 <body>
   <label for="brand">Nama Brand:</label>
@@ -210,13 +182,12 @@
   <input type="text" id="moment" placeholder="Contoh: Ramadhan, Akhir bulan, Back to School">
 
   <div class="actions">
-    <button onclick="generatePrompt()" id="generate-btn">Generate Prompt</button>
-    <button onclick="resetForm()" style="background-color:#f9cfcf;" id="reset-btn">Reset Semua</button>
-    <button onclick="toggleLanguage()" id="lang-btn">🇺🇸 English</button>
+    <button onclick="generatePrompt()">Generate Prompt</button>
+    <button onclick="resetForm()" style="background-color:#f9cfcf;">Reset Semua</button>
   </div>
 
   <div id="output-container">
-    <div id="output" placeholder="Hasil prompt akan muncul di sini..."></div>
+    <div id="output"></div>
     <button id="copy-button" onclick="copyPrompt()">Copy</button>
   </div>
 
@@ -241,7 +212,6 @@
 
     function generatePrompt() {
       const getVal = id => document.getElementById(id).value.trim();
-
       const brand = getVal("brand");
       const product = getVal("product");
       const audience = getVal("audience");
@@ -288,9 +258,7 @@
     }
 
     function resetForm() {
-      document.querySelectorAll("input, select").forEach(el => {
-        el.value = "";
-      });
+      document.querySelectorAll("input, select").forEach(el => el.value = "");
       document.getElementById("output").textContent = "";
     }
 
@@ -315,20 +283,16 @@
       document.body.removeChild(textarea);
     }
 
-    function toggleLanguage() {
-      const btn = document.getElementById("lang-btn");
-      const isEN = btn.textContent.includes("English");
-      btn.textContent = isEN ? "🇮🇩 Indonesia" : "🇺🇸 English";
+    function sendHeight() {
+      const height = document.documentElement.scrollHeight;
+      window.parent.postMessage({ height: height }, "*");
     }
 
-    window.onload = updateFormatOptions;
+    window.addEventListener("load", () => {
+      updateFormatOptions();
+      sendHeight();
+    });
 
-    function sendHeight() {
-    const height = document.documentElement.scrollHeight;
-    window.parent.postMessage({ height: height }, "*");
-  }
-
-    window.addEventListener("load", sendHeight);
     window.addEventListener("resize", sendHeight);
   </script>
 </body>
