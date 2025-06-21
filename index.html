@@ -5,136 +5,151 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prompt Generator</title>
   <style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
-  html, body {
-    font-family: Arial, sans-serif;
-    padding: 1rem;
-    margin: 0;
-    max-width: 100%;
-    background-color: transparent;
-    color: #ffffff;
-  }
-
-  label {
-    font-weight: bold;
-    display: block;
-    margin-top: 0.8rem;
-    color: #FED703;
-  }
-
-  input, textarea, select {
-    width: 100%;
-    min-height: 60px;
-    padding: 12px 14px;
-    margin-top: 5px;
-    border-radius: 6px;
-    border: 2px solid #3C3C3C;
-    font-size: 14px;
-    box-sizing: border-box;
-    background-color: #222222;
-    color: #ffffff;
-  }
-
-  select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%23ffffff' d='M0 3h10L5 8z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-    background-size: 12px;
-  }
-
-  input::placeholder,
-  textarea::placeholder {
-    color: #ffffff;
-    opacity: 0.7;
-  }
-
-  textarea {
-    height: 90px;
-  }
-
-  .actions {
-    display: flex;
-    gap: 8px;
-    margin-top: 1.5rem;
-  }
-
-  .actions button {
-    flex: 1;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 16px 12px;
-    background-color: #FED703;
-    color: #1C1C1C;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-    cursor: pointer;
-    min-height: 60px;
-  }
-
-  .actions button:hover {
-    background-color: #ffe924;
-  }
-
-  #output-container {
-    position: relative;
-    margin-top: 1.5rem;
-  }
-
-  #output {
-    background: #222222;
-    padding: 50px 10px 10px 10px; /* top right bottom left */
-    border-radius: 6px;
-    border: 2px solid #3C3C3C;
-    white-space: pre-wrap;
-    min-height: 120px;
-    box-sizing: border-box;
-    font-size: 13px;
-    color: #ffffff;
-  }
-
-  #copy-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 4px 12px;
-    font-size: 12px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    background-color: #ffffff;
-    color: #1C1C1C;
-    cursor: pointer;
-    z-index: 10;
-    width: auto;
-    min-width: 60px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  }
-
-  #copy-button:hover {
-    background-color: #f1f1f1;
-  }
-
-  @media (max-width: 480px) {
     html, body {
-      padding: 0.5rem !important;
+      font-family: Arial, sans-serif;
+      padding: 1rem;
+      margin: 0;
+      max-width: 100%;
+      background-color: transparent;
+      color: #ffffff;
     }
 
-    input, select, textarea {
-      font-size: 13px;
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 0.8rem;
+      color: #FED703;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      min-height: 60px;
+      padding: 12px 14px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 2px solid #3C3C3C;
+      font-size: 14px;
+      box-sizing: border-box;
+      background-color: #222222;
+      color: #ffffff;
+    }
+
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%23ffffff' d='M0 3h10L5 8z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 12px;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #ffffff;
+      opacity: 0.7;
+    }
+
+    textarea {
+      height: 90px;
+    }
+
+    details {
+  margin-top: 1rem;
+  border: 1px solid #FED703;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: #FED703;
+      font-size: 15px;
+      margin-bottom: 1rem;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 1.5rem;
     }
 
     .actions button {
-      font-size: 14px;
-      padding: 12px 10px;
-      min-height: 60px; 
+      flex: 1;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 12px;
+      background-color: #FED703;
+      color: #1C1C1C;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      min-height: 60px;
     }
-  }
-</style>
+
+    .actions button:hover {
+      background-color: #ffe924;
+    }
+
+    #output-container {
+      position: relative;
+      margin-top: 1.5rem;
+    }
+
+    #output {
+      background: #222222;
+      padding: 50px 10px 10px 10px;
+      border-radius: 6px;
+      border: 2px solid #3C3C3C;
+      white-space: pre-wrap;
+      min-height: 120px;
+      box-sizing: border-box;
+      font-size: 13px;
+      color: #ffffff;
+    }
+
+    #copy-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 4px 12px;
+      font-size: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      background-color: #ffffff;
+      color: #1C1C1C;
+      cursor: pointer;
+      z-index: 10;
+      width: auto;
+      min-width: 60px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    #copy-button:hover {
+      background-color: #f1f1f1;
+    }
+
+    @media (max-width: 480px) {
+      html, body {
+        padding: 0.5rem !important;
+      }
+
+      input, select, textarea {
+        font-size: 13px;
+      }
+
+      .actions button {
+        font-size: 14px;
+        padding: 12px 10px;
+        min-height: 60px;
+      }
+    }
+  </style>
 </head>
 <body>
   <label for="brand">Nama Brand:</label>
@@ -165,26 +180,31 @@
     <option value="video">🎬 Video Prompt (Text-to-Video)</option>
   </select>
 
-  <label for="style">Style (gaya bahasa):</label>
-  <input type="text" id="style" placeholder="Contoh: casual, edukatif, nyeleneh">
+  <details>
+    <summary>+ Advanced Details (Opsional)</summary>
+    <div>
+      <label for="style">Style (gaya bahasa):</label>
+      <input type="text" id="style" placeholder="Contoh: casual, edukatif, nyeleneh">
 
-  <label for="objective">Campaign Objective (opsional):</label>
-  <input type="text" id="objective" placeholder="Contoh: edukasi, jualan, awareness">
+      <label for="objective">Campaign Objective (opsional):</label>
+      <input type="text" id="objective" placeholder="Contoh: edukasi, jualan, awareness">
 
-  <label for="cta">Call to Action (opsional):</label>
-  <input type="text" id="cta" placeholder="Contoh: beli sekarang, share, DM kami">
+      <label for="cta">Call to Action (opsional):</label>
+      <input type="text" id="cta" placeholder="Contoh: beli sekarang, share, DM kami">
 
-  <label for="persona">Karakter Persona (opsional):</label>
-  <input type="text" id="persona" placeholder="Contoh: CEO, Gen-Z, fun, friendly">
+      <label for="persona">Karakter Persona (opsional):</label>
+      <input type="text" id="persona" placeholder="Contoh: CEO, Gen-Z, fun, friendly">
 
-  <label for="visual">Visual Referensi (opsional):</label>
-  <input type="text" id="visual" placeholder="Contoh: flatlay, before-after, ekspresi pedas">
+      <label for="visual">Visual Referensi (opsional):</label>
+      <input type="text" id="visual" placeholder="Contoh: flatlay, before-after, ekspresi pedas">
 
-  <label for="language">Bahasa / Dialek (opsional):</label>
-  <input type="text" id="language" placeholder="Contoh: bahasa santai, campur Inggris, Gen Z slang">
+      <label for="language">Bahasa / Dialek (opsional):</label>
+      <input type="text" id="language" placeholder="Contoh: bahasa santai, campur Inggris, Gen Z slang">
 
-  <label for="moment">Momen / Kalender (opsional):</label>
-  <input type="text" id="moment" placeholder="Contoh: Ramadhan, Akhir bulan, Back to School">
+      <label for="moment">Momen / Kalender (opsional):</label>
+      <input type="text" id="moment" placeholder="Contoh: Ramadhan, Akhir bulan, Back to School">
+    </div>
+  </details>
 
   <div class="actions">
     <button onclick="generatePrompt()">Generate Prompt</button>
