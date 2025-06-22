@@ -1,10 +1,88 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prompt Generator</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompt Generator Tabbed</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+    html, body {
+      font-family: Arial, sans-serif;
+      padding: 1rem;
+      margin: 0;
+      max-width: 100%;
+      background-color: #1C1C1C;
+      color: #ffffff;
+    }
+    .tab-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+    .tab-buttons button {
+      flex: 1;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 12px;
+      background-color: #FED703;
+      color: #1C1C1C;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      min-height: 60px;
+    }
+    .tab-buttons button.active {
+      background-color: #ffe924;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      border: 2px solid #3C3C3C;
+      background-color: #222222;
+      color: #ffffff;
+      margin-top: 0.5rem;
+      box-sizing: border-box;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 1rem;
+      display: block;
+      color: #FED703;
+    }
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .actions button {
+      flex: 1;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 12px;
+      background-color: #FED703;
+      color: #1C1C1C;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      min-height: 60px;
+    }
+    .actions button:hover {
+      background-color: #ffe924;
+    }
+    
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
     html, body {
       font-family: Arial, sans-serif;
@@ -132,7 +210,32 @@
   </style>
 </head>
 <body>
-  <!-- Basic Setup -->
+  <div class="tab-buttons">
+    <button id="btn-brainstorm" class="active" onclick="switchTab('brainstorm')">🧠 Brainstorming Assistant</button>
+    <button id="btn-content" onclick="switchTab('content')">📝 Content Generator</button>
+  </div>
+
+  <div id="brainstorm" class="tab-content active">
+    <label for="interest">Minat / Topik yang Disukai:</label>
+    <input type="text" id="interest" placeholder="Contoh: Fashion, Teknologi, Kesehatan">
+
+    <label for="strength">Kekuatan / Skill:</label>
+    <input type="text" id="strength" placeholder="Contoh: Public Speaking, Desain, Storytelling">
+
+    <label for="purpose">Tujuan / Motivasi:</label>
+    <input type="text" id="purpose" placeholder="Contoh: Ingin bantu orang lain, cari penghasilan tambahan">
+
+    <div class="actions">
+      <button onclick="generateBrainstorm()">Generate Ide</button>
+      <button onclick="resetBrainstorm()" style="background-color:#f9cfcf;">Reset</button>
+    </div>
+
+    <div id="brainstorm-output" style="margin-top: 1rem; white-space: pre-wrap;"></div>
+  </div>
+
+  <div id="content" class="tab-content">
+    <!-- Paste seluruh isi HTML Content Generator kamu di sini -->
+     <!-- Basic Setup -->
   <label for="outputType">Output Type:</label>
   <select id="outputType">
     <option value="content">Content Prompt (default)</option>
@@ -288,6 +391,45 @@
     window.addEventListener("load", sendHeight);
     window.addEventListener("resize", sendHeight);
     setInterval(sendHeight, 1000); // auto-update tiap detik
+  </script>
+    <!-- Sudah siap disisipkan manual tanpa ubahan -->
+  </div>
+
+  <script>
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-buttons button').forEach(el => el.classList.remove('active'));
+      document.getElementById(tab).classList.add('active');
+      document.getElementById('btn-' + tab).classList.add('active');
+    }
+
+    function generateBrainstorm() {
+      const interest = document.getElementById("interest").value.trim();
+      const strength = document.getElementById("strength").value.trim();
+      const purpose = document.getElementById("purpose").value.trim();
+
+      if (!interest && !strength && !purpose) {
+        alert("Silakan isi setidaknya satu field untuk memulai brainstorming.");
+        return;
+      }
+
+      const output = `Berikut beberapa ide konten atau bisnis berdasarkan input Anda:\n\n` +
+        (interest ? `📌 Topik: ${interest}\n` : '') +
+        (strength ? `💪 Kekuatan: ${strength}\n` : '') +
+        (purpose ? `🎯 Tujuan: ${purpose}\n` : '') +
+        `\nContoh ide:\n1. Mulai akun edukasi seputar ${interest || 'topik yang disukai'}.
+2. Bikin konten tips berdasarkan pengalaman ${strength || 'skill kamu'}.
+3. Bangun komunitas atau campaign untuk tujuan "${purpose || 'yang kamu pedulikan'}".`;
+
+      document.getElementById("brainstorm-output").textContent = output;
+    }
+
+    function resetBrainstorm() {
+      document.getElementById("interest").value = "";
+      document.getElementById("strength").value = "";
+      document.getElementById("purpose").value = "";
+      document.getElementById("brainstorm-output").textContent = "";
+    }
   </script>
 </body>
 </html>
