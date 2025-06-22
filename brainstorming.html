@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Brainstorming - SocioBlitz Prompt Generator</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 2rem;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 1rem;
+    }
+    select, input[type="text"] {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .checkbox-group {
+      margin-top: 1rem;
+    }
+    .checkbox-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: normal;
+    }
+    details {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #fff;
+    }
+    details summary {
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .action-buttons button {
+      flex: 1 1 50%;
+      min-height: 60px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .action-buttons button:first-child {
+      background-color: #ffd600;
+    }
+    .action-buttons button:last-child {
+      background-color: #ffecec;
+    }
+    #output-container {
+      margin-top: 2rem;
+      border: 1px solid #ccc;
+      padding: 1rem;
+      border-radius: 8px;
+      background-color: #fff;
+      position: relative;
+    }
+    #copy-button {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      background-color: #eee;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧠 Brainstorming Form</h1>
+
+  <label for="BS-interest">📌 Minat / Topik yang Disukai:</label>
+  <input type="text" id="BS-interest" placeholder="Fashion, Teknologi, Kesehatan" />
+
+  <label for="BS-strength">💪 Skill / Kekuatan Personal:</label>
+  <input type="text" id="BS-strength" placeholder="Public Speaking, Desain, Storytelling" />
+
+  <label for="BS-purpose">🎯 Tujuan / Motivasi:</label>
+  <input type="text" id="BS-purpose" placeholder="Ingin bantu orang lain, cari penghasilan" />
+
+  <label for="BS-formatPref">🎥 Format Konten yang Disukai:</label>
+  <input type="text" id="BS-formatPref" placeholder="Video pendek, Carousel, Live streaming" />
+
+  <label for="BS-contentAvoid">🚫 Konten yang Dihindari:</label>
+  <input type="text" id="BS-contentAvoid" placeholder="Politik, Agama, Konten sensitif" />
+
+  <label for="BS-platformPref">📱 Platform Favorit:</label>
+  <input type="text" id="BS-platformPref" placeholder="Instagram, YouTube" />
+
+  <label for="BS-lifeStage">🧩 Fase Karier / Kondisi Saat Ini:</label>
+  <input type="text" id="BS-lifeStage" placeholder="Baru mulai, Freelancer aktif" />
+
+  <details>
+    <summary>🎨 Brand Identity</summary>
+    <label for="BS-brandName">📛 Nama Brand:</label>
+    <input type="text" id="BS-brandName" placeholder="Contoh: GlowUp ID (boleh dikosongkan jika belum punya)" />
+
+    <label for="BS-brandVoice">🗣️ Brand Voice (Tone):</label>
+    <input type="text" id="BS-brandVoice" placeholder="Ramah, Profesional, Fun" />
+
+    <label for="BS-motto">📝 Motto / Slogan:</label>
+    <input type="text" id="BS-motto" placeholder="Contoh: We Empower Women, Grow & Glow" />
+
+    <label for="BS-logoConcept">🎨 Konsep Logo:</label>
+    <input type="text" id="BS-logoConcept" placeholder="Ikon sederhana + warna pastel + font sans-serif" />
+
+    <label for="BS-personaStyle">👤 Persona / Gaya Komunikasi:</label>
+    <input type="text" id="BS-personaStyle" placeholder="Mentor, Sahabat, CEO" />
+  </details>
+
+  <details>
+    <summary>✅ Preferensi Konten</summary>
+    <div class="checkbox-group">
+      <label><input type="checkbox" id="BS-chkEduContent" /> Konten edukatif</label>
+      <label><input type="checkbox" id="BS-chkStorytelling" /> Dengan storytelling</label>
+      <label><input type="checkbox" id="BS-chkLowEffort" /> Ringan & mudah dibuat</label>
+      <label><input type="checkbox" id="BS-chkMonetize" /> Bisa menghasilkan uang</label>
+      <label><input type="checkbox" id="BS-chkUnique" /> Unik dan berbeda</label>
+      <label><input type="checkbox" id="BS-chkProfessional" /> Gaya profesional</label>
+      <label><input type="checkbox" id="BS-chkMixedLanguage" /> Campur Bahasa Inggris</label>
+      <label><input type="checkbox" id="BS-chkMultiplatform" /> Multi-platform</label>
+      <label><input type="checkbox" id="BS-chkDigitalProduct" /> Bisa jadi produk digital</label>
+      <label><input type="checkbox" id="BS-chkViralTrend" /> Ikuti tren atau viral</label>
+      <label><input type="checkbox" id="BS-chkFastExec" /> Bisa langsung dieksekusi</label>
+      <label><input type="checkbox" id="BS-chkLimitTools" /> Keterbatasan alat/tim</label>
+      <label><input type="checkbox" id="BS-chkCommunity" /> Bangun komunitas</label>
+      <label><input type="checkbox" id="BS-chkNoBrand" /> Belum punya brand</label>
+    </div>
+  </details>
+
+  <div class="action-buttons">
+    <button onclick="generateBrainstorm()">🚀 Generate Ide</button>
+    <button onclick="resetBrainstorm()">🔄 Reset</button>
+  </div>
+
+  <div id="output-container">
+    <div id="brainstorm-output">Hasil output akan muncul di sini...</div>
+    <button id="copy-button" onclick="copyBrainstorm()">📋 Copy</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
