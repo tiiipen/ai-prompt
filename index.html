@@ -279,6 +279,15 @@
       setTimeout(() => btn.textContent = "Copy", 1500);
     }
     window.addEventListener("load", updateFormatOptions);
+
+    function sendHeight() {
+    const height = document.documentElement.scrollHeight;
+    window.parent.postMessage({ height }, "*");
+    }
+
+    window.addEventListener("load", sendHeight);
+    window.addEventListener("resize", sendHeight);
+    setInterval(sendHeight, 1000); // auto-update tiap detik
   </script>
 </body>
 </html>
