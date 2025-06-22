@@ -15,68 +15,113 @@
     <button id="btn-content" onclick="switchTab('content')">📝 Content Generator</button>
   </div>
 
-  <!-- Brainstorm Tab -->
-  <div id="brainstorm" class="tab-content active">
-    <label for="interest">📌 Minat / Topik yang Disukai:</label>
-    <input type="text" id="interest" placeholder="Contoh: Fashion, Teknologi, Kesehatan" />
+ <!-- Brainstorm Tab -->
+<div id="brainstorm" class="tab-content active">
 
-    <label for="strength">Skill / Kekuatan Personal:</label>
-    <input type="text" id="strength" placeholder="Contoh: Public Speaking, Desain, Storytelling" />
+  <!-- PERSONAL CONTEXT -->
+  <h3>🧠 Personal Context</h3>
 
-    <label for="purpose">Tujuan / Motivasi:</label>
-    <input type="text" id="purpose" placeholder="Contoh: Ingin bantu orang lain, cari penghasilan tambahan" />
+  <label for="interest">📌 Minat / Topik yang Disukai:</label>
+  <input type="text" id="interest" placeholder="Contoh: Fashion, Teknologi, Kesehatan" />
 
-    <label for="audience">Target Audiens:</label>
-    <input type="text" id="audience" placeholder="Contoh: Mahasiswa, Ibu Rumah Tangga, Karyawan" />
+  <label for="strength">💪 Skill / Kekuatan Personal:</label>
+  <input type="text" id="strength" placeholder="Contoh: Public Speaking, Desain, Storytelling" />
 
-    <label for="formatPref">Format Konten yang Disukai:</label>
-    <input type="text" id="formatPref" placeholder="Contoh: Video pendek, Carousel, Live streaming" />
+  <label for="purpose">🎯 Tujuan / Motivasi:</label>
+  <input type="text" id="purpose" placeholder="Contoh: Menginspirasi, Cari penghasilan, Bangun personal brand" />
 
-    <label for="timeAvailability">Ketersediaan Waktu:</label>
-    <input type="text" id="timeAvailability" placeholder="Contoh: 2 jam/hari, Hanya weekend" />
+  <label for="audience">👥 Target Audiens:</label>
+  <input type="text" id="audience" placeholder="Contoh: Mahasiswa, Ibu Rumah Tangga, UMKM" />
 
-    <label for="budgetLevel">Tingkat Budget:</label>
-    <input type="text" id="budgetLevel" placeholder="Contoh: Minim, Menengah, Siap iklan" />
+  <label for="formatPref">🎥 Format Konten yang Disukai:</label>
+  <input type="text" id="formatPref" placeholder="Contoh: Video pendek, Carousel, Podcast" />
 
-    <details>
-      <summary>🎨 Brand Identity & Personal Branding (Opsional)</summary>
-      <label for="brandName">Nama Brand:</label>
-      <input type="text" id="brandName" placeholder="Contoh: GlowUp ID" />
-      <label for="brandVoice">Brand Voice (Tone):</label>
-      <input type="text" id="brandVoice" placeholder="Contoh: Ramah, Profesional, Inspiratif" />
-      <label for="motto">Motto / Slogan:</label>
-      <input type="text" id="motto" placeholder="Contoh: Shine Brighter Everyday" />
-      <label for="logoConcept">Konsep Logo:</label>
-      <input type="text" id="logoConcept" placeholder="Contoh: Minimalis dengan warna pastel" />
-      <label for="personaStyle">Persona / Gaya Komunikasi:</label>
-      <input type="text" id="personaStyle" placeholder="Contoh: Mentor, Sahabat, CEO, Content Creator" />
-      <label for="brandColor">Warna Mood Brand:</label>
-      <input type="text" id="brandColor" placeholder="Contoh: Soft Pink, Kuning Ceria, Biru Trusty" />
-    </details>
+  <label for="timeAvailability">⏱️ Ketersediaan Waktu:</label>
+  <input type="text" id="timeAvailability" placeholder="Contoh: 1 jam/hari, Weekend only, Fleksibel" />
 
-    <details>
-      <summary>✅ Preferensi Tambahan (Checklist)</summary>
-      <label><input type="checkbox" id="chkMonetize" /> Saya ingin konten ini bisa menghasilkan uang</label>
-      <label><input type="checkbox" id="chkFastExec" /> Saya butuh ide yang bisa langsung saya eksekusi dalam 1 minggu</label>
-      <label><input type="checkbox" id="chkLowEffort" /> Saya hanya ingin konten low-effort</label>
-      <label><input type="checkbox" id="chkUnique" /> Saya ingin ide konten atau brand yang unik dan berbeda</label>
-      <label><input type="checkbox" id="chkProfessional" /> Saya ingin gaya brand dan kontennya profesional</label>
-      <label><input type="checkbox" id="chkMultiplatform" /> Saya ingin hasil yang bisa dipakai di banyak platform</label>
-      <label><input type="checkbox" id="chkCommunity" /> Saya ingin brand ini punya komunitas yang solid</label>
-      <label><input type="checkbox" id="chkMixedLanguage" /> Gunakan gaya bahasa santai dan campur Inggris</label>
-      <label><input type="checkbox" id="chkNoBrand" /> Saya belum punya brand, bantu buatkan dari awal</label>
-    </details>
+  <label for="budgetLevel">💸 Tingkat Budget:</label>
+  <input type="text" id="budgetLevel" placeholder="Contoh: Minim, Menengah, Siap iklan" />
 
-    <div class="actions">
-      <button onclick="generateBrainstorm()">Generate Ide</button>
-      <button onclick="resetBrainstorm()" style="background-color:#f9cfcf;">Reset</button>
-    </div>
+  <label for="personalityType">🧍 Kepribadian Pembuat Konten:</label>
+  <input type="text" id="personalityType" placeholder="Contoh: Introvert, Ambivert, Ekstrovert" />
 
-    <div id="brainstorm-output-container">
-      <div id="brainstorm-output"></div>
-      <button id="copy-brainstorm-button" onclick="copyBrainstorm()">Copy</button>
-    </div>
+  <label for="experienceLevel">📚 Pengalaman Sebelumnya:</label>
+  <select id="experienceLevel">
+    <option value="pemula">Pemula</option>
+    <option value="menengah">Menengah</option>
+    <option value="berpengalaman">Berpengalaman</option>
+  </select>
+
+  <label for="contentAvoid">🚫 Konten yang Dihindari:</label>
+  <input type="text" id="contentAvoid" placeholder="Contoh: Politik, Clickbait, Testimoni palsu" />
+
+  <label for="platformPref">📱 Platform Favorit:</label>
+  <input type="text" id="platformPref" placeholder="Contoh: Instagram, TikTok, LinkedIn" />
+
+  <label for="lifeStage">🧩 Fase Karier / Kondisi Saat Ini:</label>
+  <input type="text" id="lifeStage" placeholder="Contoh: Baru mulai, Freelancer aktif, Baru resign" />
+
+  <!-- BRAND & STYLE -->
+  <details>
+    <summary>🎨 Brand & Gaya Komunikasi (Opsional)</summary>
+
+    <label for="brandName">📛 Nama Brand:</label>
+    <input type="text" id="brandName" placeholder="Contoh: GlowUp ID (boleh dikosongkan jika belum punya)" />
+
+    <label for="brandVoice">🗣️ Brand Voice (Tone):</label>
+    <input type="text" id="brandVoice" placeholder="Contoh: Ramah, Profesional, Inspiratif" />
+
+    <label for="motto">📝 Motto / Slogan:</label>
+    <input type="text" id="motto" placeholder="Contoh: We Empower Women, Grow & Glow" />
+
+    <label for="logoConcept">🎨 Konsep Logo:</label>
+    <input type="text" id="logoConcept" placeholder="Contoh: Ikon sederhana + warna pastel + font sans-serif" />
+
+    <label for="personaStyle">👤 Persona / Gaya Komunikasi:</label>
+    <input type="text" id="personaStyle" placeholder="Contoh: Mentor, Sahabat, CEO, Creator" />
+
+    <label for="brandColor">🎨 Warna Mood Brand:</label>
+    <input type="text" id="brandColor" placeholder="Contoh: Soft Pink, Dusty Green, Navy Elegan" />
+
+    <label for="symbolPref">🔣 Simbol / Ikon Favorit:</label>
+    <input type="text" id="symbolPref" placeholder="Contoh: Daun, Petir, Karakter, Geometris" />
+
+    <label for="brandInspo">🌟 Media Referensi Favorit:</label>
+    <input type="text" id="brandInspo" placeholder="Contoh: Nike, Canva, Dove, Netflix" />
+  </details>
+
+  <!-- PREFERENSI TAMBAHAN -->
+  <details>
+    <summary>✅ Preferensi Konten & Tujuan</summary>
+
+    <label><input type="checkbox" id="chkEduContent" /> Saya ingin konten ini bersifat edukatif</label>
+    <label><input type="checkbox" id="chkStorytelling" /> Saya ingin konten dengan pendekatan cerita (storytelling)</label>
+    <label><input type="checkbox" id="chkLowEffort" /> Saya ingin ide konten yang ringan dan mudah dibuat</label>
+    <label><input type="checkbox" id="chkMonetize" /> Saya ingin konten ini bisa menghasilkan uang</label>
+    <label><input type="checkbox" id="chkUnique" /> Saya ingin ide konten atau brand yang unik dan berbeda</label>
+    <label><input type="checkbox" id="chkProfessional" /> Saya ingin gaya brand dan kontennya profesional</label>
+    <label><input type="checkbox" id="chkMixedLanguage" /> Gunakan gaya bahasa santai dan campur Inggris</label>
+    <label><input type="checkbox" id="chkMultiplatform" /> Saya ingin hasil kontennya bisa dipakai di banyak platform</label>
+    <label><input type="checkbox" id="chkDigitalProduct" /> Saya ingin hasil kontennya bisa dijadikan produk digital (ebook, kursus, dsb)</label>
+    <label><input type="checkbox" id="chkViralTrend" /> Saya ingin ide konten yang mengikuti tren atau gaya viral</label>
+    <label><input type="checkbox" id="chkFastExec" /> Saya butuh ide yang bisa langsung saya eksekusi</label>
+    <label><input type="checkbox" id="chkLimitTools" /> Saya punya keterbatasan alat/tim, bantu sesuaikan ide kontennya</label>
+    <label><input type="checkbox" id="chkCommunity" /> Saya ingin brand ini bisa membentuk komunitas</label>
+    <label><input type="checkbox" id="chkNoBrand" /> Saya belum punya brand, bantu buatkan fondasinya dari awal</label>
+  </details>
+
+  <!-- ACTION -->
+  <div class="actions" style="margin-top: 2rem;">
+    <button onclick="generateBrainstorm()">🚀 Generate Ide</button>
+    <button onclick="resetBrainstorm()" style="background-color:#f9cfcf;">🔄 Reset</button>
   </div>
+
+  <!-- OUTPUT -->
+  <div id="brainstorm-output-container">
+    <div id="brainstorm-output"></div>
+    <button id="copy-brainstorm-button" onclick="copyBrainstorm()">📋 Copy</button>
+  </div>
+</div>
 
   <!-- Content Generator Tab -->
   <div id="content" class="tab-content">
