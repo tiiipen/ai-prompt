@@ -1,205 +1,171 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prompt Generator Tabbed</title>
-  <!-- Panggil style dulu -->
-  <link rel="stylesheet" href="style.css" />
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
-</head>
-<body>
-  <div class="tab-buttons">
-    <button id="btn-brainstorm" class="active" onclick="switchTab('brainstorm')">🧠 Brainstorming</button>
-    <button id="btn-content" onclick="switchTab('content')">📝 Content Generator</button>
-  </div>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
- <!-- Brainstorm Tab -->
-<div id="brainstorm" class="tab-content active">
+html, body {
+  font-family: 'Inter', sans-serif;
+  padding: 1rem;
+  margin: 0;
+  background-color: #f7f7f5;
+  color: #2e2e2e;
+  max-width: 100%;
+}
 
-  <!-- PERSONAL CONTEXT -->
-  <h3>🧠 Personal Context</h3>
+.tab-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
 
-  <label for="interest">📌 Minat / Topik yang Disukai:</label>
-  <input type="text" id="interest" placeholder="Contoh: Fashion, Teknologi, Kesehatan" />
+.tab-buttons button {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 12px;
+  background-color: #ffffff;
+  color: #2e2e2e;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 56px;
+}
 
-  <label for="strength">💪 Skill / Kekuatan Personal:</label>
-  <input type="text" id="strength" placeholder="Contoh: Public Speaking, Desain, Storytelling" />
+.tab-buttons button.active {
+  background-color: #e7f3ff;
+  border-color: #3291ff;
+  color: #1a1a1a;
+}
 
-  <label for="purpose">🎯 Tujuan / Motivasi:</label>
-  <input type="text" id="purpose" placeholder="Contoh: Menginspirasi, Cari penghasilan, Bangun personal brand" />
+.tab-content {
+  display: none;
+}
 
-  <label for="audience">👥 Target Audiens:</label>
-  <input type="text" id="audience" placeholder="Contoh: Mahasiswa, Ibu Rumah Tangga, UMKM" />
+.tab-content.active {
+  display: block;
+}
 
-  <label for="formatPref">🎥 Format Konten yang Disukai:</label>
-  <input type="text" id="formatPref" placeholder="Contoh: Video pendek, Carousel, Podcast" />
+label {
+  font-weight: 600;
+  display: block;
+  margin-top: 1rem;
+  color: #333;
+}
 
-  <label for="timeAvailability">⏱️ Ketersediaan Waktu:</label>
-  <input type="text" id="timeAvailability" placeholder="Contoh: 1 jam/hari, Weekend only, Fleksibel" />
+input, textarea, select {
+  width: 100%;
+  padding: 12px 14px;
+  margin-top: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  background-color: #fff;
+  color: #2e2e2e;
+  box-sizing: border-box;
+}
 
-  <label for="budgetLevel">💸 Tingkat Budget:</label>
-  <input type="text" id="budgetLevel" placeholder="Contoh: Minim, Menengah, Siap iklan" />
+input::placeholder, textarea::placeholder {
+  color: #888;
+}
 
-  <label for="personalityType">🧍 Kepribadian Pembuat Konten:</label>
-  <input type="text" id="personalityType" placeholder="Contoh: Introvert, Ambivert, Ekstrovert" />
+textarea {
+  height: 90px;
+}
 
-  <label for="experienceLevel">📚 Pengalaman Sebelumnya:</label>
-  <select id="experienceLevel">
-    <option value="pemula">Pemula</option>
-    <option value="menengah">Menengah</option>
-    <option value="berpengalaman">Berpengalaman</option>
-  </select>
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%23333' d='M0 3h10L5 8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 12px;
+}
 
-  <label for="contentAvoid">🚫 Konten yang Dihindari:</label>
-  <input type="text" id="contentAvoid" placeholder="Contoh: Politik, Clickbait, Testimoni palsu" />
+details {
+  margin-top: 1rem;
+  border: 1px solid #d9d9d9;
+  padding: 1rem;
+  border-radius: 6px;
+  background-color: #fcfcfc;
+}
 
-  <label for="platformPref">📱 Platform Favorit:</label>
-  <input type="text" id="platformPref" placeholder="Contoh: Instagram, TikTok, LinkedIn" />
+summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #444;
+  font-size: 15px;
+  margin-bottom: 0.5rem;
+}
 
-  <label for="lifeStage">🧩 Fase Karier / Kondisi Saat Ini:</label>
-  <input type="text" id="lifeStage" placeholder="Contoh: Baru mulai, Freelancer aktif, Baru resign" />
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
 
-  <!-- BRAND & STYLE -->
-  <details>
-    <summary>🎨 Brand & Gaya Komunikasi (Opsional)</summary>
+.actions button {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 12px;
+  background-color: #ffffff;
+  color: #2e2e2e;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  cursor: pointer;
+  min-height: 56px;
+}
 
-    <label for="brandName">📛 Nama Brand:</label>
-    <input type="text" id="brandName" placeholder="Contoh: GlowUp ID (boleh dikosongkan jika belum punya)" />
+.actions button:hover {
+  background-color: #f3f3f3;
+}
 
-    <label for="brandVoice">🗣️ Brand Voice (Tone):</label>
-    <input type="text" id="brandVoice" placeholder="Contoh: Ramah, Profesional, Inspiratif" />
+#content-output-container,
+#brainstorm-output-container {
+  position: relative;
+  margin-top: 1.5rem;
+}
 
-    <label for="motto">📝 Motto / Slogan:</label>
-    <input type="text" id="motto" placeholder="Contoh: We Empower Women, Grow & Glow" />
+#content-output,
+#brainstorm-output {
+  background: #fff;
+  padding: 50px 20px 20px 20px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  white-space: pre-wrap;
+  min-height: 200px;
+  font-size: 14px;
+  color: #333;
+}
 
-    <label for="logoConcept">🎨 Konsep Logo:</label>
-    <input type="text" id="logoConcept" placeholder="Contoh: Ikon sederhana + warna pastel + font sans-serif" />
+#copy-button,
+#copy-brainstorm-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 4px 12px;
+  font-size: 13px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  color: #2e2e2e;
+  cursor: pointer;
+  min-width: 60px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
 
-    <label for="personaStyle">👤 Persona / Gaya Komunikasi:</label>
-    <input type="text" id="personaStyle" placeholder="Contoh: Mentor, Sahabat, CEO, Creator" />
+#copy-button:hover,
+#copy-brainstorm-button:hover {
+  background-color: #ebebeb;
+}
 
-    <label for="brandColor">🎨 Warna Mood Brand:</label>
-    <input type="text" id="brandColor" placeholder="Contoh: Soft Pink, Dusty Green, Navy Elegan" />
-
-    <label for="symbolPref">🔣 Simbol / Ikon Favorit:</label>
-    <input type="text" id="symbolPref" placeholder="Contoh: Daun, Petir, Karakter, Geometris" />
-
-    <label for="brandInspo">🌟 Media Referensi Favorit:</label>
-    <input type="text" id="brandInspo" placeholder="Contoh: Nike, Canva, Dove, Netflix" />
-  </details>
-
-  <!-- PREFERENSI TAMBAHAN -->
-  <details>
-    <summary>✅ Preferensi Konten & Tujuan</summary>
-
-    <label><input type="checkbox" id="chkEduContent" /> Saya ingin konten ini bersifat edukatif</label>
-    <label><input type="checkbox" id="chkStorytelling" /> Saya ingin konten dengan pendekatan cerita (storytelling)</label>
-    <label><input type="checkbox" id="chkLowEffort" /> Saya ingin ide konten yang ringan dan mudah dibuat</label>
-    <label><input type="checkbox" id="chkMonetize" /> Saya ingin konten ini bisa menghasilkan uang</label>
-    <label><input type="checkbox" id="chkUnique" /> Saya ingin ide konten atau brand yang unik dan berbeda</label>
-    <label><input type="checkbox" id="chkProfessional" /> Saya ingin gaya brand dan kontennya profesional</label>
-    <label><input type="checkbox" id="chkMixedLanguage" /> Gunakan gaya bahasa santai dan campur Inggris</label>
-    <label><input type="checkbox" id="chkMultiplatform" /> Saya ingin hasil kontennya bisa dipakai di banyak platform</label>
-    <label><input type="checkbox" id="chkDigitalProduct" /> Saya ingin hasil kontennya bisa dijadikan produk digital (ebook, kursus, dsb)</label>
-    <label><input type="checkbox" id="chkViralTrend" /> Saya ingin ide konten yang mengikuti tren atau gaya viral</label>
-    <label><input type="checkbox" id="chkFastExec" /> Saya butuh ide yang bisa langsung saya eksekusi</label>
-    <label><input type="checkbox" id="chkLimitTools" /> Saya punya keterbatasan alat/tim, bantu sesuaikan ide kontennya</label>
-    <label><input type="checkbox" id="chkCommunity" /> Saya ingin brand ini bisa membentuk komunitas</label>
-    <label><input type="checkbox" id="chkNoBrand" /> Saya belum punya brand, bantu buatkan fondasinya dari awal</label>
-  </details>
-
-  <!-- ACTION -->
-  <div class="actions" style="margin-top: 2rem;">
-    <button onclick="generateBrainstorm()">🚀 Generate Ide</button>
-    <button onclick="resetBrainstorm()">🔄 Reset</button>
-  </div>
-
-  <!-- OUTPUT -->
-  <div id="brainstorm-output-container">
-    <div id="brainstorm-output"></div>
-    <button id="copy-brainstorm-button" onclick="copyBrainstorm()">📋 Copy</button>
-  </div>
-</div>
-
-  <!-- Content Generator Tab -->
-  <div id="content" class="tab-content">
-    <label for="outputType">Output Type:</label>
-    <select id="outputType">
-      <option value="content">Content Prompt (default)</option>
-      <option value="script">Script Video</option>
-      <option value="image">Image Prompt</option>
-      <option value="voice">Voice-over</option>
-      <option value="video">Video Prompt (Text-to-Video)</option>
-    </select>
-
-    <label for="platform">Platform:</label>
-    <select id="platform" onchange="updateFormatOptions()">
-      <option value="Instagram">Instagram</option>
-      <option value="Youtube">Youtube</option>
-      <option value="TikTok">TikTok</option>
-    </select>
-
-    <label for="format">Format Konten:</label>
-    <select id="format"></select>
-
-    <label for="brand">Nama Brand:</label>
-    <input type="text" id="brand" placeholder="Contoh: Skintify" />
-
-    <label for="product">Produk / Jasa yang Dijual:</label>
-    <input type="text" id="product" placeholder="Contoh: Produk skincare lokal untuk remaja perempuan" />
-
-    <label for="audience">Target Audience:</label>
-    <input type="text" id="audience" placeholder="Contoh: Perempuan usia 17-25, tinggal di kota besar" />
-
-    <details>
-      <summary>🎯 Contextual Input</summary>
-      <label for="role">Role AI:</label>
-      <input type="text" id="role" placeholder="Contoh: Script Writer, Creative Coach" />
-      <label for="goal">Goal / Tugas AI:</label>
-      <input type="text" id="goal" placeholder="Contoh: Membuat konten edukasi promosi" />
-      <label for="style">Style / Gaya Bahasa:</label>
-      <input type="text" id="style" placeholder="Contoh: Edukatif, Gaul, Profesional" />
-      <label for="objective">Campaign Objective:</label>
-      <input type="text" id="objective" placeholder="Contoh: Edukasi, Awareness, Penjualan" />
-      <label for="tone">Tone / Suasana:</label>
-      <input type="text" id="tone" placeholder="Contoh: Ramah, Tegas, Serius" />
-      <label for="persona">Persona / Karakter:</label>
-      <input type="text" id="persona" placeholder="Contoh: Mentor, CEO, Teman Sebaya" />
-    </details>
-
-    <details>
-      <summary>🎬 Production Layer</summary>
-      <label for="duration">Durasi Maksimal:</label>
-      <input type="text" id="duration" placeholder="Contoh: Maks 60 detik" />
-      <label for="visual">Referensi Visual:</label>
-      <input type="text" id="visual" placeholder="Contoh: Flatlay, Before-After, Talking Head" />
-      <label for="contentFormat">Format Produksi:</label>
-      <input type="text" id="contentFormat" placeholder="Contoh: Voice-over, Teks-only, Cinematic" />
-      <label for="outputDetail">Detail Output Tambahan:</label>
-      <input type="text" id="outputDetail" placeholder="Contoh: Sertakan transisi per scene" />
-      <label for="cta">Call to Action:</label>
-      <input type="text" id="cta" placeholder="Contoh: Gabung Sekarang, DM kami" />
-      <label for="language">Bahasa / Dialek:</label>
-      <input type="text" id="language" placeholder="Contoh: Bahasa santai, campur Inggris" />
-      <label for="moment">Momen / Kalender:</label>
-      <input type="text" id="moment" placeholder="Contoh: Ramadhan, Back to School" />
-      <label for="constraint">Batasan / Constraints:</label>
-      <input type="text" id="constraint" placeholder="Contoh: Hindari sebut harga, tanpa testimoni palsu" />
-    </details>
-
-    <div class="actions">
-      <button onclick="generatePrompt()">Generate Prompt</button>
-      <button onclick="resetForm()">Reset</button>
-    </div>
-
-    <div id="content-output-container">
-      <div id="content-output"></div>
-      <button id="copy-button" onclick="copyPrompt()">Copy</button>
-    </div>
-  </div>
-<!-- Taruh script di akhir dan pakai defer -->
-<script src="script.js" defer></script>
-</body>
-</html>
+@media (max-width: 480px) {
+  html, body {
+    padding: 0.75rem !important;
+  }
+  input, select, textarea {
+    font-size: 14px;
+  }
+  .actions button {
+    font-size: 14px;
+    padding: 12px 10px;
+  }
+}
