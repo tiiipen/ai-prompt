@@ -67,12 +67,7 @@
   </div>
 
   <!-- Container konten yang muncul saat tombol diklik -->
-  <div id="brainstorm" class="tab-content">
-    <h2>🧠 Brainstorming</h2>
-    <p>Form untuk eksplorasi ide konten berdasarkan personal context dan brand.</p>
-    <p><em>(Konten ini nanti akan di-load dari <code>brainstorming.html</code> atau ditampilkan inline.)</em></p>
-  </div>
-
+  <div id="brainstorm" class="tab-content"></div>
   <div id="content" class="tab-content">
     <h2>📝 Content Generator</h2>
     <p>Form untuk generate caption, script, voice, visual, dan lainnya berdasarkan struktur produksi konten.</p>
@@ -89,14 +84,31 @@
   </div>
 
   <script>
-    function showTab(tabId) {
-      const tabs = ['brainstorm', 'content', 'image', 'video'];
-      tabs.forEach(id => {
-        document.getElementById(id).classList.remove('active');
-      });
-      document.getElementById(tabId).classList.add('active');
-      window.scrollTo({ top: document.getElementById(tabId).offsetTop - 20, behavior: 'smooth' });
+  function showTab(tabId) {
+    const tabs = ['brainstorm', 'content', 'image', 'video'];
+    tabs.forEach(id => {
+      document.getElementById(id).classList.remove('active');
+    });
+
+    const tabElement = document.getElementById(tabId);
+    tabElement.classList.add('active');
+
+    // Load konten eksternal hanya saat pertama kali dibuka
+    if (!tabElement.dataset.loaded) {
+      fetch(`${tabId}.html`)
+        .then(response => response.text())
+        .then(html => {
+          tabElement.innerHTML = html;
+          tabElement.dataset.loaded = "true";
+          window.scrollTo({ top: tabElement.offsetTop - 20, behavior: 'smooth' });
+        })
+        .catch(err => {
+          tabElement.innerHTML = `<p style="color:red;">Gagal memuat ${tabId}.html</p>`;
+        });
+    } else {
+      window.scrollTo({ top: tabElement.offsetTop - 20, behavior: 'smooth' });
     }
+  }
   </script>
 
 </body>
