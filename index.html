@@ -4,66 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SocioBlitz Prompt Generator</title>
-  <link rel="stylesheet" href="style.css"/>
-  <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: #f7f7f7;
-      margin: 0;
-      padding: 2rem;
-      text-align: center;
-    }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .tab-grid {
-      display: flex;
-      flex-wrap: wrap;
-      max-width: 700px;
-      margin: 0 auto;
-      gap: 1rem;
-    }
-    .tab-button {
-      flex: 1 1 calc(50% - 0.5rem);
-      min-width: 45%;
-      padding: 1rem;
-      background-color: #ffd600;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: bold;
-      min-height: 60px;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-    }
-    .tab-button:hover {
-      background-color: #ffbb00;
-    }
-
-    .tab-content {
-      display: none;
-      margin-top: 2rem;
-      text-align: left;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .tab-content.active {
-      display: block;
-    }
-  </style>
 </head>
 <body>
 
   <h1>⚡ SocioBlitz Prompt Generator</h1>
 
   <div class="tab-grid">
-    <button class="tab-button" onclick="showTab('brainstorm')">🧠 Brainstorming</button>
-    <button class="tab-button" onclick="showTab('content')">📝 Content Generator</button>
-    <button class="tab-button" onclick="showTab('image')">🖼️ Text to Image</button>
-    <button class="tab-button" onclick="showTab('video')">🎬 Text to Video</button>
+    <button class="tab-button">🧠 Brainstorming</button>
+    <button class="tab-button">📝 Content Generator</button>
+    <button class="tab-button">🖼️ Text to Image</button>
+    <button class="tab-button">🎬 Text to Video</button>
   </div>
 
   <!-- Container konten yang muncul saat tombol diklik -->
@@ -71,34 +21,6 @@
   <div id="content" class="tab-content"></div>
   <div id="image" class="tab-content"></div>
   <div id="video" class="tab-content"></div>
-  
-  <script>
-  function showTab(tabId) {
-    const tabs = ['brainstorm', 'content', 'image', 'video'];
-    tabs.forEach(id => {
-      document.getElementById(id).classList.remove('active');
-    });
-
-    const tabElement = document.getElementById(tabId);
-    tabElement.classList.add('active');
-
-    // Load konten eksternal hanya saat pertama kali dibuka
-    if (!tabElement.dataset.loaded) {
-      fetch(`${tabId}.html`)
-        .then(response => response.text())
-        .then(html => {
-          tabElement.innerHTML = html;
-          tabElement.dataset.loaded = "true";
-          window.scrollTo({ top: tabElement.offsetTop - 20, behavior: 'smooth' });
-        })
-        .catch(err => {
-          tabElement.innerHTML = `<p style="color:red;">Gagal memuat ${tabId}.html</p>`;
-        });
-    } else {
-      window.scrollTo({ top: tabElement.offsetTop - 20, behavior: 'smooth' });
-    }
-  }
-  </script>
 
 </body>
 </html>
