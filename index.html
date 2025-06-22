@@ -4,263 +4,79 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prompt Generator Tabbed</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
-
-    html, body {
-      font-family: 'Arial', sans-serif;
-      padding: 1rem;
-      margin: 0;
-      background-color: #1C1C1C;
-      color: #ffffff;
-      max-width: 100%;
-    }
-
-    .tab-buttons {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 1rem;
-    }
-
-    .tab-buttons button {
-      flex: 1;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 16px;
-      font-weight: 600;
-      padding: 16px 12px;
-      background-color: #FED703;
-      color: #1C1C1C;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-      min-height: 60px;
-    }
-
-    .tab-buttons button.active {
-      background-color: #ffe924;
-    }
-
-    .tab-content {
-      display: none;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
-
-    label {
-      font-weight: bold;
-      display: block;
-      margin-top: 0.8rem;
-      color: #FED703;
-    }
-
-    input, textarea, select {
-      width: 100%;
-      padding: 12px 14px;
-      margin-top: 5px;
-      border-radius: 6px;
-      border: 2px solid #3C3C3C;
-      font-size: 14px;
-      background-color: #222222;
-      color: #ffffff;
-      box-sizing: border-box;
-    }
-
-    input::placeholder, textarea::placeholder {
-      color: #ffffff;
-      opacity: 0.7;
-    }
-
-    textarea {
-      height: 90px;
-    }
-
-    select {
-      appearance: none;
-      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%23ffffff' d='M0 3h10L5 8z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 14px center;
-      background-size: 12px;
-    }
-
-    details {
-      margin-top: 1rem;
-      border: 1px solid #FED703;
-      padding: 1rem;
-      border-radius: 6px;
-    }
-
-    summary {
-      cursor: pointer;
-      font-weight: bold;
-      color: #FED703;
-      font-size: 15px;
-      margin-bottom: 1rem;
-    }
-
-    .actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .actions button {
-      flex: 1;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 16px;
-      font-weight: 600;
-      padding: 16px 12px;
-      background-color: #FED703;
-      color: #1C1C1C;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      cursor: pointer;
-      min-height: 60px;
-    }
-
-    .actions button:hover {
-      background-color: #ffe924;
-    }
-
-    #content-output-container,
-    #brainstorm-output-container {
-      position: relative;
-      margin-top: 1.5rem;
-    }
-
-    #content-output,
-    #brainstorm-output {
-      background: #222222;
-      padding: 50px 20px 20px 20px;
-      border-radius: 6px;
-      border: 2px solid #3C3C3C;
-      white-space: pre-wrap;
-      min-height: 200px;
-      font-size: 13px;
-    }
-
-    #copy-button,
-    #copy-brainstorm-button {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      padding: 4px 12px;
-      font-size: 12px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      background-color: #ffffff;
-      color: #1C1C1C;
-      cursor: pointer;
-      min-width: 60px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-
-    #copy-button:hover,
-    #copy-brainstorm-button:hover {
-      background-color: #f1f1f1;
-    }
-
-    @media (max-width: 480px) {
-      html, body {
-        padding: 0.5rem !important;
-      }
-      input, select, textarea {
-        font-size: 13px;
-      }
-      .actions button {
-        font-size: 14px;
-        padding: 12px 10px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
-<!-- TAB BUTTONS -->
-<div class="tab-buttons">
-  <button id="btn-brainstorm" class="active" onclick="switchTab('brainstorm')">🧠 Brainstorming</button>
-  <button id="btn-content" onclick="switchTab('content')">📝 Content Generator</button>
-</div>
-
-<!-- PLACEHOLDER: Brainstorm Tab HTML lengkap akan disisipkan di sini -->
-<!-- Brainstorm Tab -->
-<div id="brainstorm" class="tab-content active">
-  <!-- Step 1: Basic Info -->
-  <label for="interest">📌 Minat / Topik yang Disukai:</label>
-  <input type="text" id="interest" placeholder="Contoh: Fashion, Teknologi, Kesehatan" />
-
-  <label for="strength">Skill / Kekuatan Personal:</label>
-  <input type="text" id="strength" placeholder="Contoh: Public Speaking, Desain, Storytelling" />
-
-  <label for="purpose">Tujuan / Motivasi:</label>
-  <input type="text" id="purpose" placeholder="Contoh: Ingin bantu orang lain, cari penghasilan tambahan" />
-
-  <label for="audience">Target Audiens:</label>
-  <input type="text" id="audience" placeholder="Contoh: Mahasiswa, Ibu Rumah Tangga, Karyawan" />
-
-  <!-- Step 2: Eksekusi -->
-  <label for="formatPref">Format Konten yang Disukai:</label>
-  <input type="text" id="formatPref" placeholder="Contoh: Video pendek, Carousel, Live streaming" />
-
-  <label for="timeAvailability">Ketersediaan Waktu:</label>
-  <input type="text" id="timeAvailability" placeholder="Contoh: 2 jam/hari, Hanya weekend" />
-
-  <label for="budgetLevel">Tingkat Budget:</label>
-  <input type="text" id="budgetLevel" placeholder="Contoh: Minim, Menengah, Siap iklan" />
-
-  <!-- Step 3: Advanced Identity (Opsional) -->
-  <details>
-    <summary>🎨 Brand Identity & Personal Branding (Opsional)</summary>
-
-    <label for="brandName">Nama Brand:</label>
-    <input type="text" id="brandName" placeholder="Contoh: GlowUp ID" />
-
-    <label for="brandVoice">Brand Voice (Tone):</label>
-    <input type="text" id="brandVoice" placeholder="Contoh: Ramah, Profesional, Inspiratif" />
-
-    <label for="motto">Motto / Slogan:</label>
-    <input type="text" id="motto" placeholder="Contoh: Shine Brighter Everyday" />
-
-    <label for="logoConcept">Konsep Logo:</label>
-    <input type="text" id="logoConcept" placeholder="Contoh: Minimalis dengan warna pastel" />
-
-    <label for="personaStyle">Persona / Gaya Komunikasi:</label>
-    <input type="text" id="personaStyle" placeholder="Contoh: Mentor, Sahabat, CEO, Content Creator" />
-
-    <label for="brandColor">Warna Mood Brand:</label>
-    <input type="text" id="brandColor" placeholder="Contoh: Soft Pink, Kuning Ceria, Biru Trusty" />
-  </details>
-
-  <!-- Preferensi Checklist -->
-  <details>
-    <summary>✅ Preferensi Tambahan (Checklist)</summary>
-    <label><input type="checkbox" id="chkMonetize" /> Saya ingin konten ini bisa menghasilkan uang</label>
-    <label><input type="checkbox" id="chkFastExec" /> Saya butuh ide yang bisa langsung saya eksekusi dalam 1 minggu</label>
-    <label><input type="checkbox" id="chkLowEffort" /> Saya hanya ingin konten low-effort</label>
-    <label><input type="checkbox" id="chkUnique" /> Saya ingin ide konten atau brand yang unik dan berbeda</label>
-    <label><input type="checkbox" id="chkProfessional" /> Saya ingin gaya brand dan kontennya profesional</label>
-    <label><input type="checkbox" id="chkMultiplatform" /> Saya ingin hasil yang bisa dipakai di banyak platform</label>
-    <label><input type="checkbox" id="chkCommunity" /> Saya ingin brand ini punya komunitas yang solid</label>
-    <label><input type="checkbox" id="chkMixedLanguage" /> Gunakan gaya bahasa santai dan campur Inggris</label>
-    <label><input type="checkbox" id="chkNoBrand" /> Saya belum punya brand, bantu buatkan dari awal</label>
-  </details>
-
-  <!-- Actions -->
-  <div class="actions">
-    <button onclick="generateBrainstorm()">Generate Ide</button>
-    <button onclick="resetBrainstorm()" style="background-color:#f9cfcf;">Reset</button>
+  <div class="tab-buttons">
+    <button id="btn-brainstorm" class="active" onclick="switchTab('brainstorm')">🧠 Brainstorming</button>
+    <button id="btn-content" onclick="switchTab('content')">📝 Content Generator</button>
   </div>
 
-  <div id="brainstorm-output-container">
-    <div id="brainstorm-output"></div>
-    <button id="copy-brainstorm-button" onclick="copyBrainstorm()">Copy</button>
-  </div>
-</div>
+  <!-- Brainstorm Tab -->
+  <div id="brainstorm" class="tab-content active">
+    <label for="interest">📌 Minat / Topik yang Disukai:</label>
+    <input type="text" id="interest" placeholder="Contoh: Fashion, Teknologi, Kesehatan" />
 
-<!-- PLACEHOLDER: Content Generator Tab HTML lengkap juga akan disisipkan -->
- <!-- Content Generator Tab -->
+    <label for="strength">Skill / Kekuatan Personal:</label>
+    <input type="text" id="strength" placeholder="Contoh: Public Speaking, Desain, Storytelling" />
+
+    <label for="purpose">Tujuan / Motivasi:</label>
+    <input type="text" id="purpose" placeholder="Contoh: Ingin bantu orang lain, cari penghasilan tambahan" />
+
+    <label for="audience">Target Audiens:</label>
+    <input type="text" id="audience" placeholder="Contoh: Mahasiswa, Ibu Rumah Tangga, Karyawan" />
+
+    <label for="formatPref">Format Konten yang Disukai:</label>
+    <input type="text" id="formatPref" placeholder="Contoh: Video pendek, Carousel, Live streaming" />
+
+    <label for="timeAvailability">Ketersediaan Waktu:</label>
+    <input type="text" id="timeAvailability" placeholder="Contoh: 2 jam/hari, Hanya weekend" />
+
+    <label for="budgetLevel">Tingkat Budget:</label>
+    <input type="text" id="budgetLevel" placeholder="Contoh: Minim, Menengah, Siap iklan" />
+
+    <details>
+      <summary>🎨 Brand Identity & Personal Branding (Opsional)</summary>
+      <label for="brandName">Nama Brand:</label>
+      <input type="text" id="brandName" placeholder="Contoh: GlowUp ID" />
+      <label for="brandVoice">Brand Voice (Tone):</label>
+      <input type="text" id="brandVoice" placeholder="Contoh: Ramah, Profesional, Inspiratif" />
+      <label for="motto">Motto / Slogan:</label>
+      <input type="text" id="motto" placeholder="Contoh: Shine Brighter Everyday" />
+      <label for="logoConcept">Konsep Logo:</label>
+      <input type="text" id="logoConcept" placeholder="Contoh: Minimalis dengan warna pastel" />
+      <label for="personaStyle">Persona / Gaya Komunikasi:</label>
+      <input type="text" id="personaStyle" placeholder="Contoh: Mentor, Sahabat, CEO, Content Creator" />
+      <label for="brandColor">Warna Mood Brand:</label>
+      <input type="text" id="brandColor" placeholder="Contoh: Soft Pink, Kuning Ceria, Biru Trusty" />
+    </details>
+
+    <details>
+      <summary>✅ Preferensi Tambahan (Checklist)</summary>
+      <label><input type="checkbox" id="chkMonetize" /> Saya ingin konten ini bisa menghasilkan uang</label>
+      <label><input type="checkbox" id="chkFastExec" /> Saya butuh ide yang bisa langsung saya eksekusi dalam 1 minggu</label>
+      <label><input type="checkbox" id="chkLowEffort" /> Saya hanya ingin konten low-effort</label>
+      <label><input type="checkbox" id="chkUnique" /> Saya ingin ide konten atau brand yang unik dan berbeda</label>
+      <label><input type="checkbox" id="chkProfessional" /> Saya ingin gaya brand dan kontennya profesional</label>
+      <label><input type="checkbox" id="chkMultiplatform" /> Saya ingin hasil yang bisa dipakai di banyak platform</label>
+      <label><input type="checkbox" id="chkCommunity" /> Saya ingin brand ini punya komunitas yang solid</label>
+      <label><input type="checkbox" id="chkMixedLanguage" /> Gunakan gaya bahasa santai dan campur Inggris</label>
+      <label><input type="checkbox" id="chkNoBrand" /> Saya belum punya brand, bantu buatkan dari awal</label>
+    </details>
+
+    <div class="actions">
+      <button onclick="generateBrainstorm()">Generate Ide</button>
+      <button onclick="resetBrainstorm()" style="background-color:#f9cfcf;">Reset</button>
+    </div>
+
+    <div id="brainstorm-output-container">
+      <div id="brainstorm-output"></div>
+      <button id="copy-brainstorm-button" onclick="copyBrainstorm()">Copy</button>
+    </div>
+  </div>
+
+  <!-- Content Generator Tab -->
   <div id="content" class="tab-content">
     <label for="outputType">Output Type:</label>
     <select id="outputType">
@@ -337,111 +153,6 @@
     </div>
   </div>
 
-<script>
- function switchTab(tab) {
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.tab-buttons button').forEach(el => el.classList.remove('active'));
-      document.getElementById(tab).classList.add('active');
-      document.getElementById('btn-' + tab).classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function generateBrainstorm() {
-      const interest = document.getElementById("interest").value.trim();
-      const strength = document.getElementById("strength").value.trim();
-      const purpose = document.getElementById("purpose").value.trim();
-      if (!interest && !strength && !purpose) {
-        alert("Silakan isi setidaknya satu field untuk memulai brainstorming.");
-        return;
-      }
-      const output = `Berikut beberapa ide konten atau bisnis:\n\n` +
-        (interest ? `📌 Topik: ${interest}\n` : '') +
-        (strength ? `💪 Kekuatan: ${strength}\n` : '') +
-        (purpose ? `🎯 Tujuan: ${purpose}\n` : '') +
-        `\nContoh:\n1. Akun edukasi seputar ${interest || 'topik'}\n2. Konten tips dari ${strength || 'keahlian'}\n3. Campaign untuk "${purpose || 'motivasi'}"`;
-      document.getElementById("brainstorm-output").textContent = output;
-    }
-
-    function resetBrainstorm() {
-      ["interest", "strength", "purpose"].forEach(id => document.getElementById(id).value = "");
-      document.getElementById("brainstorm-output").textContent = "";
-    }
-
-    function copyBrainstorm() {
-      const text = document.getElementById("brainstorm-output").textContent;
-      if (!text) return alert("Silakan generate ide terlebih dahulu.");
-      const textarea = document.createElement("textarea");
-      textarea.value = text;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textarea);
-      const btn = document.getElementById("copy-brainstorm-button");
-      btn.textContent = "✔ Copied";
-      setTimeout(() => btn.textContent = "Copy", 1500);
-    }
-
-    const formatOptions = {
-      "Instagram": ["IG Post", "IG Story", "IG Carousel", "IG Reels"],
-      "Youtube": ["YouTube Short", "YouTube Videos"],
-      "TikTok": ["TikTok Video", "TikTok Live"]
-    };
-
-    function updateFormatOptions() {
-      const platform = document.getElementById("platform").value;
-      const formatSelect = document.getElementById("format");
-      formatSelect.innerHTML = "";
-      formatOptions[platform].forEach(format => {
-        const option = document.createElement("option");
-        option.value = format;
-        option.text = format;
-        formatSelect.appendChild(option);
-      });
-    }
-
-    function getVal(id) {
-      return document.getElementById(id)?.value.trim() || "";
-    }
-
-    function generatePrompt() {
-      const ids = ["brand", "product", "audience", "platform", "format", "style", "objective", "cta", "persona", "visual", "language", "moment", "role", "goal", "tone", "constraint", "outputType"];
-      const data = Object.fromEntries(ids.map(id => [id, getVal(id)]));
-      let prompt = `Buatkan konten ${data.format} untuk platform ${data.platform} yang mempromosikan brand "${data.brand}".\nProduk/Jasa: ${data.product}.\nTarget audiens: ${data.audience}.\n`;
-      if (data.style) prompt += `Gaya bahasa: ${data.style}.\n`;
-      if (data.objective) prompt += `Tujuan kampanye: ${data.objective}.\n`;
-      if (data.cta) prompt += `Call to action: ${data.cta}.\n`;
-      if (data.persona) prompt += `Karakter/tone brand: ${data.persona}.\n`;
-      if (data.visual) prompt += `Referensi visual: ${data.visual}.\n`;
-      if (data.language) prompt += `Dialek/bahasa: ${data.language}.\n`;
-      if (data.moment) prompt += `Momen/konteks: ${data.moment}.\n`;
-      if (data.role) prompt += `Role AI: ${data.role}.\n`;
-      if (data.goal) prompt += `Goal atau tugas AI: ${data.goal}.\n`;
-      if (data.tone) prompt += `Tone konten: ${data.tone}.\n`;
-      if (data.constraint) prompt += `Batasan: ${data.constraint}.\n`;
-      prompt += `Konten harus engaging, relevan, dan sesuai brief.\nBerikan 3 versi atau ide berbeda dari prompt ini.`;
-      document.getElementById("content-output").textContent = prompt;
-    }
-
-    function resetForm() {
-      document.querySelectorAll("#content input, #content select").forEach(el => el.value = "");
-      document.getElementById("content-output").textContent = "";
-    }
-
-    function copyPrompt() {
-      const text = document.getElementById("content-output").textContent;
-      if (!text) return alert("Silakan generate prompt terlebih dahulu.");
-      const textarea = document.createElement("textarea");
-      textarea.value = text;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textarea);
-      const btn = document.getElementById("copy-button");
-      btn.textContent = "✔ Copied";
-      setTimeout(() => btn.textContent = "Copy", 1500);
-    }
-
-    window.addEventListener("load", updateFormatOptions);
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
