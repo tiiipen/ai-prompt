@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+html, body {
+  font-family: 'Arial', sans-serif;
+  padding: 1rem;
+  margin: 0;
+  background-color: #1C1C1C;
+  color: #ffffff;
+  max-width: 100%;
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.tab-buttons button {
+  flex: 1;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px 12px;
+  background-color: #FED703;
+  color: #1C1C1C;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  min-height: 60px;
+}
+
+.tab-buttons button.active {
+  background-color: #ffe924;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-top: 0.8rem;
+  color: #FED703;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 12px 14px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: 2px solid #3C3C3C;
+  font-size: 14px;
+  background-color: #222222;
+  color: #ffffff;
+  box-sizing: border-box;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #ffffff;
+  opacity: 0.7;
+}
+
+textarea {
+  height: 90px;
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%23ffffff' d='M0 3h10L5 8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 12px;
+}
+
+details {
+  margin-top: 1rem;
+  border: 1px solid #FED703;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: bold;
+  color: #FED703;
+  font-size: 15px;
+  margin-bottom: 1rem;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.actions button {
+  flex: 1;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px 12px;
+  background-color: #FED703;
+  color: #1C1C1C;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  min-height: 60px;
+}
+
+.actions button:hover {
+  background-color: #ffe924;
+}
+
+#content-output-container,
+#brainstorm-output-container {
+  position: relative;
+  margin-top: 1.5rem;
+}
+
+#content-output,
+#brainstorm-output {
+  background: #222222;
+  padding: 50px 20px 20px 20px;
+  border-radius: 6px;
+  border: 2px solid #3C3C3C;
+  white-space: pre-wrap;
+  min-height: 200px;
+  font-size: 13px;
+}
+
+#copy-button,
+#copy-brainstorm-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 4px 12px;
+  font-size: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  color: #1C1C1C;
+  cursor: pointer;
+  min-width: 60px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+#copy-button:hover,
+#copy-brainstorm-button:hover {
+  background-color: #f1f1f1;
+}
+
+@media (max-width: 480px) {
+  html, body {
+    padding: 0.5rem !important;
+  }
+  input, select, textarea {
+    font-size: 13px;
+  }
+  .actions button {
+    font-size: 14px;
+    padding: 12px 10px;
+  }
+}
