@@ -1,3 +1,4 @@
+// ==== TAB SWITCH ====
 function switchTab(tab) {
   document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.tab-buttons button').forEach(el => el.classList.remove('active'));
@@ -18,11 +19,14 @@ function generateBrainstorm() {
     return;
   }
 
-  const output = Berikut beberapa ide konten atau bisnis:\n\n +
-    (interest ? 📌 Topik: ${interest}\n : '') +
-    (strength ? 💪 Kekuatan: ${strength}\n : '') +
-    (purpose ? 🎯 Tujuan: ${purpose}\n : '') +
-    \nContoh:\n1. Akun edukasi seputar ${interest || 'topik'}\n2. Konten tips dari ${strength || 'keahlian'}\n3. Campaign untuk "${purpose || 'motivasi'}";
+  const output = `Berikut beberapa ide konten atau bisnis:\n\n` +
+    (interest ? `📌 Topik: ${interest}\n` : '') +
+    (strength ? `💪 Kekuatan: ${strength}\n` : '') +
+    (purpose ? `🎯 Tujuan: ${purpose}\n` : '') +
+    `\nContoh:\n` +
+    `1. Akun edukasi seputar ${interest || 'topik'}\n` +
+    `2. Konten tips dari ${strength || 'keahlian'}\n` +
+    `3. Campaign untuk "${purpose || 'motivasi'}"`;
 
   document.getElementById("brainstorm-output").textContent = output;
 }
@@ -81,21 +85,22 @@ function generatePrompt() {
   ];
 
   const data = Object.fromEntries(ids.map(id => [id, getVal(id)]));
-  let prompt = Buatkan konten ${data.format} untuk platform ${data.platform} yang mempromosikan brand "${data.brand}".\nProduk/Jasa: ${data.product}.\nTarget audiens: ${data.audience}.\n;
 
-  if (data.style) prompt += Gaya bahasa: ${data.style}.\n;
-  if (data.objective) prompt += Tujuan kampanye: ${data.objective}.\n;
-  if (data.cta) prompt += Call to action: ${data.cta}.\n;
-  if (data.persona) prompt += Karakter/tone brand: ${data.persona}.\n;
-  if (data.visual) prompt += Referensi visual: ${data.visual}.\n;
-  if (data.language) prompt += Dialek/bahasa: ${data.language}.\n;
-  if (data.moment) prompt += Momen/konteks: ${data.moment}.\n;
-  if (data.role) prompt += Role AI: ${data.role}.\n;
-  if (data.goal) prompt += Goal atau tugas AI: ${data.goal}.\n;
-  if (data.tone) prompt += Tone konten: ${data.tone}.\n;
-  if (data.constraint) prompt += Batasan: ${data.constraint}.\n;
+  let prompt = `Buatkan konten ${data.format} untuk platform ${data.platform} yang mempromosikan brand "${data.brand}".\nProduk/Jasa: ${data.product}.\nTarget audiens: ${data.audience}.\n`;
 
-  prompt += Konten harus engaging, relevan, dan sesuai brief.\nBerikan 3 versi atau ide berbeda dari prompt ini.;
+  if (data.style) prompt += `Gaya bahasa: ${data.style}.\n`;
+  if (data.objective) prompt += `Tujuan kampanye: ${data.objective}.\n`;
+  if (data.cta) prompt += `Call to action: ${data.cta}.\n`;
+  if (data.persona) prompt += `Karakter/tone brand: ${data.persona}.\n`;
+  if (data.visual) prompt += `Referensi visual: ${data.visual}.\n`;
+  if (data.language) prompt += `Dialek/bahasa: ${data.language}.\n`;
+  if (data.moment) prompt += `Momen/konteks: ${data.moment}.\n`;
+  if (data.role) prompt += `Role AI: ${data.role}.\n`;
+  if (data.goal) prompt += `Goal atau tugas AI: ${data.goal}.\n`;
+  if (data.tone) prompt += `Tone konten: ${data.tone}.\n`;
+  if (data.constraint) prompt += `Batasan: ${data.constraint}.\n`;
+
+  prompt += `Konten harus engaging, relevan, dan sesuai brief.\nBerikan 3 versi atau ide berbeda dari prompt ini.`;
 
   document.getElementById("content-output").textContent = prompt;
 }
@@ -124,4 +129,5 @@ function copyPrompt() {
   setTimeout(() => btn.textContent = "Copy", 1500);
 }
 
+// Inisialisasi saat halaman dimuat
 window.addEventListener("load", updateFormatOptions);
