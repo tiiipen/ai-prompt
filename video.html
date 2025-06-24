@@ -1,136 +1,128 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Text to Video Prompt</title>
-</head>
-<body>
-  <h2>🎬 Text to Video</h2>
+<div id="video" class="tab-content">
+  <h3>🎬 Text to Video Prompt</h3>
 
-  <label for="TV-title">🎯 Judul / Topik</label>
-  <input type="text" id="TV-title" placeholder="Daily Life Traveler di Shanghai">
+  <label for="TV-title">📌 Judul / Topik</label>
+  <input type="text" id="TV-title" placeholder="Daily Life Traveler di Shanghai" />
 
-  <label for="TV-mainScene">📸 Adegan / Objek Utama</label>
-  <input type="text" id="TV-mainScene" placeholder="Wanita jalan di gang kecil tradisional">
+  <label for="TV-mainScene">🎞️ Adegan / Objek Utama</label>
+  <input type="text" id="TV-mainScene" placeholder="Wanita jalan di gang kecil tradisional" />
 
   <label for="TV-location">📍 Lokasi / Setting</label>
   <select id="TV-location">
-    <option value="">Pilih lokasi</option>
+    <option value="">Pilih Lokasi</option>
     <option>Tokyo</option>
     <option>Paris</option>
     <option>Bali</option>
     <option>Iceland</option>
     <option>Amazon</option>
     <option>Rooftop NYC</option>
+    <option>Lainnya</option>
   </select>
-  <input type="text" id="TV-location-custom" placeholder="Custom lokasi">
 
   <label for="TV-visualStyle">🎨 Gaya Artistik / Visual</label>
   <select id="TV-visualStyle">
-    <option value="">Pilih style</option>
+    <option value="">Pilih Style</option>
     <option>Studio Ghibli</option>
     <option>Disney 3D</option>
     <option>Cyberpunk</option>
     <option>Noir</option>
     <option>Retro VHS</option>
     <option>Sketch</option>
+    <option>Lainnya</option>
   </select>
-  <input type="text" id="TV-visualStyle-custom" placeholder="Custom visual style">
 
   <label for="TV-mood">🎭 Mood / Tone Video</label>
   <select id="TV-mood">
-    <option value="">Pilih mood</option>
+    <option value="">Pilih Mood</option>
     <option>Serius</option>
     <option>Komedi</option>
     <option>Inspiratif</option>
     <option>Heroik</option>
     <option>Mencekam</option>
     <option>Romantis</option>
+    <option>Lainnya</option>
   </select>
-  <input type="text" id="TV-mood-custom" placeholder="Custom mood">
 
   <details>
     <summary>🎬 Creative Control</summary>
-    <label for="TV-scriptStyle">📄 Jenis Script</label>
+    <label for="TV-scriptStyle">📝 Jenis Script / Gaya Naskah</label>
     <select id="TV-scriptStyle">
       <option>Narasi Umum</option>
       <option>Dialog Percakapan</option>
       <option>Monolog Inspiratif</option>
     </select>
 
-    <label for="TV-shortScript">📝 Narasi / Script Pendek</label>
-    <input type="text" id="TV-shortScript" placeholder="Aku menjelajahi Shanghai dari pagi...">
+    <label for="TV-shortScript">✍️ Narasi / Script Pendek</label>
+    <input type="text" id="TV-shortScript" placeholder="“Aku menjelajahi Shanghai dari pagi...”" />
 
-    <label for="TV-dialogScript">💬 Dialog / Percakapan</label>
-    <textarea id="TV-dialogScript" placeholder="Traveler: 'Wow, ini seperti masa lalu...'"></textarea>
+    <label for="TV-dialogScript">💬 Dialog Script / Percakapan</label>
+    <textarea id="TV-dialogScript" placeholder="Traveler: 'Wow, ini seperti masa lalu...'" rows="4"></textarea>
 
-    <label for="TV-cameraMovement">🎥 Gaya Kamera / Transisi</label>
-    <input type="text" id="TV-cameraMovement" placeholder="Slow pan, Drone view">
+    <label for="TV-cameraMovement">🎥 Style Kamera / Transisi</label>
+    <input type="text" id="TV-cameraMovement" placeholder="Slow pan, Drone view, FPV" />
 
     <label for="TV-lighting">💡 Lighting / Pencahayaan</label>
-    <input type="text" id="TV-lighting" placeholder="Golden hour, Neon night">
+    <input type="text" id="TV-lighting" placeholder="Golden hour, Neon night" />
 
-    <label for="TV-framingStyle">📐 Komposisi Visual</label>
-    <input type="text" id="TV-framingStyle" placeholder="Rule of Thirds, Close-up">
+    <label for="TV-framingStyle">🖼️ Komposisi Visual / Framing</label>
+    <input type="text" id="TV-framingStyle" placeholder="Rule of Thirds, Close-up, Symmetry" />
 
-    <label for="TV-dialogTone">🎙️ Dialog Tone</label>
-    <input type="text" id="TV-dialogTone" placeholder="Narasi tenang, Percakapan lucu">
+    <label for="TV-dialogTone">🎙️ Dialog Style / Tone</label>
+    <input type="text" id="TV-dialogTone" placeholder="Narasi tenang, Percakapan lucu" />
 
-    <label for="TV-voiceoverStyle">🔊 Voiceover Style</label>
-    <input type="text" id="TV-voiceoverStyle" placeholder="British Female, Deep Male Voice">
+    <label for="TV-voiceoverStyle">🔊 Voiceover Style / Accent</label>
+    <input type="text" id="TV-voiceoverStyle" placeholder="British Female, Deep Male Voice" />
   </details>
 
   <details>
-    <summary>⚡ Creative Boosters</summary>
-    <label for="TV-pacingStyle">⏱️ Pacing / Ritme</label>
-    <input type="text" id="TV-pacingStyle" placeholder="TikTok Fast, Slow cinematic">
+    <summary>🚀 Creative Boosters</summary>
+    <label for="TV-pacingStyle">⏱️ Pacing / Ritme Video</label>
+    <input type="text" id="TV-pacingStyle" placeholder="TikTok Fast, Slow cinematic" />
 
-    <label for="TV-emotionImpact">❤️ Target Emosi Pemirsa</label>
-    <input type="text" id="TV-emotionImpact" placeholder="Lucu, Haru, Membuat kagum">
+    <label for="TV-emotionImpact">💥 Target Emosi Pemirsa</label>
+    <input type="text" id="TV-emotionImpact" placeholder="Lucu, Haru, Membuat kagum" />
 
-    <label for="TV-callToAction">📣 Call To Action</label>
-    <input type="text" id="TV-callToAction" placeholder="Follow for more adventure">
+    <label for="TV-callToAction">📣 Call To Action / Ending Text</label>
+    <input type="text" id="TV-callToAction" placeholder="Follow for more adventure" />
 
-    <label for="TV-trendHook">📈 Gaya Viral / Tren</label>
-    <input type="text" id="TV-trendHook" placeholder="POV, Get Ready With Me">
+    <label for="TV-trendHook">📈 Gaya Viral / Tren Terkini</label>
+    <input type="text" id="TV-trendHook" placeholder="POV, Get Ready With Me" />
 
-    <label for="TV-brandVisualType">🔖 Branding Visual</label>
-    <input type="text" id="TV-brandVisualType" placeholder="Logo di akhir, Font konsisten">
+    <label for="TV-brandVisualType">🧩 Branding Visual dalam Video</label>
+    <input type="text" id="TV-brandVisualType" placeholder="Logo di akhir, Font konsisten" />
 
-    <label for="TV-outputUseCase">🎯 Tujuan Output</label>
-    <input type="text" id="TV-outputUseCase" placeholder="Instagram Reels, YouTube Shorts">
+    <label for="TV-outputUseCase">🎯 Tujuan Output Video</label>
+    <input type="text" id="TV-outputUseCase" placeholder="Instagram Reels, YouTube Shorts" />
   </details>
 
   <details>
-    <summary>🎞️ Cinematic Setup</summary>
-    <label for="TV-cameraType">📸 Jenis Kamera</label>
-    <input type="text" id="TV-cameraType" placeholder="RED Komodo, DSLR Canon">
+    <summary>🎥 Cinematic Setup</summary>
+    <label for="TV-cameraType">📷 Jenis Kamera / Sensor</label>
+    <input type="text" id="TV-cameraType" placeholder="RED Komodo, DSLR Canon, iPhone 15 Pro" />
 
-    <label for="TV-lensType">🔍 Lensa</label>
-    <input type="text" id="TV-lensType" placeholder="50mm f/1.8, 85mm f/1.4">
+    <label for="TV-lensType">🔭 Jenis Lensa / Focal Length</label>
+    <input type="text" id="TV-lensType" placeholder="50mm f/1.8, 85mm f/1.4" />
 
-    <label for="TV-aperture">📷 Aperture</label>
-    <input type="text" id="TV-aperture" placeholder="f/1.4, f/2.8">
+    <label for="TV-aperture">🔘 Aperture / Bukaan Lensa</label>
+    <input type="text" id="TV-aperture" placeholder="f/1.4, f/2.8, f/5.6" />
 
-    <label for="TV-isoSetting">🌙 ISO</label>
-    <input type="text" id="TV-isoSetting" placeholder="100, 400, 800">
+    <label for="TV-isoSetting">🌗 ISO / Sensitivitas Cahaya</label>
+    <input type="text" id="TV-isoSetting" placeholder="100, 400, 800" />
 
-    <label for="TV-shutterSpeed">⏳ Shutter Speed</label>
-    <input type="text" id="TV-shutterSpeed" placeholder="1/60, 1/120, 1/250">
+    <label for="TV-shutterSpeed">🎞️ Shutter Speed / Exposure</label>
+    <input type="text" id="TV-shutterSpeed" placeholder="1/60, 1/120, 1/250" />
 
-    <label for="TV-frameRate">🎞️ Frame Rate / FPS</label>
-    <input type="text" id="TV-frameRate" placeholder="24 fps, 60 fps">
+    <label for="TV-frameRate">📹 Frame Rate / FPS</label>
+    <input type="text" id="TV-frameRate" placeholder="24 fps, 60 fps" />
   </details>
 
   <div class="actions">
     <button onclick="generateVideoPrompt()">🎬 Generate Prompt</button>
-    <button onclick="resetVideoPrompt()">🔄 Reset</button>
+    <button onclick="resetVideoForm()">🔄 Reset</button>
   </div>
 
-  <div id="video-output-container">
-    <pre id="video-output"></pre>
-    <button id="copy-video-button" onclick="copyVideoPrompt()">Copy</button>
+  <div id="content-output-container">
+    <div id="content-output"></div>
+    <button id="copy-button" onclick="copyToClipboard()">📋 Copy</button>
   </div>
-</body>
-</html>
+</div>
