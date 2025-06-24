@@ -8,7 +8,7 @@
 
 <div id="brainstorm" class="tab-content active">
 
-  <h3>🧠 Creator Insight</h3>
+  <h1>🧠 Creator Insight</h1>
 
   <label for="BS-interest">📌 Minat / Topik yang Disukai</label>
   <input type="text" id="BS-interest" placeholder="Fashion, Teknologi, Kesehatan" />
@@ -52,7 +52,6 @@
 
   <details>
     <summary>🎨 Brand Identity</summary>
-
     <label for="BS-brandName">📛 Nama Brand</label>
     <input type="text" id="BS-brandName" placeholder="Contoh: GlowUp ID (boleh dikosongkan jika belum punya)" />
 
@@ -80,7 +79,6 @@
 
   <details>
     <summary>🎯 Creative Alignment</summary>
-
     <label><input type="checkbox" id="BS-chkEduContent" /> Saya ingin konten ini bersifat edukatif</label>
     <label><input type="checkbox" id="BS-chkStorytelling" /> Saya ingin konten dengan storytelling</label>
     <label><input type="checkbox" id="BS-chkLowEffort" /> Saya ingin konten ringan dan mudah dibuat</label>
@@ -95,7 +93,6 @@
 
   <details>
     <summary>🎯 Goal & Limitation</summary>
-
     <label><input type="checkbox" id="BS-chkFastExec" /> Saya butuh ide yang bisa langsung dieksekusi</label>
     <label><input type="checkbox" id="BS-chkLimitTools" /> Saya punya keterbatasan alat/tim</label>
     <label><input type="checkbox" id="BS-chkCommunity" /> Saya ingin brand ini punya komunitas</label>
@@ -109,9 +106,9 @@
   </div>
 
   <!-- OUTPUT -->
-  <div id="brainstorm-output-container">
-    <div id="brainstorm-output"></div>
-    <button id="copy-brainstorm-button" onclick="copyBrainstorm()">📋 Copy</button>
+  <div class="output-container">
+    <div id="brainstorm-output" class="output-box"></div>
+    <button id="copy-brainstorm-button" class="copy-button" onclick="copyBrainstorm()">📋 Copy</button>
   </div>
 
 </div>
