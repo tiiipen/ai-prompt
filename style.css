@@ -9,6 +9,13 @@ html, body {
   max-width: 100%;
 }
 
+h1 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
 .tab-grid {
   display: flex;
   flex-wrap: wrap;
@@ -18,7 +25,7 @@ html, body {
 }
 
 .tab-grid button {
-  flex: 0 0 calc(50% - 10px); /* 2 kolom dengan gap 10px */
+  flex: 0 0 calc(50% - 10px);
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
   font-size: 16px;
@@ -46,6 +53,7 @@ html, body {
   display: block;
 }
 
+/* Form Layout */
 label {
   font-weight: 600;
   display: block;
@@ -81,6 +89,7 @@ select {
   background-size: 12px;
 }
 
+/* Collapsible Sections */
 details {
   margin-top: 1rem;
   border: 1px solid #e2e8f0;
@@ -97,6 +106,7 @@ summary {
   margin-bottom: 0.5rem;
 }
 
+/* Action Buttons */
 .actions {
   display: flex;
   gap: 10px;
@@ -122,14 +132,13 @@ summary {
   background-color: #e2e8f0;
 }
 
-#content-output-container,
-#brainstorm-output-container {
+/* Output Box (Universal) */
+.output-container {
   position: relative;
   margin-top: 1.5rem;
 }
 
-#content-output,
-#brainstorm-output {
+.output-box {
   background: #ffffff;
   padding: 50px 20px 20px 20px;
   border-radius: 6px;
@@ -140,8 +149,8 @@ summary {
   color: #334155;
 }
 
-#copy-button,
-#copy-brainstorm-button {
+/* Copy Button (Universal) */
+.copy-button {
   position: absolute;
   top: 15px;
   right: 15px;
@@ -155,20 +164,31 @@ summary {
   min-width: 60px;
 }
 
-#copy-button:hover,
-#copy-brainstorm-button:hover {
+.copy-button:hover {
   background-color: #e2e8f0;
 }
 
+/* Mobile Responsive */
 @media (max-width: 480px) {
   html, body {
     padding: 0.75rem !important;
   }
+
+  h1 {
+    font-size: 20px;
+  }
+
   input, select, textarea {
     font-size: 14px;
   }
+
   .actions button {
     font-size: 14px;
     padding: 12px 10px;
+  }
+
+  .tab-grid button {
+    font-size: 14px;
+    min-height: 50px;
   }
 }
