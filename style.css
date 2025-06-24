@@ -1,37 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
 html, body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Inter', sans-serif;
   padding: 1rem;
   margin: 0;
-  background-color: #1C1C1C;
-  color: #ffffff;
+  background-color: #f9f9f9;
+  color: #2e2e2e;
   max-width: 100%;
 }
 
-.tab-buttons {
+.tab-grid {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
 }
 
-.tab-buttons button {
+.tab-grid button {
   flex: 1;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 16px;
   font-weight: 600;
-  padding: 16px 12px;
-  background-color: #FED703;
-  color: #1C1C1C;
-  border: 1px solid #ccc;
+  padding: 14px 12px;
+  background-color: #ffffff;
+  color: #2e2e2e;
+  border: 1px solid #dcdcdc;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  min-height: 60px;
+  min-height: 56px;
+  max-width: 220px;
 }
 
-.tab-buttons button.active {
-  background-color: #ffe924;
+.tab-grid button:hover,
+.tab-grid button.active {
+  background-color: #f1f5f9;
 }
 
 .tab-content {
@@ -43,27 +47,26 @@ html, body {
 }
 
 label {
-  font-weight: bold;
+  font-weight: 600;
   display: block;
-  margin-top: 0.8rem;
-  color: #FED703;
+  margin-top: 1rem;
+  color: #1e293b;
 }
 
 input, textarea, select {
   width: 100%;
   padding: 12px 14px;
-  margin-top: 5px;
+  margin-top: 6px;
   border-radius: 6px;
-  border: 2px solid #3C3C3C;
-  font-size: 14px;
-  background-color: #222222;
-  color: #ffffff;
+  border: 1px solid #d1d5db;
+  font-size: 15px;
+  background-color: #ffffff;
+  color: #2e2e2e;
   box-sizing: border-box;
 }
 
 input::placeholder, textarea::placeholder {
-  color: #ffffff;
-  opacity: 0.7;
+  color: #94a3b8;
 }
 
 textarea {
@@ -72,7 +75,7 @@ textarea {
 
 select {
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%23ffffff' d='M0 3h10L5 8z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%23333' d='M0 3h10L5 8z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
   background-size: 12px;
@@ -80,17 +83,18 @@ select {
 
 details {
   margin-top: 1rem;
-  border: 1px solid #FED703;
+  border: 1px solid #e2e8f0;
   padding: 1rem;
   border-radius: 6px;
+  background-color: #fefefe;
 }
 
 summary {
   cursor: pointer;
-  font-weight: bold;
-  color: #FED703;
+  font-weight: 600;
+  color: #334155;
   font-size: 15px;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .actions {
@@ -102,20 +106,20 @@ summary {
 
 .actions button {
   flex: 1;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 16px;
   font-weight: 600;
-  padding: 16px 12px;
-  background-color: #FED703;
-  color: #1C1C1C;
-  border: 1px solid #ccc;
+  padding: 14px 12px;
+  background-color: #f1f5f9;
+  color: #1e293b;
+  border: 1px solid #d1d5db;
   border-radius: 8px;
   cursor: pointer;
-  min-height: 60px;
+  min-height: 56px;
 }
 
 .actions button:hover {
-  background-color: #ffe924;
+  background-color: #e2e8f0;
 }
 
 #content-output-container,
@@ -126,13 +130,14 @@ summary {
 
 #content-output,
 #brainstorm-output {
-  background: #222222;
+  background: #ffffff;
   padding: 50px 20px 20px 20px;
   border-radius: 6px;
-  border: 2px solid #3C3C3C;
+  border: 1px solid #e5e7eb;
   white-space: pre-wrap;
   min-height: 200px;
-  font-size: 13px;
+  font-size: 14px;
+  color: #334155;
 }
 
 #copy-button,
@@ -141,27 +146,26 @@ summary {
   top: 15px;
   right: 15px;
   padding: 4px 12px;
-  font-size: 12px;
+  font-size: 13px;
   border-radius: 6px;
-  border: 1px solid #ccc;
-  background-color: #ffffff;
-  color: #1C1C1C;
+  border: 1px solid #d1d5db;
+  background-color: #f8fafc;
+  color: #1e293b;
   cursor: pointer;
   min-width: 60px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 #copy-button:hover,
 #copy-brainstorm-button:hover {
-  background-color: #f1f1f1;
+  background-color: #e2e8f0;
 }
 
 @media (max-width: 480px) {
   html, body {
-    padding: 0.5rem !important;
+    padding: 0.75rem !important;
   }
   input, select, textarea {
-    font-size: 13px;
+    font-size: 14px;
   }
   .actions button {
     font-size: 14px;
