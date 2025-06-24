@@ -1,0 +1,110 @@
+<div class="form-section">
+  <label for="TV-title">Judul / Topik</label>
+  <input type="text" id="TV-title" placeholder="Daily Life Traveler di Shanghai" />
+
+  <label for="TV-mainScene">Adegan / Objek Utama</label>
+  <input type="text" id="TV-mainScene" placeholder="Wanita jalan di gang kecil tradisional" />
+
+  <label for="TV-location">Lokasi / Setting</label>
+  <select id="TV-location">
+    <option value="">Pilih lokasi</option>
+    <option>Tokyo</option>
+    <option>Paris</option>
+    <option>Bali</option>
+    <option>Iceland</option>
+    <option>Amazon</option>
+    <option>Rooftop NYC</option>
+  </select>
+  <input type="text" placeholder="Atau isi sendiri..." oninput="document.getElementById('TV-location').value = this.value" />
+
+  <label for="TV-visualStyle">Gaya Artistik / Visual</label>
+  <select id="TV-visualStyle">
+    <option>Studio Ghibli</option>
+    <option>Disney 3D</option>
+    <option>Cyberpunk</option>
+    <option>Noir</option>
+    <option>Retro VHS</option>
+    <option>Sketch</option>
+  </select>
+  <input type="text" placeholder="Custom style..." oninput="document.getElementById('TV-visualStyle').value = this.value" />
+
+  <label for="TV-mood">Mood / Tone Video</label>
+  <select id="TV-mood">
+    <option>Serius</option>
+    <option>Komedi</option>
+    <option>Inspiratif</option>
+    <option>Heroik</option>
+    <option>Mencekam</option>
+    <option>Romantis</option>
+  </select>
+  <input type="text" placeholder="Custom mood..." oninput="document.getElementById('TV-mood').value = this.value" />
+
+  <details>
+    <summary>Creative Control</summary>
+    <label for="TV-scriptStyle">Jenis Script / Gaya Naskah</label>
+    <select id="TV-scriptStyle">
+      <option>Narasi Umum</option>
+      <option>Dialog Percakapan</option>
+      <option>Monolog Inspiratif</option>
+    </select>
+
+    <label for="TV-shortScript">Narasi / Script Pendek</label>
+    <input type="text" id="TV-shortScript" placeholder="\"Aku menjelajahi Shanghai dari pagi...\"" />
+
+    <label for="TV-dialogScript">Dialog Script / Percakapan</label>
+    <textarea id="TV-dialogScript" placeholder="Traveler: \"Wow, ini seperti masa lalu...\""></textarea>
+
+    <label for="TV-cameraMovement">Style Kamera / Transisi</label>
+    <select id="TV-cameraMovement">
+      <option>Drone</option>
+      <option>Zoom in/out</option>
+      <option>Pan</option>
+      <option>Dolly</option>
+      <option>Handheld</option>
+      <option>Cinematic slow-mo</option>
+    </select>
+    <input type="text" placeholder="Custom movement..." oninput="document.getElementById('TV-cameraMovement').value = this.value" />
+
+    <label for="TV-lighting">Lighting / Pencahayaan</label>
+    <select id="TV-lighting">
+      <option>Dramatic shadow</option>
+      <option>Rim light</option>
+      <option>High contrast</option>
+      <option>Soft light</option>
+    </select>
+    <input type="text" placeholder="Custom lighting..." oninput="document.getElementById('TV-lighting').value = this.value" />
+
+    <label for="TV-framingStyle">Komposisi Visual / Framing</label>
+    <select id="TV-framingStyle">
+      <option>POV</option>
+      <option>Wide shot</option>
+      <option>Over-the-shoulder</option>
+      <option>Bird-eye</option>
+      <option>Centered</option>
+    </select>
+    <input type="text" placeholder="Custom framing..." oninput="document.getElementById('TV-framingStyle').value = this.value" />
+
+    <label for="TV-dialogTone">Dialog Style / Tone</label>
+    <select id="TV-dialogTone">
+      <option>Emosional</option>
+      <option>Kasual</option>
+      <option>Formal</option>
+      <option>Dramatik</option>
+      <option>Lucu</option>
+      <option>Motivatif</option>
+    </select>
+    <input type="text" placeholder="Custom tone..." oninput="document.getElementById('TV-dialogTone').value = this.value" />
+
+    <label for="TV-voiceoverStyle">Voiceover Style / Accent</label>
+    <select id="TV-voiceoverStyle">
+      <option>US Male</option>
+      <option>Japanese Calm</option>
+      <option>Robotic</option>
+      <option>Energetic Female</option>
+      <option>Indonesian</option>
+    </select>
+    <input type="text" placeholder="Custom voice..." oninput="document.getElementById('TV-voiceoverStyle').value = this.value" />
+  </details>
+
+  <!-- Creative Boosters dan Cinematic Setup lanjutkan dengan format serupa -->
+</div>
