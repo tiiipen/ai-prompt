@@ -21,38 +21,5 @@
   <div id="image" class="tab-content"></div>
   <div id="video" class="tab-content"></div>
 
-  <script>
-    const tabUrls = {
-      brainstorm: 'https://ai.socioblitz.id/brainstorm.html',
-      content: 'https://ai.socioblitz.id/content.html',
-      image: 'https://ai.socioblitz.id/image.html',
-      video: 'https://ai.socioblitz.id/video.html'
-    };
-
-    function showTab(tabId) {
-      const allTabs = ['brainstorm', 'content', 'image', 'video'];
-      allTabs.forEach(id => {
-        document.getElementById(id).style.display = 'none';
-      });
-
-      const target = document.getElementById(tabId);
-      target.style.display = 'block';
-
-      if (!target.dataset.loaded) {
-        fetch(tabUrls[tabId])
-          .then(response => response.text())
-          .then(html => {
-            target.innerHTML = html;
-            target.dataset.loaded = "true";
-          })
-          .catch(error => {
-            target.innerHTML = `<p style="color:red;">Gagal memuat konten: ${error.message}</p>`;
-          });
-      }
-    }
-
-    window.onload = () => showTab('brainstorm');
-  </script>
-
 </body>
 </html>
