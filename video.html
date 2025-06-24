@@ -1,233 +1,136 @@
-// ==== TAB SWITCH + LOAD HTML ====
-const baseURL = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/');
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text to Video Prompt</title>
+</head>
+<body>
+  <h2>🎬 Text to Video</h2>
 
-const tabUrls = {
-  brainstorm: baseURL + 'brainstorm.html',
-  content: baseURL + 'content.html',
-  image: baseURL + 'image.html',
-  video: baseURL + 'video.html'
-};
+  <label for="TV-title">🎯 Judul / Topik</label>
+  <input type="text" id="TV-title" placeholder="Daily Life Traveler di Shanghai">
 
-function switchTab(tab) {
-  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.tab-grid button').forEach(el => el.classList.remove('active'));
+  <label for="TV-mainScene">📸 Adegan / Objek Utama</label>
+  <input type="text" id="TV-mainScene" placeholder="Wanita jalan di gang kecil tradisional">
 
-  const target = document.getElementById(tab);
-  const button = document.querySelector(`.tab-grid button[onclick="switchTab('${tab}')"]`);
+  <label for="TV-location">📍 Lokasi / Setting</label>
+  <select id="TV-location">
+    <option value="">Pilih lokasi</option>
+    <option>Tokyo</option>
+    <option>Paris</option>
+    <option>Bali</option>
+    <option>Iceland</option>
+    <option>Amazon</option>
+    <option>Rooftop NYC</option>
+  </select>
+  <input type="text" id="TV-location-custom" placeholder="Custom lokasi">
 
-  if (target && button) {
-    target.classList.add('active');
-    button.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  <label for="TV-visualStyle">🎨 Gaya Artistik / Visual</label>
+  <select id="TV-visualStyle">
+    <option value="">Pilih style</option>
+    <option>Studio Ghibli</option>
+    <option>Disney 3D</option>
+    <option>Cyberpunk</option>
+    <option>Noir</option>
+    <option>Retro VHS</option>
+    <option>Sketch</option>
+  </select>
+  <input type="text" id="TV-visualStyle-custom" placeholder="Custom visual style">
 
-    if (!target.dataset.loaded) {
-      fetch(tabUrls[tab])
-        .then(res => res.text())
-        .then(html => {
-          target.innerHTML = html;
-          target.dataset.loaded = "true";
+  <label for="TV-mood">🎭 Mood / Tone Video</label>
+  <select id="TV-mood">
+    <option value="">Pilih mood</option>
+    <option>Serius</option>
+    <option>Komedi</option>
+    <option>Inspiratif</option>
+    <option>Heroik</option>
+    <option>Mencekam</option>
+    <option>Romantis</option>
+  </select>
+  <input type="text" id="TV-mood-custom" placeholder="Custom mood">
 
-          if (tab === "content") updateFormatOptions();
-        })
-        .catch(err => {
-          target.innerHTML = `<p style="color:red;">Gagal memuat konten: ${err.message}</p>`;
-        });
-    }
-  }
-}
+  <details>
+    <summary>🎬 Creative Control</summary>
+    <label for="TV-scriptStyle">📄 Jenis Script</label>
+    <select id="TV-scriptStyle">
+      <option>Narasi Umum</option>
+      <option>Dialog Percakapan</option>
+      <option>Monolog Inspiratif</option>
+    </select>
 
-// ==== BRAINSTORM ====
-function generateBrainstorm() {
-  const interest = document.getElementById("interest")?.value.trim();
-  const strength = document.getElementById("strength")?.value.trim();
-  const purpose = document.getElementById("purpose")?.value.trim();
+    <label for="TV-shortScript">📝 Narasi / Script Pendek</label>
+    <input type="text" id="TV-shortScript" placeholder="Aku menjelajahi Shanghai dari pagi...">
 
-  if (!interest && !strength && !purpose) {
-    alert("Silakan isi setidaknya satu field untuk memulai brainstorming.");
-    return;
-  }
+    <label for="TV-dialogScript">💬 Dialog / Percakapan</label>
+    <textarea id="TV-dialogScript" placeholder="Traveler: 'Wow, ini seperti masa lalu...'"></textarea>
 
-  const output = `Berikut beberapa ide konten atau bisnis:\n\n` +
-    (interest ? `📌 Topik: ${interest}\n` : '') +
-    (strength ? `💪 Kekuatan: ${strength}\n` : '') +
-    (purpose ? `🎯 Tujuan: ${purpose}\n` : '') +
-    `\nContoh:\n` +
-    `1. Akun edukasi seputar ${interest || 'topik'}\n` +
-    `2. Konten tips dari ${strength || 'keahlian'}\n` +
-    `3. Campaign untuk "${purpose || 'motivasi'}"`;
+    <label for="TV-cameraMovement">🎥 Gaya Kamera / Transisi</label>
+    <input type="text" id="TV-cameraMovement" placeholder="Slow pan, Drone view">
 
-  document.getElementById("brainstorm-output").textContent = output;
-}
+    <label for="TV-lighting">💡 Lighting / Pencahayaan</label>
+    <input type="text" id="TV-lighting" placeholder="Golden hour, Neon night">
 
-function resetBrainstorm() {
-  document.querySelectorAll('#brainstorm input[type="text"]').forEach(el => el.value = '');
-  document.querySelectorAll('#brainstorm input[type="checkbox"]').forEach(el => el.checked = false);
-  document.getElementById("brainstorm-output").textContent = "";
-}
+    <label for="TV-framingStyle">📐 Komposisi Visual</label>
+    <input type="text" id="TV-framingStyle" placeholder="Rule of Thirds, Close-up">
 
-function copyBrainstorm() {
-  const text = document.getElementById("brainstorm-output")?.textContent;
-  if (!text) return alert("Silakan generate ide terlebih dahulu.");
+    <label for="TV-dialogTone">🎙️ Dialog Tone</label>
+    <input type="text" id="TV-dialogTone" placeholder="Narasi tenang, Percakapan lucu">
 
-  const textarea = document.createElement("textarea");
-  textarea.value = text;
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand("copy");
-  document.body.removeChild(textarea);
+    <label for="TV-voiceoverStyle">🔊 Voiceover Style</label>
+    <input type="text" id="TV-voiceoverStyle" placeholder="British Female, Deep Male Voice">
+  </details>
 
-  const btn = document.getElementById("copy-brainstorm-button");
-  if (btn) {
-    btn.textContent = "✔ Copied";
-    setTimeout(() => btn.textContent = "Copy", 1500);
-  }
-}
+  <details>
+    <summary>⚡ Creative Boosters</summary>
+    <label for="TV-pacingStyle">⏱️ Pacing / Ritme</label>
+    <input type="text" id="TV-pacingStyle" placeholder="TikTok Fast, Slow cinematic">
 
-// ==== CONTENT PROMPT ====
-const formatOptions = {
-  "Instagram": ["IG Post", "IG Story", "IG Carousel", "IG Reels"],
-  "Youtube": ["YouTube Short", "YouTube Videos"],
-  "TikTok": ["TikTok Video", "TikTok Live"]
-};
+    <label for="TV-emotionImpact">❤️ Target Emosi Pemirsa</label>
+    <input type="text" id="TV-emotionImpact" placeholder="Lucu, Haru, Membuat kagum">
 
-function updateFormatOptions() {
-  const platform = document.getElementById("platform")?.value;
-  const formatSelect = document.getElementById("format");
-  if (!platform || !formatSelect) return;
+    <label for="TV-callToAction">📣 Call To Action</label>
+    <input type="text" id="TV-callToAction" placeholder="Follow for more adventure">
 
-  formatSelect.innerHTML = "";
-  (formatOptions[platform] || []).forEach(format => {
-    const option = document.createElement("option");
-    option.value = format;
-    option.text = format;
-    formatSelect.appendChild(option);
-  });
-}
+    <label for="TV-trendHook">📈 Gaya Viral / Tren</label>
+    <input type="text" id="TV-trendHook" placeholder="POV, Get Ready With Me">
 
-function getVal(id) {
-  return document.getElementById(id)?.value.trim() || "";
-}
+    <label for="TV-brandVisualType">🔖 Branding Visual</label>
+    <input type="text" id="TV-brandVisualType" placeholder="Logo di akhir, Font konsisten">
 
-function generatePrompt() {
-  const ids = [
-    "brand", "product", "audience", "platform", "format", "style",
-    "objective", "cta", "persona", "visual", "language", "moment",
-    "role", "goal", "tone", "constraint", "outputType"
-  ];
+    <label for="TV-outputUseCase">🎯 Tujuan Output</label>
+    <input type="text" id="TV-outputUseCase" placeholder="Instagram Reels, YouTube Shorts">
+  </details>
 
-  const data = Object.fromEntries(ids.map(id => [id, getVal(id)]));
+  <details>
+    <summary>🎞️ Cinematic Setup</summary>
+    <label for="TV-cameraType">📸 Jenis Kamera</label>
+    <input type="text" id="TV-cameraType" placeholder="RED Komodo, DSLR Canon">
 
-  let prompt = `Buatkan konten ${data.format} untuk platform ${data.platform} yang mempromosikan brand "${data.brand}".\nProduk/Jasa: ${data.product}.\nTarget audiens: ${data.audience}.\n`;
+    <label for="TV-lensType">🔍 Lensa</label>
+    <input type="text" id="TV-lensType" placeholder="50mm f/1.8, 85mm f/1.4">
 
-  if (data.style) prompt += `Gaya bahasa: ${data.style}.\n`;
-  if (data.objective) prompt += `Tujuan kampanye: ${data.objective}.\n`;
-  if (data.cta) prompt += `Call to action: ${data.cta}.\n`;
-  if (data.persona) prompt += `Karakter/tone brand: ${data.persona}.\n`;
-  if (data.visual) prompt += `Referensi visual: ${data.visual}.\n`;
-  if (data.language) prompt += `Dialek/bahasa: ${data.language}.\n`;
-  if (data.moment) prompt += `Momen/konteks: ${data.moment}.\n`;
-  if (data.role) prompt += `Role AI: ${data.role}.\n`;
-  if (data.goal) prompt += `Goal atau tugas AI: ${data.goal}.\n`;
-  if (data.tone) prompt += `Tone konten: ${data.tone}.\n`;
-  if (data.constraint) prompt += `Batasan: ${data.constraint}.\n`;
+    <label for="TV-aperture">📷 Aperture</label>
+    <input type="text" id="TV-aperture" placeholder="f/1.4, f/2.8">
 
-  prompt += `Konten harus engaging, relevan, dan sesuai brief.\nBerikan 3 versi atau ide berbeda dari prompt ini.`;
+    <label for="TV-isoSetting">🌙 ISO</label>
+    <input type="text" id="TV-isoSetting" placeholder="100, 400, 800">
 
-  document.getElementById("content-output").textContent = prompt;
-}
+    <label for="TV-shutterSpeed">⏳ Shutter Speed</label>
+    <input type="text" id="TV-shutterSpeed" placeholder="1/60, 1/120, 1/250">
 
-function resetForm() {
-  document.querySelectorAll("#content input, #content select").forEach(el => {
-    if (el.type === "checkbox") el.checked = false;
-    else el.value = "";
-  });
-  document.getElementById("content-output").textContent = "";
-}
+    <label for="TV-frameRate">🎞️ Frame Rate / FPS</label>
+    <input type="text" id="TV-frameRate" placeholder="24 fps, 60 fps">
+  </details>
 
-function copyPrompt() {
-  const text = document.getElementById("content-output")?.textContent;
-  if (!text) return alert("Silakan generate prompt terlebih dahulu.");
+  <div class="actions">
+    <button onclick="generateVideoPrompt()">🎬 Generate Prompt</button>
+    <button onclick="resetVideoPrompt()">🔄 Reset</button>
+  </div>
 
-  const textarea = document.createElement("textarea");
-  textarea.value = text;
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand("copy");
-  document.body.removeChild(textarea);
-
-  const btn = document.getElementById("copy-button");
-  if (btn) {
-    btn.textContent = "✔ Copied";
-    setTimeout(() => btn.textContent = "Copy", 1500);
-  }
-}
-
-// ==== VIDEO PROMPT ====
-function generateVideoPrompt() {
-  const ids = [
-    "TV-title", "TV-mainScene", "TV-location", "TV-visualStyle", "TV-mood",
-    "TV-scriptStyle", "TV-shortScript", "TV-dialogScript", "TV-cameraMovement",
-    "TV-lighting", "TV-framingStyle", "TV-dialogTone", "TV-voiceoverStyle",
-    "TV-pacingStyle", "TV-emotionImpact", "TV-callToAction", "TV-trendHook",
-    "TV-brandVisualType", "TV-outputUseCase", "TV-cameraType", "TV-lensType",
-    "TV-aperture", "TV-isoSetting", "TV-shutterSpeed", "TV-frameRate"
-  ];
-
-  const data = Object.fromEntries(ids.map(id => [id, getVal(id)]));
-
-  let prompt = `Buatkan skrip video dengan topik "${data["TV-title"]}".\n`;
-  if (data["TV-mainScene"]) prompt += `Adegan utama: ${data["TV-mainScene"]}.\n`;
-  if (data["TV-location"]) prompt += `Lokasi: ${data["TV-location"]}.\n`;
-  if (data["TV-visualStyle"]) prompt += `Gaya visual: ${data["TV-visualStyle"]}.\n`;
-  if (data["TV-mood"]) prompt += `Mood/Tone: ${data["TV-mood"]}.\n`;
-  if (data["TV-scriptStyle"]) prompt += `Gaya naskah: ${data["TV-scriptStyle"]}.\n`;
-  if (data["TV-shortScript"]) prompt += `Narasi pendek: ${data["TV-shortScript"]}.\n`;
-  if (data["TV-dialogScript"]) prompt += `Contoh dialog:\n${data["TV-dialogScript"]}\n`;
-  if (data["TV-cameraMovement"]) prompt += `Style kamera: ${data["TV-cameraMovement"]}.\n`;
-  if (data["TV-lighting"]) prompt += `Lighting: ${data["TV-lighting"]}.\n`;
-  if (data["TV-framingStyle"]) prompt += `Framing visual: ${data["TV-framingStyle"]}.\n`;
-  if (data["TV-dialogTone"]) prompt += `Tone dialog: ${data["TV-dialogTone"]}.\n`;
-  if (data["TV-voiceoverStyle"]) prompt += `Voiceover: ${data["TV-voiceoverStyle"]}.\n`;
-  if (data["TV-pacingStyle"]) prompt += `Ritme/Pacing: ${data["TV-pacingStyle"]}.\n`;
-  if (data["TV-emotionImpact"]) prompt += `Emosi yang ditargetkan: ${data["TV-emotionImpact"]}.\n`;
-  if (data["TV-callToAction"]) prompt += `CTA: ${data["TV-callToAction"]}.\n`;
-  if (data["TV-trendHook"]) prompt += `Hook gaya tren: ${data["TV-trendHook"]}.\n`;
-  if (data["TV-brandVisualType"]) prompt += `Branding visual: ${data["TV-brandVisualType"]}.\n`;
-  if (data["TV-outputUseCase"]) prompt += `Tujuan output: ${data["TV-outputUseCase"]}.\n`;
-  if (data["TV-cameraType"]) prompt += `Jenis kamera: ${data["TV-cameraType"]}.\n`;
-  if (data["TV-lensType"]) prompt += `Lensa: ${data["TV-lensType"]}.\n`;
-  if (data["TV-aperture"]) prompt += `Aperture: ${data["TV-aperture"]}.\n`;
-  if (data["TV-isoSetting"]) prompt += `ISO: ${data["TV-isoSetting"]}.\n`;
-  if (data["TV-shutterSpeed"]) prompt += `Shutter speed: ${data["TV-shutterSpeed"]}.\n`;
-  if (data["TV-frameRate"]) prompt += `Frame rate: ${data["TV-frameRate"]}.\n`;
-
-  prompt += `\nTampilkan skrip lengkap beserta 2 variasi lain dengan tone berbeda.`;
-
-  document.getElementById("video-output").textContent = prompt;
-}
-
-function resetVideoPrompt() {
-  document.querySelectorAll("#video input, #video select, #video textarea").forEach(el => el.value = "");
-  document.getElementById("video-output").textContent = "";
-}
-
-function copyVideoPrompt() {
-  const text = document.getElementById("video-output")?.textContent;
-  if (!text) return alert("Silakan generate prompt terlebih dahulu.");
-
-  const textarea = document.createElement("textarea");
-  textarea.value = text;
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand("copy");
-  document.body.removeChild(textarea);
-
-  const btn = document.getElementById("copy-video-button");
-  if (btn) {
-    btn.textContent = "✔ Copied";
-    setTimeout(() => btn.textContent = "Copy", 1500);
-  }
-}
-
-// ==== AUTO LOAD DEFAULT TAB ====
-window.onload = () => switchTab('brainstorm');
+  <div id="video-output-container">
+    <pre id="video-output"></pre>
+    <button id="copy-video-button" onclick="copyVideoPrompt()">Copy</button>
+  </div>
+</body>
+</html>
