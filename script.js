@@ -8,8 +8,6 @@ const tabUrls = {
   video: baseURL + 'video.html'
 };
 
-//
-
 function switchTab(tab) {
   document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.tab-grid button').forEach(el => el.classList.remove('active'));
@@ -40,7 +38,6 @@ function switchTab(tab) {
 }
 
 // ==== BRAINSTORM ====
-
 function generateBrainstorm() {
   const interest = document.getElementById("interest")?.value.trim();
   const strength = document.getElementById("strength")?.value.trim();
@@ -88,7 +85,6 @@ function copyBrainstorm() {
 }
 
 // ==== CONTENT PROMPT ====
-
 const formatOptions = {
   "Instagram": ["IG Post", "IG Story", "IG Carousel", "IG Reels"],
   "Youtube": ["YouTube Short", "YouTube Videos"],
