@@ -1,100 +1,95 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <title>Text-to-Image Generator</title>
-</head>
-<body>
+<div class="tab-content active" id="image">
 
-<div id="image" class="tab-content active">
-  <h3>🖼️ Text to Image Prompt</h3>
+  <h3>🖼️ Core Concept</h3>
 
   <label for="TI-title">🎯 Judul / Konsep Utama</label>
   <input type="text" id="TI-title" placeholder="Traveler woman in traditional alley" />
 
-  <label for="TI-mainObject">👤 Objek / Karakter Utama</label>
+  <label for="TI-mainObject">🧍 Objek / Karakter Utama</label>
   <input type="text" id="TI-mainObject" placeholder="Perempuan dengan kamera" />
 
   <label for="TI-location">📍 Lokasi / Setting Visual</label>
   <input type="text" id="TI-location" placeholder="Gang kecil di Shanghai" />
 
   <label for="TI-artStyle">🎨 Gaya Artistik / Style</label>
-  <input type="text" id="TI-artStyle" placeholder="Hyper Realistic, Disney Style" />
+  <input type="text" id="TI-artStyle" placeholder="Disney, Cyberpunk, Hyper Realistic" />
 
   <label for="TI-mood">🌤️ Mood / Suasana</label>
   <input type="text" id="TI-mood" placeholder="Cerah dan petualang" />
 
   <details>
-    <summary>🎛️ Creative Control</summary>
-    <label for="TI-colorPalette">🌈 Warna Dominan</label>
-    <input type="text" id="TI-colorPalette" placeholder="Pastel hangat, Kontras monokrom" />
+    <summary>🛠️ Creative Control</summary>
+
+    <label for="TI-colorPalette">🎨 Warna Dominan</label>
+    <input type="text" id="TI-colorPalette" placeholder="Pastel hangat, Monokrom" />
 
     <label for="TI-framingStyle">📐 Komposisi Frame</label>
-    <input type="text" id="TI-framingStyle" placeholder="Rule of Thirds, Wide shot" />
+    <input type="text" id="TI-framingStyle" placeholder="Rule of Thirds, Wide Shot" />
 
-    <label for="TI-lighting">💡 Lighting / Pencahayaan</label>
-    <input type="text" id="TI-lighting" placeholder="Dramatic sunset light" />
+    <label for="TI-lighting">💡 Pencahayaan</label>
+    <input type="text" id="TI-lighting" placeholder="Golden hour, Neon night" />
 
-    <label for="TI-characterPose">🤸‍♀️ Pose / Aksi Karakter</label>
-    <input type="text" id="TI-characterPose" placeholder="Tersenyum, berjalan pelan" />
+    <label for="TI-characterPose">🕺 Pose / Aksi Karakter</label>
+    <input type="text" id="TI-characterPose" placeholder="Tersenyum, Berjalan pelan" />
 
-    <label for="TI-cameraAngle">🎥 Gaya Kamera / Perspektif</label>
-    <input type="text" id="TI-cameraAngle" placeholder="Low angle dramatic" />
+    <label for="TI-cameraAngle">📷 Sudut Kamera</label>
+    <input type="text" id="TI-cameraAngle" placeholder="Low angle, Close-up" />
 
-    <label for="TI-additionalDetail">➕ Detail Tambahan / Atribut</label>
-    <input type="text" id="TI-additionalDetail" placeholder="Lampion gantung, sepeda tua" />
+    <label for="TI-additionalDetail">🧩 Detail Tambahan</label>
+    <input type="text" id="TI-additionalDetail" placeholder="Lampion gantung, Sepeda tua" />
   </details>
 
   <details>
     <summary>🚀 Creative Boosters</summary>
-    <label for="TI-visualInspo">🧠 Inspirasi Visual / Referensi</label>
+
+    <label for="TI-visualInspo">🌈 Inspirasi Visual</label>
     <input type="text" id="TI-visualInspo" placeholder="Kombinasi Pixar & Van Gogh" />
 
-    <label for="TI-fantasyElement">🧚 Elemen Fantasi / Unik</label>
+    <label for="TI-fantasyElement">🐉 Elemen Fantasi / Unik</label>
     <input type="text" id="TI-fantasyElement" placeholder="Naga kecil terbang di langit" />
 
-    <label for="TI-backgroundStyle">🪞 Background / Latar Belakang</label>
-    <input type="text" id="TI-backgroundStyle" placeholder="Jalan berbatu dengan dinding merah" />
+    <label for="TI-backgroundStyle">🖼️ Background / Latar</label>
+    <input type="text" id="TI-backgroundStyle" placeholder="Jalan berbatu, Dinding merah" />
 
-    <label for="TI-aspectRatio">🖼️ Format / Rasio Gambar</label>
-    <input type="text" id="TI-aspectRatio" placeholder="16:9 landscape" />
+    <label for="TI-aspectRatio">📐 Format / Rasio Gambar</label>
+    <input type="text" id="TI-aspectRatio" placeholder="1:1 square, 16:9 landscape" />
 
-    <label for="TI-outputUseCase">🎯 Tujuan Output</label>
-    <input type="text" id="TI-outputUseCase" placeholder="Poster Travel, Konten IG" />
+    <label for="TI-outputUseCase">📤 Tujuan Output</label>
+    <input type="text" id="TI-outputUseCase" placeholder="Instagram Post, Poster Travel" />
   </details>
 
   <details>
-    <summary>🎬 Cinematic Setup</summary>
-    <label for="TI-cameraType">📸 Jenis Kamera / Sensor</label>
-    <input type="text" id="TI-cameraType" placeholder="DSLR, Mirrorless" />
+    <summary>🎥 Cinematic Setup</summary>
+
+    <label for="TI-cameraType">📸 Jenis Kamera</label>
+    <input type="text" id="TI-cameraType" placeholder="DSLR, Mirrorless, iPhone" />
 
     <label for="TI-lensType">🔍 Lensa / Focal Length</label>
-    <input type="text" id="TI-lensType" placeholder="50mm prime lens" />
+    <input type="text" id="TI-lensType" placeholder="50mm prime lens, Wide angle" />
 
-    <label for="TI-aperture">🌕 Bukaan / Aperture</label>
-    <input type="text" id="TI-aperture" placeholder="f/1.8, f/5.6" />
+    <label for="TI-aperture">🔆 Bukaan / Aperture</label>
+    <input type="text" id="TI-aperture" placeholder="f/1.4, f/5.6" />
 
-    <label for="TI-shutterSpeed">⏱️ Shutter Speed / Exposure</label>
+    <label for="TI-shutterSpeed">⏱️ Shutter Speed</label>
     <input type="text" id="TI-shutterSpeed" placeholder="1/100s, 1/30s" />
 
-    <label for="TI-isoSetting">🔦 ISO</label>
+    <label for="TI-isoSetting">🌙 ISO</label>
     <input type="text" id="TI-isoSetting" placeholder="ISO 100, ISO 800" />
 
-    <label for="TI-depthOfField">🌀 Depth of Field / Bokeh</label>
-    <input type="text" id="TI-depthOfField" placeholder="Shallow, Full focus" />
+    <label for="TI-depthOfField">🌌 Depth of Field</label>
+    <input type="text" id="TI-depthOfField" placeholder="Shallow blur, Full focus" />
   </details>
 
+  <!-- Tombol Aksi -->
   <div class="actions">
     <button onclick="generateImagePrompt()">🎨 Generate Prompt</button>
     <button onclick="resetImageForm()">🔄 Reset</button>
   </div>
 
+  <!-- Output -->
   <div id="image-output-container">
     <div id="image-output"></div>
     <button id="copy-image-button" onclick="copyImagePrompt()">📋 Copy</button>
   </div>
 
 </div>
-
-</body>
-</html>
