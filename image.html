@@ -1,0 +1,219 @@
+a<div>
+  <h2>🖼️ Text to Image Prompt Builder</h2>
+
+  <!-- Core Concept -->
+  <label for="TI-title">Judul / Konsep Utama</label>
+  <input type="text" id="TI-title" placeholder="Traveler woman in traditional alley" />
+
+  <label for="TI-mainObject">Objek / Karakter Utama</label>
+  <input type="text" id="TI-mainObject" placeholder="Perempuan dengan kamera" />
+
+  <label for="TI-location">Lokasi / Setting Visual</label>
+  <select id="TI-location">
+    <option>Paris</option>
+    <option>Kyoto</option>
+    <option>Bali</option>
+    <option>Iceland</option>
+    <option>Pasar Tradisional</option>
+    <option>Galaxy</option>
+    <option>Pedesaan Eropa</option>
+  </select>
+  <input type="text" placeholder="Custom lokasi..." oninput="this.previousElementSibling.value = this.value" />
+
+  <label for="TI-artStyle">Gaya Artistik / Style</label>
+  <select id="TI-artStyle">
+    <option>Disney</option>
+    <option>Anime</option>
+    <option>Studio Ghibli</option>
+    <option>Leonardo Da Vinci</option>
+    <option>Picasso</option>
+    <option>Cyberpunk</option>
+    <option>Vaporwave</option>
+  </select>
+  <input type="text" placeholder="Custom style..." oninput="this.previousElementSibling.value = this.value" />
+
+  <label for="TI-mood">Mood / Suasana</label>
+  <select id="TI-mood">
+    <option>Gelap</option>
+    <option>Ceria</option>
+    <option>Melankolis</option>
+    <option>Surreal</option>
+    <option>Damai</option>
+    <option>Magis</option>
+    <option>Industrial</option>
+    <option>Misterius</option>
+  </select>
+  <input type="text" placeholder="Custom mood..." oninput="this.previousElementSibling.value = this.value" />
+
+  <!-- Collapsible: Creative Control -->
+  <details>
+    <summary>🎨 Creative Control</summary>
+
+    <label for="TI-colorPalette">Warna Dominan</label>
+    <select id="TI-colorPalette">
+      <option>Earth tone</option>
+      <option>Neon</option>
+      <option>Black & White</option>
+      <option>Warm pastel</option>
+      <option>Bold primary</option>
+      <option>Sunset gradient</option>
+    </select>
+    <input type="text" placeholder="Custom warna..." oninput="this.previousElementSibling.value = this.value" />
+
+    <label for="TI-framingStyle">Komposisi Frame</label>
+    <select id="TI-framingStyle">
+      <option>Close-up</option>
+      <option>Bird-eye</option>
+      <option>Wide angle</option>
+      <option>Centered</option>
+      <option>POV</option>
+      <option>Rule of Thirds</option>
+    </select>
+    <input type="text" placeholder="Custom framing..." oninput="this.previousElementSibling.value = this.value" />
+
+    <label for="TI-lighting">Lighting / Pencahayaan</label>
+    <select id="TI-lighting">
+      <option>Golden hour</option>
+      <option>Night neon</option>
+      <option>Soft indoor</option>
+      <option>Rim light</option>
+      <option>Dramatic shadow</option>
+    </select>
+    <input type="text" placeholder="Custom lighting..." oninput="this.previousElementSibling.value = this.value" />
+
+    <label for="TI-characterPose">Pose / Aksi Karakter</label>
+    <select id="TI-characterPose">
+      <option>Duduk</option>
+      <option>Berdiri</option>
+      <option>Melompat</option>
+      <option>Menatap ke langit</option>
+      <option>Membelakangi kamera</option>
+    </select>
+    <input type="text" placeholder="Custom pose..." oninput="this.previousElementSibling.value = this.value" />
+
+    <label for="TI-cameraAngle">Gaya Kamera / Perspektif</label>
+    <select id="TI-cameraAngle">
+      <option>Eye level</option>
+      <option>Low angle</option>
+      <option>High angle</option>
+      <option>Aerial</option>
+      <option>Close-up</option>
+      <option>Wide shot</option>
+    </select>
+    <input type="text" placeholder="Custom angle..." oninput="this.previousElementSibling.value = this.value" />
+
+    <label for="TI-additionalDetail">Detail Tambahan / Atribut</label>
+    <input type="text" id="TI-additionalDetail" placeholder="Lampion gantung, sepeda tua" />
+  </details>
+
+  <!-- Collapsible: Creative Boosters -->
+  <details>
+    <summary>🚀 Creative Boosters</summary>
+
+    <label for="TI-visualInspo">Inspirasi Visual / Referensi</label>
+    <input type="text" id="TI-visualInspo" placeholder="Kombinasi Pixar & Van Gogh" />
+
+    <label for="TI-fantasyElement">Elemen Fantasi / Unik</label>
+    <input type="text" id="TI-fantasyElement" placeholder="Naga kecil terbang di langit" />
+
+    <label for="TI-backgroundStyle">Background / Latar Belakang</label>
+    <input type="text" id="TI-backgroundStyle" placeholder="Jalan berbatu dengan dinding merah" />
+
+    <label for="TI-aspectRatio">Format / Rasio Gambar</label>
+    <select id="TI-aspectRatio">
+      <option>1:1 square</option>
+      <option>4:5 portrait IG</option>
+      <option>9:16 reels</option>
+      <option>16:9 landscape</option>
+      <option>2:1 cinematic</option>
+    </select>
+    <input type="text" placeholder="Custom ratio..." oninput="this.previousElementSibling.value = this.value" />
+
+    <label for="TI-outputUseCase">Tujuan Output</label>
+    <select id="TI-outputUseCase">
+      <option>Digital art</option>
+      <option>NFT</option>
+      <option>Instagram Post</option>
+      <option>Poster</option>
+      <option>Book cover</option>
+      <option>UI Illustration</option>
+    </select>
+    <input type="text" placeholder="Custom use case..." oninput="this.previousElementSibling.value = this.value" />
+  </details>
+
+  <!-- Collapsible: Cinematic Setup -->
+  <details>
+    <summary>📸 Cinematic Setup</summary>
+
+    <label for="TI-cameraType">Jenis Kamera / Sensor</label>
+    <select id="TI-cameraType">
+      <option>DSLR</option>
+      <option>Mirrorless</option>
+      <option>Film Camera</option>
+      <option>iPhone</option>
+      <option>Drone</option>
+      <option>GoPro</option>
+      <option>3D Render</option>
+    </select>
+    <input type="text" placeholder="Custom camera..." oninput="this.previousElementSibling.value = this.value" />
+
+    <label for="TI-lensType">Lensa / Focal Length</label>
+    <select id="TI-lensType">
+      <option>Wide (24mm)</option>
+      <option>Standard (50mm)</option>
+      <option>Telephoto (85mm)</option>
+      <option>Macro</option>
+      <option>Fisheye</option>
+    </select>
+    <input type="text" placeholder="Custom lens..." oninput="this.previousElementSibling.value = this.value" />
+
+    <label for="TI-aperture">Bukaan / Aperture</label>
+    <select id="TI-aperture">
+      <option>f/1.4</option>
+      <option>f/2.8</option>
+      <option>f/5.6</option>
+      <option>f/8</option>
+      <option>f/11</option>
+    </select>
+    <input type="text" placeholder="Custom aperture..." oninput="this.previousElementSibling.value = this.value" />
+
+    <label for="TI-shutterSpeed">Shutter Speed / Exposure</label>
+    <select id="TI-shutterSpeed">
+      <option>1/1000s</option>
+      <option>1/500s</option>
+      <option>1/125s</option>
+      <option>1/30s</option>
+      <option>Long Exposure</option>
+    </select>
+    <input type="text" placeholder="Custom speed..." oninput="this.previousElementSibling.value = this.value" />
+
+    <label for="TI-isoSetting">ISO</label>
+    <select id="TI-isoSetting">
+      <option>100</option>
+      <option>200</option>
+      <option>400</option>
+      <option>800</option>
+      <option>1600</option>
+      <option>3200</option>
+    </select>
+    <input type="text" placeholder="Custom ISO..." oninput="this.previousElementSibling.value = this.value" />
+
+    <label for="TI-depthOfField">Depth of Field / Bokeh</label>
+    <select id="TI-depthOfField">
+      <option>Shallow blur</option>
+      <option>Medium blur</option>
+      <option>Deep focus</option>
+    </select>
+    <input type="text" placeholder="Custom depth..." oninput="this.previousElementSibling.value = this.value" />
+  </details>
+
+  <div class="actions">
+    <button onclick="generateImagePrompt()">🎨 Generate Prompt</button>
+    <button onclick="resetImageForm()">🔄 Reset</button>
+  </div>
+
+  <div id="content-output-container">
+    <button id="copy-button" onclick="copyPrompt()">Copy</button>
+    <div id="content-output"></div>
+  </div>
+</div>
