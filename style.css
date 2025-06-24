@@ -53,7 +53,9 @@ label {
   color: #1e293b;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   width: 100%;
   padding: 12px 14px;
   margin-top: 6px;
@@ -65,8 +67,10 @@ input, textarea, select {
   box-sizing: border-box;
 }
 
-input::placeholder, textarea::placeholder {
+input::placeholder,
+textarea::placeholder {
   color: #94a3b8;
+  opacity: 1;
 }
 
 textarea {
@@ -75,6 +79,9 @@ textarea {
 
 select {
   appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 36px;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%23333' d='M0 3h10L5 8z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
@@ -123,15 +130,19 @@ summary {
 }
 
 #content-output-container,
-#brainstorm-output-container {
+#brainstorm-output-container,
+#image-output-container,
+#video-output-container {
   position: relative;
   margin-top: 1.5rem;
 }
 
 #content-output,
-#brainstorm-output {
+#brainstorm-output,
+#image-output,
+#video-output {
   background: #ffffff;
-  padding: 50px 20px 20px 20px;
+  padding: 40px 20px 20px 20px;
   border-radius: 6px;
   border: 1px solid #e5e7eb;
   white-space: pre-wrap;
@@ -141,43 +152,7 @@ summary {
 }
 
 #copy-button,
-#copy-brainstorm-button {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  padding: 4px 12px;
-  font-size: 13px;
-  border-radius: 6px;
-  border: 1px solid #d1d5db;
-  background-color: #f8fafc;
-  color: #1e293b;
-  cursor: pointer;
-  min-width: 60px;
-}
-
-#copy-button:hover,
-#copy-brainstorm-button:hover {
-  background-color: #e2e8f0;
-}
-
-#image-output-container,
-#video-output-container {
-  position: relative;
-  margin-top: 1.5rem;
-}
-
-#image-output,
-#video-output {
-  background: #ffffff;
-  padding: 50px 20px 20px 20px;
-  border-radius: 6px;
-  border: 1px solid #e5e7eb;
-  white-space: pre-wrap;
-  min-height: 200px;
-  font-size: 14px;
-  color: #334155;
-}
-
+#copy-brainstorm-button,
 #copy-image-button,
 #copy-video-button {
   position: absolute;
@@ -193,21 +168,26 @@ summary {
   min-width: 60px;
 }
 
+#copy-button:hover,
+#copy-brainstorm-button:hover,
 #copy-image-button:hover,
 #copy-video-button:hover {
   background-color: #e2e8f0;
 }
 
-
 @media (max-width: 480px) {
   html, body {
     padding: 0.75rem !important;
   }
-  input, select, textarea {
-    font-size: 14px;
+  .tab-grid button {
+    flex: 0 0 100%;
   }
   .actions button {
+    flex: 1 1 100%;
     font-size: 14px;
     padding: 12px 10px;
+  }
+  input, select, textarea {
+    font-size: 14px;
   }
 }
