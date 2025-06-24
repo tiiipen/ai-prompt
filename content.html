@@ -2,21 +2,19 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Content Generator Tab</title>
+  <title>Content Generator</title>
 </head>
 <body>
 
-<div id="content" class="tab-content active">
+<div id="content" class="tab-content">
 
-  <h3>🛠️ Content Generator</h3>
+  <h3>📢 Content Generator</h3>
 
-  <!-- Basic -->
   <label for="CG-campaignName">📌 Judul Campaign / Tema</label>
   <input type="text" id="CG-campaignName" placeholder="Ramadan Skincare Campaign" />
 
   <label for="CG-outputType">🧾 Output Type</label>
   <select id="CG-outputType">
-    <option value="">Pilih output</option>
     <option value="Content Prompt">Content Prompt</option>
     <option value="Script Video">Script Video</option>
     <option value="Image Prompt">Image Prompt</option>
@@ -34,7 +32,7 @@
     <option value="Pinterest">Pinterest</option>
   </select>
 
-  <label for="CG-format">🎬 Format Konten</label>
+  <label for="CG-format">🎞️ Format Konten</label>
   <select id="CG-format">
     <option value="Carousel">Carousel</option>
     <option value="Reels">Reels</option>
@@ -50,14 +48,13 @@
   <label for="CG-product">🧴 Produk / Jasa</label>
   <input type="text" id="CG-product" placeholder="Serum wajah untuk remaja" />
 
-  <label for="CG-audience">🎯 Target Audience</label>
+  <label for="CG-audience">👥 Target Audience</label>
   <input type="text" id="CG-audience" placeholder="Perempuan 17-25 urban" />
 
-  <!-- Narrative Strategy -->
   <details>
-    <summary>🧠 Narrative Strategy</summary>
+    <summary>✍️ Narrative Strategy</summary>
 
-    <label for="CG-role">🎭 Role AI yang Dimainkan</label>
+    <label for="CG-role">🧠 Role AI yang Dimainkan</label>
     <select id="CG-role">
       <option value="Creative Copywriter">Creative Copywriter</option>
       <option value="AI Mentor">AI Mentor</option>
@@ -69,31 +66,30 @@
     <label for="CG-goal">🎯 Goal / Tugas AI</label>
     <input type="text" id="CG-goal" placeholder="Edukasi + Promosi" />
 
-    <label for="CG-style">🗣️ Style / Gaya Bahasa</label>
+    <label for="CG-style">✒️ Style / Gaya Bahasa</label>
     <input type="text" id="CG-style" placeholder="Gaul + Informatif" />
 
-    <label for="CG-objective">📈 Campaign Objective</label>
+    <label for="CG-objective">📌 Campaign Objective</label>
     <input type="text" id="CG-objective" placeholder="Branding + Awareness" />
 
-    <label for="CG-tone">🎵 Tone / Suasana</label>
+    <label for="CG-tone">🎭 Tone / Suasana</label>
     <input type="text" id="CG-tone" placeholder="Ramah dan percaya diri" />
 
     <label for="CG-persona">👤 Persona / Karakter Suara</label>
     <input type="text" id="CG-persona" placeholder="Mentor Dewasa" />
 
-    <label for="CG-platformStyle">🧩 Platform Behavior</label>
+    <label for="CG-platformStyle">🖼️ Platform Behavior</label>
     <input type="text" id="CG-platformStyle" placeholder="TikTok Fast Cut" />
 
-    <label for="CG-keywords">🔍 Keywords / Hashtag Fokus</label>
+    <label for="CG-keywords">🏷️ Keywords / Hashtag Fokus</label>
     <input type="text" id="CG-keywords" placeholder="#KulitGlowing #NoFilterNeeded" />
 
     <label for="CG-styleReference">🔗 Style Referensi / Link</label>
     <input type="text" id="CG-styleReference" placeholder="Link instagram referensi kamu" />
   </details>
 
-  <!-- Production Layer -->
   <details>
-    <summary>🎞️ Production Layer</summary>
+    <summary>🎬 Production Layer</summary>
 
     <label for="CG-duration">⏱️ Durasi Maksimal</label>
     <input type="text" id="CG-duration" placeholder="60 detik" />
@@ -101,22 +97,22 @@
     <label for="CG-visual">🎥 Referensi Visual</label>
     <input type="text" id="CG-visual" placeholder="B-roll aesthetic + talking head" />
 
-    <label for="CG-contentFormat">🖼️ Format Produksi</label>
+    <label for="CG-contentFormat">📽️ Format Produksi</label>
     <input type="text" id="CG-contentFormat" placeholder="Voice-over + Caption" />
 
-    <label for="CG-contentFlow">📚 Alur / Struktur Konten</label>
+    <label for="CG-contentFlow">📋 Alur / Struktur Konten</label>
     <input type="text" id="CG-contentFlow" placeholder="Hook – Value – CTA" />
 
-    <label for="CG-outputDetail">🛠️ Detail Output Tambahan</label>
+    <label for="CG-outputDetail">⚙️ Detail Output Tambahan</label>
     <input type="text" id="CG-outputDetail" placeholder="Tambah subtitle & transisi jumpcut" />
 
     <label for="CG-cta">📢 CTA / Ending Text</label>
     <input type="text" id="CG-cta" placeholder="Klik link bio sekarang juga!" />
 
-    <label for="CG-ctaStyle">🧭 Style CTA / Format Ajakannya</label>
+    <label for="CG-ctaStyle">🗣️ Style CTA / Format Ajakannya</label>
     <input type="text" id="CG-ctaStyle" placeholder="Soft Selling – Friendly CTA" />
 
-    <label for="CG-language">🗣️ Bahasa / Dialek</label>
+    <label for="CG-language">🌍 Bahasa / Dialek</label>
     <input type="text" id="CG-language" placeholder="Campur Inggris" />
 
     <label for="CG-moment">📅 Momen / Kalender</label>
@@ -126,16 +122,14 @@
     <input type="text" id="CG-constraint" placeholder="Hindari overclaim dan janji palsu" />
   </details>
 
-  <!-- ACTION BUTTONS -->
   <div class="actions">
-    <button onclick="generateContent()">🚀 Generate Konten</button>
-    <button onclick="resetContent()">🔄 Reset</button>
+    <button onclick="generatePrompt()">🚀 Generate Prompt</button>
+    <button onclick="resetForm()">🔄 Reset</button>
   </div>
 
-  <!-- OUTPUT -->
-  <div id="content-output-container">
-    <div id="content-output"></div>
-    <button id="copy-content-button" onclick="copyContent()">📋 Copy</button>
+  <div id="content-output-container" class="output-container">
+    <div id="content-output" class="output-box"></div>
+    <button id="copy-button" class="copy-button" onclick="copyPrompt()">📋 Copy</button>
   </div>
 
 </div>
