@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Test Fetch</title></head>
+<body>
+  <div id="target">Loading...</div>
+  <script>
+    fetch('brainstorm.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('target').innerHTML = html)
+      .catch(err => document.getElementById('target').textContent = 'Error: ' + err.message);
+  </script>
+</body>
+</html>
