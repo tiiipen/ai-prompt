@@ -181,6 +181,18 @@ summary {
   background-color: #e2e8f0;
 }
 
+/* FORCE tombol copy tetap tampil di kanan atas container output */
+#copy-button,
+#copy-brainstorm-button,
+#copy-image-button,
+#copy-video-button {
+  position: absolute !important;
+  top: 15px !important;
+  right: 15px !important;
+  z-index: 10 !important;
+  display: inline-block !important;
+}
+
 /* MOBILE RESPONSIVE - output & tombol copy tetap stabil */
 @media (max-width: 480px) {
   html, body {
@@ -207,4 +219,16 @@ summary {
     min-width: 44px;
     padding: 4px 8px;
   }
+  #copy-button,
+  #copy-brainstorm-button,
+  #copy-image-button,
+  #copy-video-button {
+    top: 8px !important;
+    right: 8px !important;
+    font-size: 12px !important;
+    min-width: 44px !important;
+    padding: 4px 8px !important;
+  }
+}
+  
 }
