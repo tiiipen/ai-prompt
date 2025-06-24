@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <title>Brainstorming Tab</title>
-</head>
-<body>
+<div class="tab-content active" id="brainstorm">
 
-<div id="brainstorm" class="tab-content active">
-
-  <h1>🧠 Creator Insight</h1>
+  <h3>🧠 Creator Insight</h3>
 
   <label for="BS-interest">📌 Minat / Topik yang Disukai</label>
   <input type="text" id="BS-interest" placeholder="Fashion, Teknologi, Kesehatan" />
@@ -19,99 +11,40 @@
   <label for="BS-purpose">🎯 Tujuan / Motivasi</label>
   <input type="text" id="BS-purpose" placeholder="Ingin bantu orang lain, cari penghasilan" />
 
-  <label for="BS-audience">👥 Target Audiens</label>
-  <input type="text" id="BS-audience" placeholder="Mahasiswa, Ibu Rumah Tangga, Karyawan" />
-
-  <label for="BS-formatPref">🎥 Format Konten yang Disukai</label>
-  <input type="text" id="BS-formatPref" placeholder="Video pendek, Carousel, Live streaming" />
-
-  <label for="BS-timeAvailability">⏱️ Ketersediaan Waktu</label>
-  <input type="text" id="BS-timeAvailability" placeholder="2 jam/hari, Hanya weekend" />
-
-  <label for="BS-budgetLevel">💸 Tingkat Budget</label>
-  <input type="text" id="BS-budgetLevel" placeholder="Minim, Menengah, Siap iklan" />
-
-  <label for="BS-personalityType">🧍 Kepribadian Pembuat Konten</label>
-  <input type="text" id="BS-personalityType" placeholder="Introvert, Ekstrovert" />
-
-  <label for="BS-experienceLevel">📚 Pengalaman Sebelumnya</label>
-  <select id="BS-experienceLevel">
-    <option value="pemula">Pemula</option>
-    <option value="menengah">Menengah</option>
-    <option value="berpengalaman">Berpengalaman</option>
-  </select>
-
-  <label for="BS-contentAvoid">🚫 Konten yang Dihindari</label>
-  <input type="text" id="BS-contentAvoid" placeholder="Politik, Agama, Konten sensitif" />
-
-  <label for="BS-platformPref">📱 Platform Favorit</label>
-  <input type="text" id="BS-platformPref" placeholder="Instagram, YouTube" />
-
-  <label for="BS-lifeStage">🧩 Fase Karier / Kondisi Saat Ini</label>
-  <input type="text" id="BS-lifeStage" placeholder="Baru mulai, Freelancer aktif" />
-
   <details>
     <summary>🎨 Brand Identity</summary>
+
     <label for="BS-brandName">📛 Nama Brand</label>
-    <input type="text" id="BS-brandName" placeholder="Contoh: GlowUp ID (boleh dikosongkan jika belum punya)" />
+    <input type="text" id="BS-brandName" placeholder="Contoh: GlowUp ID (boleh dikosongkan)" />
 
     <label for="BS-brandVoice">🗣️ Brand Voice (Tone)</label>
     <input type="text" id="BS-brandVoice" placeholder="Ramah, Profesional, Inspiratif" />
 
     <label for="BS-motto">📝 Motto / Slogan</label>
-    <input type="text" id="BS-motto" placeholder="Contoh: We Empower Women, Grow & Glow" />
+    <input type="text" id="BS-motto" placeholder="Contoh: We Empower Women" />
 
     <label for="BS-logoConcept">🎨 Konsep Logo</label>
-    <input type="text" id="BS-logoConcept" placeholder="Contoh: Ikon sederhana + warna pastel + font sans-serif" />
-
-    <label for="BS-personaStyle">👤 Persona / Gaya Komunikasi</label>
-    <input type="text" id="BS-personaStyle" placeholder="Mentor, Sahabat, CEO, Creator" />
-
-    <label for="BS-brandColor">🌈 Warna Mood Brand</label>
-    <input type="text" id="BS-brandColor" placeholder="Contoh: Soft Pink, Kuning Ceria, atau Navy Elegan" />
-
-    <label for="BS-symbolPref">🔣 Simbol / Ikon Favorit</label>
-    <input type="text" id="BS-symbolPref" placeholder="Daun, Petir, Hati, Bintang" />
-
-    <label for="BS-brandInspo">🌟 Media Referensi Favorit</label>
-    <input type="text" id="BS-brandInspo" placeholder="Contoh: Nike, Canva, Dove" />
+    <input type="text" id="BS-logoConcept" placeholder="Ikon sederhana + warna pastel" />
   </details>
 
   <details>
-    <summary>🎯 Creative Alignment</summary>
-    <label><input type="checkbox" id="BS-chkEduContent" /> Saya ingin konten ini bersifat edukatif</label>
-    <label><input type="checkbox" id="BS-chkStorytelling" /> Saya ingin konten dengan storytelling</label>
-    <label><input type="checkbox" id="BS-chkLowEffort" /> Saya ingin konten ringan dan mudah dibuat</label>
-    <label><input type="checkbox" id="BS-chkMonetize" /> Saya ingin konten ini bisa menghasilkan uang</label>
-    <label><input type="checkbox" id="BS-chkUnique" /> Saya ingin konten yang unik dan berbeda</label>
-    <label><input type="checkbox" id="BS-chkProfessional" /> Saya ingin gaya brand yang profesional</label>
-    <label><input type="checkbox" id="BS-chkMixedLanguage" /> Gunakan gaya bahasa campur Inggris</label>
-    <label><input type="checkbox" id="BS-chkMultiplatform" /> Saya ingin kontennya multi-platform</label>
-    <label><input type="checkbox" id="BS-chkDigitalProduct" /> Konten bisa jadi produk digital</label>
-    <label><input type="checkbox" id="BS-chkViralTrend" /> Konten mengikuti tren/viral</label>
+    <summary>🎯 Preferensi Konten</summary>
+
+    <label><input type="checkbox" id="BS-chkEduContent" /> Saya ingin konten edukatif</label>
+    <label><input type="checkbox" id="BS-chkMonetize" /> Konten menghasilkan uang</label>
+    <label><input type="checkbox" id="BS-chkLowEffort" /> Konten ringan & mudah</label>
   </details>
 
-  <details>
-    <summary>🎯 Goal & Limitation</summary>
-    <label><input type="checkbox" id="BS-chkFastExec" /> Saya butuh ide yang bisa langsung dieksekusi</label>
-    <label><input type="checkbox" id="BS-chkLimitTools" /> Saya punya keterbatasan alat/tim</label>
-    <label><input type="checkbox" id="BS-chkCommunity" /> Saya ingin brand ini punya komunitas</label>
-    <label><input type="checkbox" id="BS-chkNoBrand" /> Saya belum punya brand, bantu dari awal</label>
-  </details>
-
-  <!-- ACTION BUTTONS -->
+  <!-- Tombol Aksi -->
   <div class="actions">
     <button onclick="generateBrainstorm()">🚀 Generate Ide</button>
     <button onclick="resetBrainstorm()">🔄 Reset</button>
   </div>
 
-  <!-- OUTPUT -->
-  <div class="output-container">
-    <div id="brainstorm-output" class="output-box"></div>
-    <button id="copy-brainstorm-button" class="copy-button" onclick="copyBrainstorm()">📋 Copy</button>
+  <!-- Output -->
+  <div id="brainstorm-output-container">
+    <div id="brainstorm-output"></div>
+    <button id="copy-brainstorm-button" onclick="copyBrainstorm()">📋 Copy</button>
   </div>
 
 </div>
-
-</body>
-</html>
