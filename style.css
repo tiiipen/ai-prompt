@@ -75,6 +75,7 @@ textarea::placeholder {
 
 textarea {
   height: 90px;
+  resize: vertical;
 }
 
 select {
@@ -129,6 +130,7 @@ summary {
   background-color: #e2e8f0;
 }
 
+/* OUTPUT CONTAINERS, semua wajib relative! */
 #content-output-container,
 #brainstorm-output-container,
 #image-output-container,
@@ -137,6 +139,7 @@ summary {
   margin-top: 1.5rem;
 }
 
+/* OUTPUT BOX STYLE */
 #content-output,
 #brainstorm-output,
 #image-output,
@@ -151,6 +154,7 @@ summary {
   color: #334155;
 }
 
+/* COPY BUTTON - selalu absolute di kanan atas output */
 #copy-button,
 #copy-brainstorm-button,
 #copy-image-button,
@@ -166,6 +170,8 @@ summary {
   color: #1e293b;
   cursor: pointer;
   min-width: 60px;
+  z-index: 10;
+  box-shadow: 0 1px 3px rgba(31,41,55,0.04);
 }
 
 #copy-button:hover,
@@ -175,6 +181,7 @@ summary {
   background-color: #e2e8f0;
 }
 
+/* MOBILE RESPONSIVE - output & tombol copy tetap stabil */
 @media (max-width: 480px) {
   html, body {
     padding: 0.75rem !important;
@@ -189,5 +196,15 @@ summary {
   }
   input, select, textarea {
     font-size: 14px;
+  }
+  #copy-button,
+  #copy-brainstorm-button,
+  #copy-image-button,
+  #copy-video-button {
+    top: 8px;
+    right: 8px;
+    font-size: 12px;
+    min-width: 44px;
+    padding: 4px 8px;
   }
 }
