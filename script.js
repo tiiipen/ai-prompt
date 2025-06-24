@@ -1,4 +1,4 @@
-// ==== TAB SWITCH + LOAD HTML ====
+// ==== BASE PATH untuk Fetch Tab ====
 const baseURL = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/');
 
 const tabUrls = {
@@ -8,6 +8,7 @@ const tabUrls = {
   video: baseURL + 'video.html'
 };
 
+// ==== SWITCH TAB + LOAD HTML ====
 function switchTab(tab) {
   document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.tab-grid button').forEach(el => el.classList.remove('active'));
@@ -38,29 +39,21 @@ function switchTab(tab) {
 
 // ==== BRAINSTORM ====
 function generateBrainstorm() {
-  const interest = document.getElementById("interest")?.value.trim();
-  const strength = document.getElementById("strength")?.value.trim();
-  const purpose = document.getElementById("purpose")?.value.trim();
+  const val = id => document.getElementById(id)?.value.trim() || "";
 
-  if (!interest && !strength && !purpose) {
-    alert("Silakan isi setidaknya satu field untuk memulai brainstorming.");
-    return;
-  }
-
-  const output = `Berikut beberapa ide konten atau bisnis:\n\n` +
-    (interest ? `📌 Topik: ${interest}\n` : '') +
-    (strength ? `💪 Kekuatan: ${strength}\n` : '') +
-    (purpose ? `🎯 Tujuan: ${purpose}\n` : '') +
-    `\nContoh:\n` +
-    `1. Akun edukasi seputar ${interest || 'topik'}\n` +
-    `2. Konten tips dari ${strength || 'keahlian'}\n` +
-    `3. Campaign untuk "${purpose || 'motivasi'}"`;
+  const output = `Berikut beberapa insight dari preferensi Anda:\n\n` +
+    `📌 Minat: ${val("BS-interest")}\n` +
+    `💪 Kekuatan: ${val("BS-strength")}\n` +
+    `🎯 Tujuan: ${val("BS-purpose")}\n` +
+    `🎞️ Format Favorit: ${val("BS-formatPref")}\n` +
+    `📱 Platform: ${val("BS-platformPref")}\n` +
+    `\nGunakan insight ini sebagai dasar ide konten yang sesuai dengan gaya, tujuan, dan waktu Anda.`;
 
   document.getElementById("brainstorm-output").textContent = output;
 }
 
 function resetBrainstorm() {
-  document.querySelectorAll('#brainstorm input[type="text"]').forEach(el => el.value = '');
+  document.querySelectorAll('#brainstorm input, #brainstorm select').forEach(el => el.value = "");
   document.querySelectorAll('#brainstorm input[type="checkbox"]').forEach(el => el.checked = false);
   document.getElementById("brainstorm-output").textContent = "";
 }
@@ -68,14 +61,7 @@ function resetBrainstorm() {
 function copyBrainstorm() {
   const text = document.getElementById("brainstorm-output")?.textContent;
   if (!text) return alert("Silakan generate ide terlebih dahulu.");
-
-  const textarea = document.createElement("textarea");
-  textarea.value = text;
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand("copy");
-  document.body.removeChild(textarea);
-
+  navigator.clipboard.writeText(text);
   const btn = document.getElementById("copy-brainstorm-button");
   if (btn) {
     btn.textContent = "✔ Copied";
@@ -83,79 +69,67 @@ function copyBrainstorm() {
   }
 }
 
-// ==== CONTENT PROMPT ====
+// ==== CONTENT GENERATOR ====
 const formatOptions = {
-  "Instagram": ["IG Post", "IG Story", "IG Carousel", "IG Reels"],
-  "Youtube": ["YouTube Short", "YouTube Videos"],
-  "TikTok": ["TikTok Video", "TikTok Live"]
+  Instagram: ["Reels", "Carousel", "IG Live"],
+  YouTube: ["Shorts", "Full Video"],
+  TikTok: ["TikTok Video", "TikTok Live"]
 };
 
 function updateFormatOptions() {
-  const platform = document.getElementById("platform")?.value;
-  const formatSelect = document.getElementById("format");
-  if (!platform || !formatSelect) return;
-
-  formatSelect.innerHTML = "";
-  (formatOptions[platform] || []).forEach(format => {
-    const option = document.createElement("option");
-    option.value = format;
-    option.text = format;
-    formatSelect.appendChild(option);
+  const platform = document.getElementById("CG-platform")?.value;
+  const select = document.getElementById("CG-format");
+  if (!platform || !select) return;
+  select.innerHTML = "";
+  (formatOptions[platform] || []).forEach(opt => {
+    const o = document.createElement("option");
+    o.value = o.text = opt;
+    select.appendChild(o);
   });
 }
 
-function getVal(id) {
-  return document.getElementById(id)?.value.trim() || "";
-}
-
-function generatePrompt() {
-  const ids = [
-    "brand", "product", "audience", "platform", "format", "style",
-    "objective", "cta", "persona", "visual", "language", "moment",
-    "role", "goal", "tone", "constraint", "outputType"
-  ];
-
-  const data = Object.fromEntries(ids.map(id => [id, getVal(id)]));
-
-  let prompt = `Buatkan konten ${data.format} untuk platform ${data.platform} yang mempromosikan brand "${data.brand}".\nProduk/Jasa: ${data.product}.\nTarget audiens: ${data.audience}.\n`;
-
-  if (data.style) prompt += `Gaya bahasa: ${data.style}.\n`;
-  if (data.objective) prompt += `Tujuan kampanye: ${data.objective}.\n`;
-  if (data.cta) prompt += `Call to action: ${data.cta}.\n`;
-  if (data.persona) prompt += `Karakter/tone brand: ${data.persona}.\n`;
-  if (data.visual) prompt += `Referensi visual: ${data.visual}.\n`;
-  if (data.language) prompt += `Dialek/bahasa: ${data.language}.\n`;
-  if (data.moment) prompt += `Momen/konteks: ${data.moment}.\n`;
-  if (data.role) prompt += `Role AI: ${data.role}.\n`;
-  if (data.goal) prompt += `Goal atau tugas AI: ${data.goal}.\n`;
-  if (data.tone) prompt += `Tone konten: ${data.tone}.\n`;
-  if (data.constraint) prompt += `Batasan: ${data.constraint}.\n`;
-
-  prompt += `Konten harus engaging, relevan, dan sesuai brief.\nBerikan 3 versi atau ide berbeda dari prompt ini.`;
+function generateContentPrompt() {
+  const id = id => document.getElementById(id)?.value.trim() || "";
+  const prompt = `Buatkan konten ${id("CG-outputType")} untuk platform ${id("CG-platform")} dengan format ${id("CG-format")}\n\n` +
+    `🧠 Tema: ${id("CG-campaignName")}\n🏷️ Brand: ${id("CG-brand")}\n📦 Produk: ${id("CG-product")}\n👥 Audiens: ${id("CG-audience")}\n🎨 Gaya: ${id("CG-style")}\n🎯 Tujuan: ${id("CG-objective")}\n🧑‍💼 Persona: ${id("CG-persona")}\n📣 CTA: ${id("CG-cta")}\n📸 Visual: ${id("CG-visual")}\n📌 Keywords: ${id("CG-keywords")}\n`;
 
   document.getElementById("content-output").textContent = prompt;
 }
 
-function resetForm() {
-  document.querySelectorAll("#content input, #content select").forEach(el => {
-    if (el.type === "checkbox") el.checked = false;
-    else el.value = "";
-  });
+function resetContentForm() {
+  document.querySelectorAll('#content input, #content select').forEach(el => el.value = "");
   document.getElementById("content-output").textContent = "";
 }
 
 function copyPrompt() {
   const text = document.getElementById("content-output")?.textContent;
   if (!text) return alert("Silakan generate prompt terlebih dahulu.");
-
-  const textarea = document.createElement("textarea");
-  textarea.value = text;
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand("copy");
-  document.body.removeChild(textarea);
-
+  navigator.clipboard.writeText(text);
   const btn = document.getElementById("copy-button");
+  if (btn) {
+    btn.textContent = "✔ Copied";
+    setTimeout(() => btn.textContent = "Copy", 1500);
+  }
+}
+
+// ==== IMAGE PROMPT ====
+function generateImagePrompt() {
+  const get = id => document.getElementById(id)?.value.trim() || "";
+  let prompt = `Prompt Gambar:\n\nJudul: ${get("TI-title")}\nObjek Utama: ${get("TI-mainObject")}\nLokasi: ${get("TI-location")}\nGaya: ${get("TI-artStyle")}\nMood: ${get("TI-mood")}\n`;
+  prompt += `Warna: ${get("TI-colorPalette")}\nLighting: ${get("TI-lighting")}\nPose: ${get("TI-characterPose")}\nDetail: ${get("TI-additionalDetail")}\nFantasy: ${get("TI-fantasyElement")}\n`;
+  document.getElementById("image-output").textContent = prompt;
+}
+
+function resetImageForm() {
+  document.querySelectorAll('#image input, #image select').forEach(el => el.value = "");
+  document.getElementById("image-output").textContent = "";
+}
+
+function copyImagePrompt() {
+  const text = document.getElementById("image-output")?.textContent;
+  if (!text) return alert("Silakan generate prompt terlebih dahulu.");
+  navigator.clipboard.writeText(text);
+  const btn = document.getElementById("copy-image-button");
   if (btn) {
     btn.textContent = "✔ Copied";
     setTimeout(() => btn.textContent = "Copy", 1500);
@@ -164,64 +138,20 @@ function copyPrompt() {
 
 // ==== VIDEO PROMPT ====
 function generateVideoPrompt() {
-  const ids = [
-    "TV-title", "TV-mainScene", "TV-location", "TV-visualStyle", "TV-mood",
-    "TV-scriptStyle", "TV-shortScript", "TV-dialogScript", "TV-cameraMovement",
-    "TV-lighting", "TV-framingStyle", "TV-dialogTone", "TV-voiceoverStyle",
-    "TV-pacingStyle", "TV-emotionImpact", "TV-callToAction", "TV-trendHook",
-    "TV-brandVisualType", "TV-outputUseCase", "TV-cameraType", "TV-lensType",
-    "TV-aperture", "TV-isoSetting", "TV-shutterSpeed", "TV-frameRate"
-  ];
-
-  const data = Object.fromEntries(ids.map(id => [id, getVal(id)]));
-
-  let prompt = `Buatkan skrip video dengan topik "${data["TV-title"]}".\n`;
-  if (data["TV-mainScene"]) prompt += `Adegan utama: ${data["TV-mainScene"]}.\n`;
-  if (data["TV-location"]) prompt += `Lokasi: ${data["TV-location"]}.\n`;
-  if (data["TV-visualStyle"]) prompt += `Gaya visual: ${data["TV-visualStyle"]}.\n`;
-  if (data["TV-mood"]) prompt += `Mood/Tone: ${data["TV-mood"]}.\n`;
-  if (data["TV-scriptStyle"]) prompt += `Gaya naskah: ${data["TV-scriptStyle"]}.\n`;
-  if (data["TV-shortScript"]) prompt += `Narasi pendek: ${data["TV-shortScript"]}.\n`;
-  if (data["TV-dialogScript"]) prompt += `Contoh dialog:\n${data["TV-dialogScript"]}\n`;
-  if (data["TV-cameraMovement"]) prompt += `Style kamera: ${data["TV-cameraMovement"]}.\n`;
-  if (data["TV-lighting"]) prompt += `Lighting: ${data["TV-lighting"]}.\n`;
-  if (data["TV-framingStyle"]) prompt += `Framing visual: ${data["TV-framingStyle"]}.\n`;
-  if (data["TV-dialogTone"]) prompt += `Tone dialog: ${data["TV-dialogTone"]}.\n`;
-  if (data["TV-voiceoverStyle"]) prompt += `Voiceover: ${data["TV-voiceoverStyle"]}.\n`;
-  if (data["TV-pacingStyle"]) prompt += `Ritme/Pacing: ${data["TV-pacingStyle"]}.\n`;
-  if (data["TV-emotionImpact"]) prompt += `Emosi yang ditargetkan: ${data["TV-emotionImpact"]}.\n`;
-  if (data["TV-callToAction"]) prompt += `CTA: ${data["TV-callToAction"]}.\n`;
-  if (data["TV-trendHook"]) prompt += `Hook gaya tren: ${data["TV-trendHook"]}.\n`;
-  if (data["TV-brandVisualType"]) prompt += `Branding visual: ${data["TV-brandVisualType"]}.\n`;
-  if (data["TV-outputUseCase"]) prompt += `Tujuan output: ${data["TV-outputUseCase"]}.\n`;
-  if (data["TV-cameraType"]) prompt += `Jenis kamera: ${data["TV-cameraType"]}.\n`;
-  if (data["TV-lensType"]) prompt += `Lensa: ${data["TV-lensType"]}.\n`;
-  if (data["TV-aperture"]) prompt += `Aperture: ${data["TV-aperture"]}.\n`;
-  if (data["TV-isoSetting"]) prompt += `ISO: ${data["TV-isoSetting"]}.\n`;
-  if (data["TV-shutterSpeed"]) prompt += `Shutter speed: ${data["TV-shutterSpeed"]}.\n`;
-  if (data["TV-frameRate"]) prompt += `Frame rate: ${data["TV-frameRate"]}.\n`;
-
-  prompt += `\nTampilkan skrip lengkap beserta 2 variasi lain dengan tone berbeda.`;
-
+  const get = id => document.getElementById(id)?.value.trim() || "";
+  const prompt = `Prompt Video:\n\nJudul: ${get("TV-title")}\nAdegan: ${get("TV-mainScene")}\nLokasi: ${get("TV-location")}\nStyle Visual: ${get("TV-visualStyle")}\nMood: ${get("TV-mood")}\nScript: ${get("TV-shortScript")}\nDialog: ${get("TV-dialogScript")}\nPacing: ${get("TV-pacingStyle")}\nTransisi: ${get("TV-cameraMovement")}\nOutput: ${get("TV-outputUseCase")}\n`;
   document.getElementById("video-output").textContent = prompt;
 }
 
-function resetVideoPrompt() {
-  document.querySelectorAll("#video input, #video select, #video textarea").forEach(el => el.value = "");
+function resetVideoForm() {
+  document.querySelectorAll('#video input, #video textarea, #video select').forEach(el => el.value = "");
   document.getElementById("video-output").textContent = "";
 }
 
 function copyVideoPrompt() {
   const text = document.getElementById("video-output")?.textContent;
   if (!text) return alert("Silakan generate prompt terlebih dahulu.");
-
-  const textarea = document.createElement("textarea");
-  textarea.value = text;
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand("copy");
-  document.body.removeChild(textarea);
-
+  navigator.clipboard.writeText(text);
   const btn = document.getElementById("copy-video-button");
   if (btn) {
     btn.textContent = "✔ Copied";
@@ -229,5 +159,5 @@ function copyVideoPrompt() {
   }
 }
 
-// ==== AUTO LOAD DEFAULT TAB ====
+// ==== DEFAULT LOAD TAB ====
 window.onload = () => switchTab('brainstorm');
