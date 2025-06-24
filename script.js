@@ -1,18 +1,46 @@
-// ==== TAB SWITCH ====
+// ==== TAB SWITCH + LOAD HTML ====
+const tabUrls = {
+  brainstorm: 'brainstorm.html',
+  content: 'content.html',
+  image: 'image.html',
+  video: 'video.html'
+};
+
 function switchTab(tab) {
   document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.tab-buttons button').forEach(el => el.classList.remove('active'));
-  document.getElementById(tab).classList.add('active');
-  document.getElementById('btn-' + tab).classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.querySelectorAll('.tab-grid button').forEach(el => el.classList.remove('active'));
+
+  const target = document.getElementById(tab);
+  const button = document.querySelector(`.tab-grid button[onclick="switchTab('${tab}')"]`);
+
+  if (target && button) {
+    target.classList.add('active');
+    button.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (!target.dataset.loaded) {
+      fetch(tabUrls[tab])
+        .then(res => res.text())
+        .then(html => {
+          target.innerHTML = html;
+          target.dataset.loaded = "true";
+
+          // Trigger event for select onchange in content tab
+          if (tab === "content") updateFormatOptions();
+        })
+        .catch(err => {
+          target.innerHTML = `<p style="color:red;">Gagal memuat konten: ${err.message}</p>`;
+        });
+    }
+  }
 }
 
 // ==== BRAINSTORM ====
 
 function generateBrainstorm() {
-  const interest = document.getElementById("interest").value.trim();
-  const strength = document.getElementById("strength").value.trim();
-  const purpose = document.getElementById("purpose").value.trim();
+  const interest = document.getElementById("interest")?.value.trim();
+  const strength = document.getElementById("strength")?.value.trim();
+  const purpose = document.getElementById("purpose")?.value.trim();
 
   if (!interest && !strength && !purpose) {
     alert("Silakan isi setidaknya satu field untuk memulai brainstorming.");
@@ -38,7 +66,7 @@ function resetBrainstorm() {
 }
 
 function copyBrainstorm() {
-  const text = document.getElementById("brainstorm-output").textContent;
+  const text = document.getElementById("brainstorm-output")?.textContent;
   if (!text) return alert("Silakan generate ide terlebih dahulu.");
 
   const textarea = document.createElement("textarea");
@@ -49,8 +77,10 @@ function copyBrainstorm() {
   document.body.removeChild(textarea);
 
   const btn = document.getElementById("copy-brainstorm-button");
-  btn.textContent = "✔ Copied";
-  setTimeout(() => btn.textContent = "Copy", 1500);
+  if (btn) {
+    btn.textContent = "✔ Copied";
+    setTimeout(() => btn.textContent = "Copy", 1500);
+  }
 }
 
 // ==== CONTENT PROMPT ====
@@ -62,10 +92,12 @@ const formatOptions = {
 };
 
 function updateFormatOptions() {
-  const platform = document.getElementById("platform").value;
+  const platform = document.getElementById("platform")?.value;
   const formatSelect = document.getElementById("format");
+  if (!platform || !formatSelect) return;
+
   formatSelect.innerHTML = "";
-  formatOptions[platform].forEach(format => {
+  (formatOptions[platform] || []).forEach(format => {
     const option = document.createElement("option");
     option.value = format;
     option.text = format;
@@ -114,7 +146,7 @@ function resetForm() {
 }
 
 function copyPrompt() {
-  const text = document.getElementById("content-output").textContent;
+  const text = document.getElementById("content-output")?.textContent;
   if (!text) return alert("Silakan generate prompt terlebih dahulu.");
 
   const textarea = document.createElement("textarea");
@@ -125,9 +157,11 @@ function copyPrompt() {
   document.body.removeChild(textarea);
 
   const btn = document.getElementById("copy-button");
-  btn.textContent = "✔ Copied";
-  setTimeout(() => btn.textContent = "Copy", 1500);
+  if (btn) {
+    btn.textContent = "✔ Copied";
+    setTimeout(() => btn.textContent = "Copy", 1500);
+  }
 }
 
-// Inisialisasi saat halaman dimuat
-window.addEventListener("load", updateFormatOptions);
+// ==== AUTO LOAD DEFAULT TAB ====
+window.onload = () => switchTab('brainstorm');
