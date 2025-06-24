@@ -18,7 +18,8 @@ html, body {
 }
 
 .tab-grid button {
-  flex: 1;
+  flex: 0 0 calc(50% - 10px); /* 2 kolom dengan gap 10px */
+  box-sizing: border-box;
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   font-weight: 600;
@@ -30,7 +31,6 @@ html, body {
   cursor: pointer;
   transition: background-color 0.2s ease;
   min-height: 56px;
-  max-width: 220px;
 }
 
 .tab-grid button:hover,
@@ -171,4 +171,9 @@ summary {
     font-size: 14px;
     padding: 12px 10px;
   }
+  
+  .tab-grid button {
+    flex: 1 1 100%;
+  }
+}
 }
