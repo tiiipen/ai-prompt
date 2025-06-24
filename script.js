@@ -1,10 +1,14 @@
 // ==== TAB SWITCH + LOAD HTML ====
+const baseURL = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/');
+
 const tabUrls = {
-  brainstorm: 'brainstorm.html',
-  content: 'content.html',
-  image: 'image.html',
-  video: 'video.html'
+  brainstorm: baseURL + 'brainstorm.html',
+  content: baseURL + 'content.html',
+  image: baseURL + 'image.html',
+  video: baseURL + 'video.html'
 };
+
+//
 
 function switchTab(tab) {
   document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
